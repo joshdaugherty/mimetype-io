@@ -13904,5 +13904,179 @@
       "communityContributed": false,
       "popularUsage": null
     }
+  },
+  {
+    "name": "application/flowfile",
+    "description": "The Apache NiFi FlowFile serialization formats are used within the NiFi project to serialize the FlowFile attributes and content of files leaving a NiFi instance. The serialization format referenced by this mimetype is distinct from the way FlowFiles are stored internally within NiFi.",    
+    "furtherReading": [
+      {
+        "title": "Apache NiFi User Guide - Terminology",
+        "url": "https://nifi.apache.org/docs/nifi-docs/html/user-guide.html#terminology"
+      },
+      {
+        "title": "NiFi Documentation - Processors - UnpackContent",
+        "url": "https://nifi.apache.org/docs/nifi-docs/html/user-guide.html#terminology"
+      },
+      {
+        "title": "NiFi Documentation - Processors - UnpackContent",
+        "url": "https://nifi.apache.org/docs/nifi-docs/html/user-guide.html#terminology"
+      },
+      {
+        "title": "NiFi Documentation - Processors - PackageFlowFile",
+        "url": "https://nifi.apache.org/docs/nifi-docs/html/user-guide.html#terminology"
+      },
+      {
+        "title": "mimetypes - StandardFlowFileMediaType.java",
+        "url": "https://github.com/apache/nifi/blob/main/nifi-commons/nifi-utils/src/main/java/org/apache/nifi/flowfile/attributes/StandardFlowFileMediaType.java"
+      }
+    ],
+    "links": {
+      "deprecates": [],
+      "relatedTo": [],
+      "parentOf": [],
+      "alternativeTo": [
+        "application/flowfile-v1",
+        "application/flowfile-v2",
+        "application/flowfile-v3"
+      ]
+    },
+    "fileTypes": [],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/flowfile-v1",
+    "description": "The Apache NiFi FlowFile serialization version 1 format is used within the NiFi project to serialize the FlowFile attributes and content of files leaving a NiFi instance. The serialization format referenced by this mimetype is distinct from the way FlowFiles are stored internally within NiFi.",    
+    "furtherReading": [
+      {
+        "title": "Apache NiFi User Guide - Terminology",
+        "url": "https://nifi.apache.org/docs/nifi-docs/html/user-guide.html#terminology"
+      },
+      {
+        "title": "NiFi Documentation - Processors - UnpackContent",
+        "url": "https://nifi.apache.org/docs/nifi-docs/html/user-guide.html#terminology"
+      },
+      {
+        "title": "NiFi Documentation - Processors - UnpackContent",
+        "url": "https://nifi.apache.org/docs/nifi-docs/html/user-guide.html#terminology"
+      },
+      {
+        "title": "NiFi Documentation - Processors - PackageFlowFile",
+        "url": "https://nifi.apache.org/docs/nifi-docs/html/user-guide.html#terminology"
+      },
+      {
+        "title": "mimetypes - StandardFlowFileMediaType.java",
+        "url": "https://github.com/apache/nifi/blob/main/nifi-commons/nifi-utils/src/main/java/org/apache/nifi/flowfile/attributes/StandardFlowFileMediaType.java"
+      }
+    ],
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/flowfile",
+        "application/flowfile-v1",
+        "application/flowfile-v3"
+      ],
+      "parentOf": [],
+      "alternativeTo": [
+        "application/flowfile"
+      ]
+    },
+    "fileTypes": [],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/flowfile-v2",
+    "description": "The Apache NiFi FlowFile serialization version 2 format is used within the NiFi project to serialize the FlowFile attributes and content of files leaving a NiFi instance. The serialization format referenced by this mimetype is distinct from the way FlowFiles are stored internally within NiFi.",    
+    "furtherReading": [
+      {
+        "title": "Apache NiFi User Guide - Terminology",
+        "url": "https://nifi.apache.org/docs/nifi-docs/html/user-guide.html#terminology"
+      },
+      {
+        "title": "NiFi Documentation - Processors - UnpackContent",
+        "url": "https://nifi.apache.org/docs/nifi-docs/html/user-guide.html#terminology"
+      },
+      {
+        "title": "NiFi Documentation - Processors - UnpackContent",
+        "url": "https://nifi.apache.org/docs/nifi-docs/html/user-guide.html#terminology"
+      },
+      {
+        "title": "NiFi Documentation - Processors - PackageFlowFile",
+        "url": "https://nifi.apache.org/docs/nifi-docs/html/user-guide.html#terminology"
+      },
+      {
+        "title": "mimetypes - StandardFlowFileMediaType.java",
+        "url": "https://github.com/apache/nifi/blob/main/nifi-commons/nifi-utils/src/main/java/org/apache/nifi/flowfile/attributes/StandardFlowFileMediaType.java"
+      }
+    ],
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/flowfile",
+        "application/flowfile-v1",
+        "application/flowfile-v3"
+      ],
+      "parentOf": [],
+      "alternativeTo": [
+        "application/flowfile"
+      ]
+    },
+    "fileTypes": [],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/flowfile-v3",
+    "description": "The Apache NiFi FlowFile serialization version 3 format is used within the NiFi project to serialize the FlowFile attributes and content of files leaving a NiFi instance. The serialization format referenced by this mimetype is distinct from the way FlowFiles are stored internally within NiFi.",    
+    "furtherReading": [
+      {
+        "title": "Apache NiFi User Guide - Terminology",
+        "url": "https://nifi.apache.org/docs/nifi-docs/html/user-guide.html#terminology"
+      },
+      {
+        "title": "NiFi Documentation - Processors - UnpackContent",
+        "url": "https://nifi.apache.org/docs/nifi-docs/html/user-guide.html#terminology"
+      },
+      {
+        "title": "NiFi Documentation - Processors - UnpackContent",
+        "url": "https://nifi.apache.org/docs/nifi-docs/html/user-guide.html#terminology"
+      },
+      {
+        "title": "NiFi Documentation - Processors - PackageFlowFile",
+        "url": "https://nifi.apache.org/docs/nifi-docs/html/user-guide.html#terminology"
+      },
+      {
+        "title": "mimetypes - StandardFlowFileMediaType.java",
+        "url": "https://github.com/apache/nifi/blob/main/nifi-commons/nifi-utils/src/main/java/org/apache/nifi/flowfile/attributes/StandardFlowFileMediaType.java"
+      }
+    ],
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/flowfile",
+        "application/flowfile-v1",
+        "application/flowfile-v2"
+      ],
+      "parentOf": [],
+      "alternativeTo": [
+        "application/flowfile"
+      ]
+    },
+    "fileTypes": [],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
   }
 ]
