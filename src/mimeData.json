@@ -102,7 +102,39 @@
       "alternativeTo": []
     },
     "fileTypes": [
-      ".avif",
+      ".avif"
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },{
+    "name": "image/avif-sequence",
+    "description": "AVIF (AV1 Image File Format) is an image and animation file format, an extension of <a href=\"/image/heif\">HEIF</a> allowing images encoded with AV1. Most files will only have AV1-encoded images, but a mixture of different encodings is allowed. Early draft versions were named AV1 Still Image File Format.",
+    "furtherReading": [
+      {
+        "title": "Let's Solve the File Format Problem!",
+        "url": "http://fileformats.archiveteam.org/wiki/AVIF"
+      },
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/image/heif"
+      },
+      {
+        "title": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/AVIF"
+      }
+    ],
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "image/avif"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
       ".avifs"
     ],
     "notices": {
