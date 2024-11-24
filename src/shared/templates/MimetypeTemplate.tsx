@@ -218,21 +218,42 @@ const MimetypeTemplate = props => {
                             >
                                 <IconCode size={20} />
                             </div>{" "}
-                            <div className={"py-2 text-amber-900"}>
-                                Important: The official type may not represent
-                                community/developer consensus and you may
-                                encounter issues with the official type. The{" "}
-                                <strong>popular</strong> and potentially{" "}
-                                <strong>more compatible</strong> type has been
-                                listed as{" "}
-                                <Link
-                                    to={`/${mime.notices.popularUsage}`}
-                                    className={"underline"}
-                                >
-                                    {mime.notices.popularUsage}
-                                </Link>
-                                .
-                            </div>
+                            {mime.name === mime.notices.popularUsage &&
+                                mime.notices.hasNoOfficial && (
+                                    <div className={"py-2 text-amber-900"}>
+                                        Important: There is no officially listed
+                                        type for this entry. The{" "}
+                                        <strong>popular</strong> and potentially{" "}
+                                        <strong>most compatible</strong> type
+                                        has been listed as{" "}
+                                        <Link
+                                            to={`/${mime.notices.popularUsage}`}
+                                            className={"underline"}
+                                        >
+                                            {mime.notices.popularUsage}
+                                        </Link>
+                                        .
+                                    </div>
+                                )}
+                            {mime.name !== mime.notices.popularUsage &&
+                                mime.notices.hasNoOfficial && (
+                                    <div className={"py-2 text-amber-900"}>
+                                        Important: The official type may not
+                                        represent community/developer consensus
+                                        and you may encounter issues with the
+                                        official type. The{" "}
+                                        <strong>popular</strong> and potentially{" "}
+                                        <strong>more compatible</strong> type
+                                        has been listed as{" "}
+                                        <Link
+                                            to={`/${mime.notices.popularUsage}`}
+                                            className={"underline"}
+                                        >
+                                            {mime.notices.popularUsage}
+                                        </Link>
+                                        .
+                                    </div>
+                                )}
                         </div>
                     )}
                     {mime.templateData.deprecatedBy && (

@@ -9153,16 +9153,21 @@
       "deprecates": [],
       "relatedTo": [],
       "parentOf": [],
-      "alternativeTo": []
+      "alternativeTo": ["text/x-python-code", "text/x-python-script", "application/x-python-code", "application/x-python-script"]
     },
     "fileTypes": [
-      ".py"
+      ".py", ".pyc", ".pyo", ".pyd", ".whl"
     ],
-    "furtherReading": [],
+    "furtherReading": [
+        {
+            "title": "Let's Solve the File Format Problem!",
+            "url": "http://fileformats.archiveteam.org/wiki/Python"
+        }
+    ],
     "notices": {
-      "hasNoOfficial": false,
+      "hasNoOfficial": true,
       "communityContributed": false,
-      "popularUsage": null
+      "popularUsage": "text/x-python"
     }
   },
   {
@@ -9176,26 +9181,6 @@
     },
     "fileTypes": [
       ".pya"
-    ],
-    "furtherReading": [],
-    "notices": {
-      "hasNoOfficial": false,
-      "communityContributed": false,
-      "popularUsage": null
-    }
-  },
-  {
-    "name": "application/x-python-code",
-    "description": "",
-    "links": {
-      "deprecates": [],
-      "relatedTo": [],
-      "parentOf": [],
-      "alternativeTo": []
-    },
-    "fileTypes": [
-      ".pyc",
-      ".pyo"
     ],
     "furtherReading": [],
     "notices": {
