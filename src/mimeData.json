@@ -14261,30 +14261,6 @@
     }
   },
   {
-    "name": "application/call-completion",
-    "description": "",
-    "links": {
-      "deprecates": [],
-      "relatedTo": [],
-      "parentOf": [],
-      "alternativeTo": []
-    },
-    "fileTypes": [
-      ".not"
-    ],
-    "furtherReading": [
-        {
-          "title": "Internet Assigned Numbers Authority (IANA)",
-          "url": "https://www.iana.org/assignments/media-types/application/call-completion"
-        }
-    ],
-    "notices": {
-      "hasNoOfficial": false,
-      "communityContributed": true,
-      "popularUsage": null
-    }
-  },
-  {
     "name": "application/cbor",
     "description": "",
     "links": {
@@ -24264,30 +24240,6 @@
         {
           "title": "Internet Assigned Numbers Authority (IANA)",
           "url": "https://www.iana.org/assignments/media-types/application/vnd.miele+json"
-        }
-    ],
-    "notices": {
-      "hasNoOfficial": false,
-      "communityContributed": true,
-      "popularUsage": null
-    }
-  },
-  {
-    "name": "application/vnd.mitsubishi.misty-guard.trustweb",
-    "description": "",
-    "links": {
-      "deprecates": [],
-      "relatedTo": [],
-      "parentOf": [],
-      "alternativeTo": []
-    },
-    "fileTypes": [
-      ".any"
-    ],
-    "furtherReading": [
-        {
-          "title": "Internet Assigned Numbers Authority (IANA)",
-          "url": "https://www.iana.org/assignments/media-types/application/vnd.mitsubishi.misty-guard.trustweb"
         }
     ],
     "notices": {
