@@ -33,17 +33,17 @@ const COLLISION_BASELINE = 15
  * Known-good number of `relatedTo` targets that no page is generated for.
  *
  * Counted per missing page, matching the collision baseline above, which counts
- * paths rather than the claims on them. Three pages are missing today and six
- * links point at them: `audio/3gpp` from video/3gpp, video/mp4, audio/mp4 and
- * audio/mp4a-latm, `text/x-log` from text/plain, and `mimetype/test` from
+ * paths rather than the claims on them. Two pages are missing today and two
+ * links point at them: `text/x-log` from text/plain, and `mimetype/test` from
  * test/mimetype.
  *
  * As with collisions, the check fails only if a change adds more, so this may
  * be lowered as they are fixed but never raised without a deliberate edit here.
- * Giving `audio/3gpp` its own entry fixes four of the six links and drops this
- * to 2.
+ * It started at 3. Adding an `audio/3gpp` entry fixed the four links that
+ * video/3gpp, video/mp4, audio/mp4 and audio/mp4a-latm pointed at, so the
+ * baseline came down with them.
  */
-const DANGLING_BASELINE = 3
+const DANGLING_BASELINE = 2
 
 /**
  * Entries whose `name` is not a valid `type/subtype`.
