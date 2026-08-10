@@ -1,0 +1,669 @@
+[
+    {
+        "name": "image/jp2",
+        "description": "JP2 is the file format defined by JPEG 2000 Part 1 (ISO/IEC 15444-1) and registered by RFC 3745. It wraps a wavelet-coded image in a sequence of boxes carrying colour space, resolution and metadata alongside the picture data, so a decoder knows how to interpret the pixels without anything told to it out of band.\n\nWavelet coding gives it two properties JPEG lacks: genuinely lossless compression, and a codestream that can be truncated to yield a smaller or lower-quality image without re-encoding. That made it the format of choice for digital cinema distribution and for large-scale archival scanning at national libraries.\n\nIf your file is a bare codestream with no boxes around it, the right label is [image/j2c](/image/j2c).",
+        "links": {
+            "deprecates": [],
+            "relatedTo": [
+                "image/jpeg",
+                "image/jpx",
+                "image/jpm",
+                "image/j2c",
+                "image/jph"
+            ],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".jp2", ".jpg2"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/jp2"
+            },
+            {
+                "title": "RFC 3745 - MIME Type Registrations for JPEG 2000",
+                "url": "https://www.rfc-editor.org/rfc/rfc3745"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/jpx",
+        "description": "JPX is the extended file format from JPEG 2000 Part 2 (ISO/IEC 15444-2), registered alongside JP2 in RFC 3745. It uses the same box structure as [image/jp2](/image/jp2) but lifts its restrictions: multiple codestreams in one file, colour spaces beyond sRGB and greyscale, compositing instructions and richer metadata.\n\nRFC 3745 registers `.jpf` for it. You will also meet `.jpx` in the wild, which is the same format under a more obvious name.\n\nA file that only uses Part 1 features should be labelled image/jp2. JPX is for the ones that genuinely need the extensions.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/jp2", "image/jpm"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".jpf"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/jpx"
+            },
+            {
+                "title": "RFC 3745 - MIME Type Registrations for JPEG 2000",
+                "url": "https://www.rfc-editor.org/rfc/rfc3745"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/jpm",
+        "description": "JPM is the compound image format from JPEG 2000 Part 6 (ISO/IEC 15444-6), registered by RFC 3745. It stores a page under a mixed raster content model: a low-resolution background layer, a high-resolution binary mask for text and line art, and a foreground colour layer.\n\nSplitting a scanned page that way lets each layer use the compression that suits it, which is why JPM turns up in document capture and archiving systems rather than in general photography.\n\nBoth `.jpm` and `.jpgm` are registered for it.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/jp2", "image/jpx"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".jpm", ".jpgm"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/jpm"
+            },
+            {
+                "title": "RFC 3745 - MIME Type Registrations for JPEG 2000",
+                "url": "https://www.rfc-editor.org/rfc/rfc3745"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/j2c",
+        "description": "A bare JPEG 2000 codestream, with none of the boxes that make up a [image/jp2](/image/jp2) file. It is the raw output of the Part 1 (ISO/IEC 15444-1) encoder: entropy-coded wavelet data plus the markers a decoder needs, and nothing describing colour space or metadata.\n\nYou meet it embedded inside other containers — DICOM images, MXF video, PDF — where the wrapper already carries that information and a second copy would be redundant.\n\nIANA registers no file extension for this type. `.j2c` and `.j2k` are both conventional and both common, and neither is official.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/jp2", "image/jphc"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".j2c", ".j2k"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/j2c"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/jph",
+        "description": "JPH is the file format for High-Throughput JPEG 2000, defined in ISO/IEC 15444-15. It keeps the box structure and the wavelet transform of [image/jp2](/image/jp2), and replaces only the block coder with one roughly an order of magnitude faster in both directions.\n\nThe trade is a small loss of compression efficiency in exchange for encode and decode speeds that make JPEG 2000 practical in live and interactive workflows rather than only archival ones. The codestream is not backwards compatible, so existing JP2 tooling needs updating to read it.\n\nThe bare codestream form, without the boxes, is [image/jphc](/image/jphc).",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/jp2", "image/jphc"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".jph"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/jph"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/jphc",
+        "description": "A bare High-Throughput JPEG 2000 codestream (ISO/IEC 15444-15), standing in the same relation to [image/jph](/image/jph) as [image/j2c](/image/j2c) does to [image/jp2](/image/jp2): the coded data and its markers, without the boxes that carry colour space and metadata.\n\nUse it where the surrounding container already describes the image and only the pixels are needed.\n\nThe registered extension is `.jhc`, not `.jphc`, which catches people out.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/jph", "image/j2c"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".jhc"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/jphc"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/jxl",
+        "description": "JPEG XL (ISO/IEC 18181) is a still and animated image format built around a new codec, with one capability its neighbours lack: it can losslessly re-encode an existing JPEG file, typically around 20% smaller, and reconstruct the original bit for bit.\n\nIt also offers progressive decoding, lossless and lossy modes in a single codestream, wide colour gamut, high bit depth, transparency and animation — roughly the union of what [image/jpeg](/image/jpeg), [image/png](/image/png) and [image/webp](/image/webp) each do separately.\n\nAdoption, not the technology, has been the sticking point. Check current browser support before serving it without a fallback.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/jpeg", "image/avif", "image/webp"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".jxl"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/jxl"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/jxr",
+        "description": "JPEG XR (ITU-T T.832, also published as ISO/IEC 29199-2) is a still image codec supporting lossy and lossless compression, high dynamic range and bit depths up to 32 bits per channel, at a computational cost close to ordinary JPEG.\n\nIt began at Microsoft as Windows Media Photo and was renamed HD Photo before standardisation, which is why `.wdp` files and the unregistered `image/vnd.ms-photo` label describe the same format.\n\nOutside Microsoft's own stack it never displaced [image/jpeg](/image/jpeg), and support today is sparse.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/jpeg"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".jxr"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/jxr"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/jls",
+        "description": "JPEG-LS (ITU-T T.87, also ISO/IEC 14495-1) is a lossless and near-lossless still image codec based on the LOCO-I algorithm. Despite the name it shares little with baseline JPEG: it uses prediction and context modelling rather than a discrete cosine transform.\n\nNear-lossless mode is the distinctive part. You set a maximum permitted error per sample and the encoder guarantees no pixel deviates by more than that — a bounded, inspectable loss rather than an open-ended one. Medical imaging adopted it for exactly that reason, and DICOM defines transfer syntaxes for it.\n\nIt is fast and simple to implement, which keeps it in use in embedded and scientific capture despite newer options.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/jpeg", "image/dicom-rle"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".jls"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/jls"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/apng",
+        "description": "APNG extends PNG with animation: a control chunk plus a sequence of frame chunks, all placed in chunk types a plain PNG decoder is required to skip. The first frame is a complete, valid PNG image, so software that does not understand APNG shows a still picture rather than failing.\n\nThat backwards compatibility is why it displaced GIF for short loops on the web — full 8-bit alpha and 24-bit colour instead of a 256-colour palette and 1-bit transparency.\n\nIt began as a Mozilla extension and was later registered with IANA and folded into the W3C PNG specification proper. The older Mozilla-era label is at [image/vnd.mozilla.apng](/image/vnd.mozilla.apng).",
+        "links": {
+            "deprecates": [],
+            "relatedTo": [
+                "image/png",
+                "image/gif",
+                "image/webp",
+                "image/vnd.mozilla.apng"
+            ],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".apng"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/apng"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/jxs",
+        "description": "JPEG XS (ISO/IEC 21122) is a low-latency, visually lossless codec designed around the opposite trade to most: it compresses only modestly, but does so in a fraction of a frame, with end-to-end latency measured in scanlines rather than frames.\n\nThat makes it a mezzanine format rather than a delivery one. It carries near-uncompressed video over links that cannot quite take raw pixels, which is how it ended up in SMPTE ST 2110-22 for professional video over IP, with RFC 9134 defining the RTP payload format.\n\n`image/jxs` labels the file form; the bare codestream is [image/jxsc](/image/jxsc).",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/jxsc"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".jxs"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/jxs"
+            },
+            {
+                "title": "RFC 9134 - RTP Payload Format for ISO/IEC 21122 (JPEG XS)",
+                "url": "https://www.rfc-editor.org/rfc/rfc9134"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/jxsc",
+        "description": "A bare JPEG XS codestream (ISO/IEC 21122), without the file structure that [image/jxs](/image/jxs) provides. It is what travels over the wire on a professional video-over-IP link, where the transport already carries timing and format information.\n\nThe IANA registry lists further JPEG XS types for carriage inside ISO base media containers, which this site does not document yet.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/jxs"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".jxsc"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/jxsc"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/avci",
+        "description": "AVCI is a still image coded with AVC (H.264) and stored in the HEIF container defined by ISO/IEC 23008-12 — the same container as [image/heif](/image/heif) and [image/heic](/image/heic), but committing to AVC rather than HEVC.\n\nIt exists because HEIF's container design is deliberately codec-agnostic, and the media type is how a file declares which codec is actually inside. In practice it is far rarer than HEIC, since the devices that adopted HEIF adopted HEVC along with it.\n\nThe image sequence form is [image/avcs](/image/avcs).",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/heif", "image/heic", "image/avcs"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".avci"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/avci"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/avcs",
+        "description": "The image sequence counterpart to [image/avci](/image/avci): several AVC-coded images in one HEIF container (ISO/IEC 23008-12), used for bursts, animations and derived sequences rather than a single still.\n\nIt stands in the same relation to `image/avci` as [image/heic-sequence](/image/heic-sequence) does to [image/heic](/image/heic).",
+        "links": {
+            "deprecates": [],
+            "relatedTo": [
+                "image/heif-sequence",
+                "image/heic-sequence",
+                "image/avci"
+            ],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".avcs"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/avcs"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/ktx",
+        "description": "KTX is the Khronos texture container: a thin wrapper around texture data that is already in a GPU-native compressed format, together with its mipmap chain, array layers and cube map faces.\n\nThe point is that the file needs no transcoding at load time. An engine reads the header, hands the payload straight to OpenGL or Vulkan, and the GPU consumes it as it stands — unlike [image/png](/image/png) or [image/jpeg](/image/jpeg), which must be decoded to raw pixels and then recompressed before they are useful as textures.\n\nVersion 2 is a separate media type, [image/ktx2](/image/ktx2).",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/ktx2"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".ktx"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/ktx"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/ktx2",
+        "description": "KTX 2.0 is the second version of the Khronos texture container, and it addresses the problem that made [image/ktx](/image/ktx) awkward to ship: GPU texture formats are not portable, so a KTX 1 file had to be built per target platform.\n\nKTX 2.0 adds Basis Universal supercompression, storing textures in an intermediate form that transcodes cheaply to whichever block format the device actually supports at load time. One file, every GPU.\n\nglTF consumes it through the `KHR_texture_basisu` extension, which is where most people meet it.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/ktx"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".ktx2"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/ktx2"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/vnd.valve.source.texture",
+        "description": "VTF is the texture format of Valve's Source engine — Half-Life 2, Portal, Team Fortress 2 and the games and mods built on them. A file holds the image data along with its mipmaps, flags and any animation frames the engine expects.\n\nVTF files are almost always paired with a `.vmt` material script, which tells the engine which shader to use and how to interpret the texture. On its own a VTF is just pixels.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/ktx"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".vtf"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/vnd.valve.source.texture"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/vnd.microsoft.icon",
+        "description": "The Windows icon format. An ICO file is a container: it holds several complete images at different sizes and colour depths, and the consumer picks whichever fits the space it needs to fill. That is how one `favicon.ico` serves both a 16-pixel browser tab and a 48-pixel desktop shortcut.\n\nImages inside are stored either as BMP data or, since Windows Vista, as [image/png](/image/png).\n\nNote the labelling mess: `image/vnd.microsoft.icon` is the registered type, but browsers and web servers overwhelmingly send [image/x-icon](/image/x-icon) instead. Both work in practice.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/x-icon", "image/bmp", "image/png"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".ico"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/vnd.microsoft.icon"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/emf",
+        "description": "EMF, the Enhanced Metafile format, records a drawing as a replayable list of Windows GDI calls rather than as pixels — lines, curves, text and fills that scale cleanly to any resolution. It is registered by RFC 7903 and documented publicly as `[MS-EMF]`.\n\nIt is what lands on the clipboard when vector artwork is copied between Windows applications, and what Office embeds when a chart or diagram is pasted into a document.\n\nRFC 7903 also records `image/x-emf` as deprecated in favour of this type.",
+        "links": {
+            "deprecates": ["image/x-emf"],
+            "relatedTo": ["image/wmf"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".emf"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/emf"
+            },
+            {
+                "title": "RFC 7903 - Windows Image Media Types",
+                "url": "https://www.rfc-editor.org/rfc/rfc7903"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/wmf",
+        "description": "WMF is the original Windows Metafile format, the 16-bit predecessor to [image/emf](/image/emf), dating back to Windows 3.x. Like EMF it stores a sequence of GDI drawing commands rather than a bitmap, so the output scales, but the older record set is considerably more limited.\n\nIt is registered by RFC 7903 and documented as `[MS-WMF]`. You still find it inside older Office documents and clip-art libraries.\n\nRFC 7903 also records `image/x-wmf` as deprecated in favour of this type.",
+        "links": {
+            "deprecates": ["image/x-wmf"],
+            "relatedTo": ["image/emf", "image/bmp"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".wmf"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/wmf"
+            },
+            {
+                "title": "RFC 7903 - Windows Image Media Types",
+                "url": "https://www.rfc-editor.org/rfc/rfc7903"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/dpx",
+        "description": "DPX (Digital Picture Exchange, SMPTE ST 268-1) stores a single motion picture frame. A sequence is a directory of numbered files, one per frame, which is exactly how film scanners and digital intermediate pipelines hand work between tools.\n\nThe header carries the metadata a post-production facility needs — timecode, film edge codes, the transfer characteristic — and the pixel data is typically 10 bits per channel in a logarithmic encoding that preserves highlight detail the way a film negative does.\n\nIt began as an evolution of Kodak's Cineon format and remains the common currency for uncompressed frame interchange.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/aces", "image/tiff"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".dpx"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/dpx"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/aces",
+        "description": "The ACES image container file layout, standardised as SMPTE ST 2065-4. It is a constrained profile of OpenEXR: the same file structure, with colour space, channel naming and required attributes pinned down so that any ACES-compliant tool interprets the contents identically.\n\nThat constraint is the entire point. ACES exists to make colour behave predictably as footage moves between facilities, and a container that permits fewer choices is easier to be strict about.\n\nWatch the extension. Files use `.exr`, the same as ordinary OpenEXR images, so the extension alone will not tell you whether a file follows the ACES profile.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/dpx", "image/vnd.radiance"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".exr"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/aces"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/vnd.radiance",
+        "description": "Radiance HDR, commonly called RGBE after its encoding, stores high dynamic range images by giving each pixel three 8-bit mantissas and one shared 8-bit exponent. Four bytes per pixel covers a range of many orders of magnitude — enough to hold both deep shadow and direct sun in one image.\n\nIt came out of the Radiance lighting simulation package at Lawrence Berkeley Laboratory and became the common format for environment maps and image-based lighting in 3D rendering.\n\nIANA registers no extension for it. `.hdr` is by far the most common, with `.pic`, `.rgbe` and `.xyze` also in use; `.pic` is badly ambiguous and worth avoiding.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/aces"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".hdr", ".rgbe", ".xyze", ".pic"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/vnd.radiance"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/fits",
+        "description": "FITS, the Flexible Image Transport System, is the standard data format of astronomy, registered by RFC 4047 and maintained by the International Astronomical Union. A file is a sequence of header-and-data units: a human-readable ASCII header of keyword and value pairs, followed by an n-dimensional array.\n\nIt is not really an image format. The array may be a photograph from a telescope, but it may equally be a spectrum, a data cube or a table, and the header carries the calibration and coordinate information needed to interpret it scientifically.\n\nBackwards compatibility is a stated design principle — files written decades ago still read correctly, which matters when the observations cannot be repeated.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/tiff"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".fits"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/fits"
+            },
+            {
+                "title": "RFC 4047 - MIME Sub-type Registrations for FITS",
+                "url": "https://www.rfc-editor.org/rfc/rfc4047"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/tiff-fx",
+        "description": "TIFF-FX is the image format for internet fax, registered by RFC 3950 with the file format itself defined in RFC 3949. It is a constrained profile of [image/tiff](/image/tiff): a specific set of compression schemes, resolutions and tags that a receiving fax device is guaranteed to understand.\n\nThe profiles run from plain black and white at fax resolution up to JBIG and JPEG-coded colour. Restricting the parent format this way is what makes interoperability possible between devices that share nothing else.\n\nIt is the payload carried by the email-based fax profiles rather than a format anyone authors directly.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/tiff", "image/g3fax", "image/t38"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".tfx"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/tiff-fx"
+            },
+            {
+                "title": "RFC 3950 - Tag Image File Format Fax eXtended (TIFF-FX)",
+                "url": "https://www.rfc-editor.org/rfc/rfc3950"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/t38",
+        "description": "T.38 is the ITU-T recommendation for carrying fax over IP networks in real time, and this media type, registered by RFC 3362, labels the image data within it.\n\nRather than digitising the fax tones as audio and hoping they survive transcoding, a T.38 gateway demodulates the fax at one end, sends the page data over IP, and remodulates it at the other. That is what makes faxing work over VoIP at all.\n\nYou will meet this type inside SIP session descriptions rather than as a file on disk.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/g3fax", "image/tiff-fx"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".t38"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/t38"
+            },
+            {
+                "title": "RFC 3362 - Real-time Facsimile (T.38) - image/t38 MIME Sub-type Registration",
+                "url": "https://www.rfc-editor.org/rfc/rfc3362"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/dicom-rle",
+        "description": "The run-length encoding defined by the DICOM standard for medical images, specified in PS3.5 Annex G. It is a byte-oriented RLE scheme derived from PackBits, applied separately to each colour plane.\n\nLossless compression matters in diagnostic imaging, where an artefact could be read as pathology. RLE is the simplest of DICOM's lossless options: it achieves very little on photographic data, but works well on the large uniform regions typical of segmentation masks and some modalities.\n\nWhere stronger lossless compression is needed, [image/jls](/image/jls) is the usual alternative.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/jls"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".drle"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/dicom-rle"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/vnd.zbrush.pcx",
+        "description": "A Pixologic registration for the PCX files written by ZBrush, the digital sculpting application. PCX itself is a much older ZSoft format from the DOS era, covered on this site at [image/x-pcx](/image/x-pcx).\n\nThe registration exists to give ZBrush's variant its own label. Public documentation of how it differs from ordinary PCX is thin, so treat the distinction as a vendor claim rather than a described format difference.\n\nThe practical consequence is the extension clash: a `.pcx` file may be either, and the extension alone will not tell you which.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/x-pcx"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".pcx"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/vnd.zbrush.pcx"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    }
+]
