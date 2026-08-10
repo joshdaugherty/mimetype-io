@@ -8,6 +8,11 @@
  * and the last write wins -- which has previously caused curated pages to be
  * replaced by empty stubs. The collision ratchet below exists to catch that in
  * review rather than in production.
+ *
+ * `relatedTo` is the one link key that does *not* generate a page. The template
+ * still renders every one of its targets as a link, and the site serves only
+ * pages built ahead of time, so a target nothing else publishes is a link
+ * straight to a 404. The dangling ratchet catches those the same way.
  */
 
 const fs = require("fs")
@@ -23,6 +28,22 @@ const DATA_PATH = path.join(__dirname, "..", "src", "mimeData.json")
  * as they are fixed but never raised without a deliberate edit here.
  */
 const COLLISION_BASELINE = 15
+
+/**
+ * Known-good number of `relatedTo` targets that no page is generated for.
+ *
+ * Counted per missing page, matching the collision baseline above, which counts
+ * paths rather than the claims on them. Three pages are missing today and six
+ * links point at them: `audio/3gpp` from video/3gpp, video/mp4, audio/mp4 and
+ * audio/mp4a-latm, `text/x-log` from text/plain, and `mimetype/test` from
+ * test/mimetype.
+ *
+ * As with collisions, the check fails only if a change adds more, so this may
+ * be lowered as they are fixed but never raised without a deliberate edit here.
+ * Giving `audio/3gpp` its own entry fixes four of the six links and drops this
+ * to 2.
+ */
+const DANGLING_BASELINE = 3
 
 /**
  * Entries whose `name` is not a valid `type/subtype`.
@@ -241,6 +262,21 @@ for (const entry of data) {
 
 const collisions = [...owners.entries()].filter(([, v]) => v.length > 1)
 
+// --- dangling relatedTo targets ------------------------------------------
+/**
+ * `owners` is keyed by every path the site publishes, so anything a relatedTo
+ * points at that is missing from it has no page and never will.
+ */
+const dangling = new Map()
+for (const entry of data) {
+    if (typeof entry.name !== "string" || !entry.links) continue
+    for (const target of entry.links.relatedTo || []) {
+        if (owners.has(target)) continue
+        if (!dangling.has(target)) dangling.set(target, [])
+        dangling.get(target).push(entry.name)
+    }
+}
+
 // --- report --------------------------------------------------------------
 console.log(`Validated ${data.length} mimetype entries.`)
 
@@ -257,6 +293,31 @@ if (collisions.length) {
     for (const [pagePath, claimants] of collisions) {
         console.log(`  - /${pagePath}  <-  ${claimants.join(", ")}`)
     }
+}
+
+if (dangling.size) {
+    console.log(
+        `\n${dangling.size} relatedTo target(s) with no page ` +
+            `(baseline ${DANGLING_BASELINE}):`,
+    )
+    for (const [target, referrers] of dangling) {
+        console.log(`  - /${target}  <-  ${referrers.join(", ")}`)
+    }
+}
+
+if (dangling.size > DANGLING_BASELINE) {
+    errors.push(
+        `dangling relatedTo targets rose from ${DANGLING_BASELINE} to ${dangling.size}. ` +
+            `The template renders every relatedTo target as a link, but only ` +
+            `"deprecates", "parentOf" and "alternativeTo" generate pages, so each ` +
+            `of these is a link to a 404. Either give the target its own entry, or ` +
+            `point the relatedTo at a type that already has a page.`,
+    )
+} else if (dangling.size < DANGLING_BASELINE) {
+    console.log(
+        `\nDangling relatedTo targets are down to ${dangling.size}. ` +
+            `Lower DANGLING_BASELINE in this file to ${dangling.size} to hold the gain.`,
+    )
 }
 
 if (collisions.length > COLLISION_BASELINE) {

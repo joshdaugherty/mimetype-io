@@ -50,17 +50,28 @@ const analyse = data => {
         }
     }
 
-    const dangling = []
+    /**
+     * Counted per missing page, not per broken link, so this agrees with
+     * DANGLING_BASELINE in scripts/validate-data.js. One missing page can be
+     * linked from several entries -- audio/3gpp accounts for four of the six
+     * broken links upstream but is a single missing page.
+     */
+    const dangling = new Map()
     for (const entry of data) {
         for (const t of entry.links.relatedTo ?? []) {
-            if (!owners.has(t)) dangling.push(`${t} (from ${entry.name})`)
+            if (owners.has(t)) continue
+            if (!dangling.has(t)) dangling.set(t, [])
+            dangling.get(t).push(entry.name)
         }
     }
 
     return {
         pages: owners.size,
         collisions: [...owners.entries()].filter(([, v]) => v.length > 1),
-        dangling,
+        dangling: [...dangling.entries()].map(
+            ([target, from]) => `${target} (from ${from.join(", ")})`,
+        ),
+        danglingLinks: [...dangling.values()].reduce((n, f) => n + f.length, 0),
         owners,
     }
 }
@@ -72,12 +83,12 @@ const fmt = list => new Set(list.map(([p]) => p))
 const baseCollided = fmt(base.collisions)
 const headCollided = fmt(head.collisions)
 
-console.log(
-    `base (${BASE_REV}):  ${base.pages} pages, ${base.collisions.length} collisions, ${base.dangling.length} dangling relatedTo`,
-)
-console.log(
-    `working copy:     ${head.pages} pages, ${head.collisions.length} collisions, ${head.dangling.length} dangling relatedTo`,
-)
+const summarise = (label, r) =>
+    `${label} ${r.pages} pages, ${r.collisions.length} collisions, ` +
+    `${r.dangling.length} missing relatedTo page(s) across ${r.danglingLinks} link(s)`
+
+console.log(summarise(`base (${BASE_REV}): `, base))
+console.log(summarise("working copy:      ", head))
 
 const failures = []
 
