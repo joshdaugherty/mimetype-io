@@ -14853,5 +14853,300 @@
       "communityContributed": false,
       "popularUsage": null
     }
+  },
+  {
+    "name": "image/vnd.microsoft.icon",
+    "description": "The Windows icon format. An ICO file is a container. It holds several complete images at different sizes and colour depths, and the consumer picks whichever fits the space it needs to fill. That is how one `favicon.ico` serves both a 16-pixel browser tab and a 48-pixel desktop shortcut.\n\nImages inside are stored either as BMP data or, since Windows Vista, as [image/png](/image/png).\n\nThe labelling is inconsistent. `image/vnd.microsoft.icon` is the registered type, but browsers and web servers overwhelmingly send [image/x-icon](/image/x-icon) instead. Both are accepted.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "image/x-icon",
+        "image/bmp",
+        "image/png"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".ico"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/image/vnd.microsoft.icon"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "image/emf",
+    "description": "EMF, the Enhanced Metafile format, records a drawing as a replayable list of Windows GDI calls rather than as pixels. GDI is the Graphics Device Interface, the drawing layer of Windows, and the calls are lines, curves, text and fills that scale cleanly to any resolution.\n\nIt is registered by RFC 7903 and documented publicly as `[MS-EMF]`, one of Microsoft's open specifications. It is the format placed on the clipboard when vector artwork is copied between Windows applications, and the one Office embeds when a chart or diagram is pasted into a document.\n\nRFC 7903 also records `image/x-emf` as deprecated in favour of this type.",
+    "links": {
+      "deprecates": [
+        "image/x-emf"
+      ],
+      "relatedTo": [
+        "image/wmf"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".emf"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/image/emf"
+      },
+      {
+        "title": "RFC 7903 - Windows Image Media Types",
+        "url": "https://www.rfc-editor.org/rfc/rfc7903"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "image/wmf",
+    "description": "WMF is the original Windows Metafile format, the 16-bit predecessor to [image/emf](/image/emf), introduced with Windows 3.x. Like the Enhanced Metafile format it stores a sequence of Graphics Device Interface drawing commands rather than a bitmap, so the output scales. Its older record set is much more limited.\n\nIt is registered by RFC 7903 and documented as `[MS-WMF]`, one of Microsoft's open specifications. You still find it inside older Office documents and clip-art libraries.\n\nRFC 7903 also records `image/x-wmf` as deprecated in favour of this type.",
+    "links": {
+      "deprecates": [
+        "image/x-wmf"
+      ],
+      "relatedTo": [
+        "image/emf",
+        "image/bmp"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".wmf"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/image/wmf"
+      },
+      {
+        "title": "RFC 7903 - Windows Image Media Types",
+        "url": "https://www.rfc-editor.org/rfc/rfc7903"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "image/dpx",
+    "description": "DPX (Digital Picture Exchange) stores a single motion picture frame. It is standardised as ST 268-1 by the Society of Motion Picture and Television Engineers. A sequence is a directory of numbered files, one per frame, which is how film scanners and digital intermediate pipelines pass work between tools.\n\nThe header carries the metadata a post-production facility needs: timecode, film edge codes and the transfer characteristic. The pixel data is typically 10 bits per channel, in a logarithmic encoding that preserves highlight detail the way a film negative does.\n\nIt began as an evolution of Kodak's Cineon format and is still the standard way to exchange uncompressed frames.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "image/aces",
+        "image/tiff"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".dpx"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/image/dpx"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "image/aces",
+    "description": "The ACES image container file layout, standardised as ST 2065-4 by the Society of Motion Picture and Television Engineers. ACES is the Academy Color Encoding System. The container is a constrained profile of OpenEXR: the same file structure, with colour space, channel naming and required attributes pinned down so any ACES-compliant tool reads the contents identically.\n\nThat constraint is the reason it exists. ACES makes colour behave predictably as footage moves between facilities, and a container permitting fewer choices is easier to be strict about.\n\nWatch the extension. Files use `.exr`, the same as ordinary OpenEXR images, so the extension alone will not tell you whether a file follows the ACES profile.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "image/dpx",
+        "image/vnd.radiance"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".exr"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/image/aces"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "image/vnd.radiance",
+    "description": "Radiance HDR stores high dynamic range images. It is commonly called RGBE after its encoding: each pixel gets three 8-bit mantissas for red, green and blue, plus one shared 8-bit exponent. Four bytes per pixel covers a range of many orders of magnitude, enough to hold both deep shadow and direct sun in one image.\n\nIt came out of the Radiance lighting simulation package at Lawrence Berkeley Laboratory. It became the common format for environment maps and image-based lighting in 3D rendering.\n\nIANA registers no extension for it. `.hdr` is the most common, with `.pic`, `.rgbe` and `.xyze` also in use. `.pic` is ambiguous and worth avoiding.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "image/aces"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".hdr",
+      ".rgbe",
+      ".xyze",
+      ".pic"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/image/vnd.radiance"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "image/fits",
+    "description": "FITS, the Flexible Image Transport System, is the standard data format of astronomy. RFC 4047 registers it, and the International Astronomical Union maintains it. A file is a sequence of header-and-data units: a human-readable ASCII header of keyword and value pairs, followed by an n-dimensional array.\n\nIt is not only an image format. The array may be a photograph from a telescope, but it may equally be a spectrum, a data cube or a table. The header carries the calibration and coordinate information needed to interpret it scientifically.\n\nBackwards compatibility is a stated design principle. Files written decades ago still read correctly, which matters when the observations cannot be repeated.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "image/tiff"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".fits"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/image/fits"
+      },
+      {
+        "title": "RFC 4047 - MIME Sub-type Registrations for FITS",
+        "url": "https://www.rfc-editor.org/rfc/rfc4047"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "image/tiff-fx",
+    "description": "TIFF-FX is the image format for internet fax. RFC 3950 registers it, and RFC 3949 defines the file format itself. It is a constrained profile of [image/tiff](/image/tiff): a specific set of compression schemes, resolutions and tags that a receiving fax device is guaranteed to understand.\n\nThe profiles run from plain black and white at fax resolution up to colour coded with JPEG or with JBIG, the Joint Bi-level Image Experts Group scheme. Restricting the parent format this way is what makes interoperability possible between devices that share nothing else.\n\nIt is the payload carried by the email-based fax profiles rather than a format anyone authors directly.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "image/tiff",
+        "image/g3fax",
+        "image/t38"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".tfx"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/image/tiff-fx"
+      },
+      {
+        "title": "RFC 3950 - Tag Image File Format Fax eXtended (TIFF-FX)",
+        "url": "https://www.rfc-editor.org/rfc/rfc3950"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "image/t38",
+    "description": "T.38 is the ITU-T recommendation for carrying fax over IP networks in real time. This media type, registered by RFC 3362, labels the image data within it.\n\nA T.38 gateway does not digitise the fax tones as audio and hope they survive transcoding. It demodulates the fax at one end, sends the page data over IP, and remodulates it at the other. That is what makes faxing work over voice over IP at all.\n\nYou will find this type inside session descriptions for SIP, the Session Initiation Protocol, rather than as a file on disk.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "image/g3fax",
+        "image/tiff-fx"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".t38"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/image/t38"
+      },
+      {
+        "title": "RFC 3362 - Real-time Facsimile (T.38) - image/t38 MIME Sub-type Registration",
+        "url": "https://www.rfc-editor.org/rfc/rfc3362"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "image/vnd.zbrush.pcx",
+    "description": "A Pixologic registration for the PCX files written by ZBrush, the digital sculpting application. PCX itself is a much older ZSoft format from the 1980s, covered on this site at [image/x-pcx](/image/x-pcx).\n\nThe registration exists to give ZBrush's variant its own label. Public documentation of how it differs from ordinary PCX is thin, so treat the distinction as a vendor claim rather than a described format difference.\n\nThe practical consequence is the extension clash: a `.pcx` file may be either, and the extension alone will not tell you which.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "image/x-pcx"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".pcx"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/image/vnd.zbrush.pcx"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
   }
 ]
