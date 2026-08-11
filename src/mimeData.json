@@ -15910,5 +15910,736 @@
       "communityContributed": false,
       "popularUsage": null
     }
+  },
+  {
+    "name": "text/vtt",
+    "description": "WebVTT (Web Video Text Tracks) is the W3C caption and subtitle format that the HTML `track` element loads. A file is plain UTF-8 text: the word `WEBVTT`, then cues giving a start time, an end time and the text to show between them.\n\nBeyond captions it carries chapters, descriptions and arbitrary metadata cues, and cue settings can position text anywhere in the frame rather than only along the bottom. That range is why it displaced SRT on the web despite SRT being simpler to write.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "text/plain",
+        "text/html"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".vtt"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/text/vtt"
+      },
+      {
+        "title": "W3C WebVTT: The Web Video Text Tracks Format",
+        "url": "https://www.w3.org/TR/webvtt1/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/manifest+json",
+    "description": "A web app manifest is the JSON document that tells a browser how to install a site as an application: its name, icons, start URL, display mode and theme colour. The W3C Web Application Manifest specification defines it, and a page points at one with a `link` element whose `rel` is `manifest`.\n\nIt is what makes a Progressive Web App installable rather than merely bookmarkable. `.webmanifest` is the registered extension, though a great many sites serve the same document as `manifest.json`.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".webmanifest"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/manifest+json"
+      },
+      {
+        "title": "W3C Web Application Manifest",
+        "url": "https://www.w3.org/TR/appmanifest/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/ld+json",
+    "description": "JSON-LD is JSON carrying a `@context` that maps its keys onto IRIs, so a document that reads like ordinary JSON also has machine-readable meaning. The W3C specifies it.\n\nMost of the structured data on the web is JSON-LD inside a `script` element carrying this media type, describing a page's schema.org entities to search engines. Because the context does the linking, code that ignores it entirely still sees plain, readable JSON.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".jsonld"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/ld+json"
+      },
+      {
+        "title": "W3C JSON-LD 1.1",
+        "url": "https://www.w3.org/TR/json-ld11/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "text/cache-manifest",
+    "description": "An application cache manifest listed the files a browser should retain for offline use. It arrived with HTML5 as AppCache, and both the W3C and browser vendors have since removed it.\n\nIt failed for a specific reason worth remembering: a manifest that could not be fetched left users pinned to stale files with no path back, and the update model gave a page no way to recover. Service workers replaced it. Files still exist in old projects, so the type is worth recognising, but nothing new should use it.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "text/plain"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".appcache",
+      ".manifest"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/text/cache-manifest"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/dash+xml",
+    "description": "An MPD (Media Presentation Description) is the manifest for MPEG-DASH, standardised as ISO/IEC 23009-1. It is an XML document listing the periods of a presentation, the adaptation sets within each, and the representations a player may choose between, with the URLs or byte ranges of every segment.\n\nDASH is deliberately codec-agnostic, and the MPD is where that shows: a player reads it and switches representation as available bandwidth changes, without the format caring what codec sits inside.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/xml",
+        "video/mp4"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".mpd"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/dash+xml"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "text/wgsl",
+    "description": "WGSL (WebGPU Shading Language) is the shader language for WebGPU, specified by the W3C GPU for the Web working group. WebGPU accepts WGSL source directly rather than a compiled bytecode, so a `.wgsl` file is human-readable text that the browser compiles.\n\nIt exists because the web needed a shading language it could parse and validate itself, then translate safely to Direct3D, Metal and Vulkan, without trusting a binary from the page.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/wasm",
+        "text/plain"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".wgsl"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/text/wgsl"
+      },
+      {
+        "title": "W3C WebGPU Shading Language",
+        "url": "https://www.w3.org/TR/WGSL/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/toml",
+    "description": "TOML (Tom's Obvious Minimal Language) is a configuration format designed to map unambiguously onto a hash table while staying obvious to read: sections in square brackets, `key = value` beneath them, and real types for strings, integers, dates and arrays.\n\nRust's `Cargo.toml` and Python's `pyproject.toml` are why most people meet it. Against YAML it trades expressiveness for predictability, since there is far less that can be written two different ways.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/yaml",
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".toml"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/toml"
+      },
+      {
+        "title": "TOML v1.0.0 specification",
+        "url": "https://toml.io/en/v1.0.0"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/cbor",
+    "description": "CBOR (Concise Binary Object Representation) is a binary format defined by RFC 8949. It covers roughly JSON's data model and adds byte strings, unambiguous integers and floats, and an extension mechanism through numeric tags.\n\nIt is designed to be encoded and decoded without a schema and in very little code, which is why it turns up in constrained devices, in COSE for signing and encryption, and in WebAuthn attestation.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".cbor"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/cbor"
+      },
+      {
+        "title": "RFC 8949 - Concise Binary Object Representation (CBOR)",
+        "url": "https://www.rfc-editor.org/rfc/rfc8949"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/geo+json",
+    "description": "GeoJSON encodes geographic features as JSON, defined by RFC 7946. A document is a Feature or a FeatureCollection, and each feature pairs a geometry (Point, LineString, Polygon, or their multi- forms) with arbitrary properties.\n\nRFC 7946 pinned the coordinate reference system to WGS 84 with longitude before latitude. That single decision removed the largest source of disagreement between implementations of the earlier community specification.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".geojson",
+      ".json"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/geo+json"
+      },
+      {
+        "title": "RFC 7946 - The GeoJSON Format",
+        "url": "https://www.rfc-editor.org/rfc/rfc7946"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/json-patch+json",
+    "description": "JSON Patch describes a change to a JSON document, defined by RFC 6902. A patch is an array of operations, each naming one of add, remove, replace, move, copy or test and pointing at a location with a JSON Pointer.\n\nSent as the body of an HTTP PATCH it lets a client alter one field without transmitting or overwriting the whole resource. The `test` operation is what makes an update safely conditional: if the document is not in the expected state the patch fails rather than silently clobbering a concurrent edit.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".json-patch"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/json-patch+json"
+      },
+      {
+        "title": "RFC 6902 - JavaScript Object Notation (JSON) Patch",
+        "url": "https://www.rfc-editor.org/rfc/rfc6902"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/node",
+    "description": "This type labels JavaScript intended to run as a Node.js CommonJS module rather than to be delivered to a browser. The registration is maintained by the Node.js Technical Steering Committee.\n\nThe registration is candid about the overlap. It notes that the type \"occupies the same file extension as other media types\", and that a `.js` file \"should be considered ambiguous if the intended execution environment is unknown\". Server-side and browser JavaScript share the extension, and a web server should still send [text/javascript](/text/javascript).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "text/javascript",
+        "application/ecmascript"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".js",
+      ".cjs"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/node"
+      },
+      {
+        "title": "Node.js modules documentation",
+        "url": "https://nodejs.org/api/modules.html"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/sql",
+    "description": "RFC 6922 registers this type so that a file of SQL statements can be labelled as such in transit. The registration deliberately says nothing about which dialect the statements are written in.\n\nThat silence matters in practice. A dump from PostgreSQL, from MySQL and from SQLite all carry this same type, and none of them will load into the others unedited. The type tells you the file is SQL, not that your database can read it. The unregistered spelling still in common use is [application/x-sql](/application/x-sql).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/x-sql",
+        "text/plain",
+        "application/vnd.sqlite3"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".sql"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/sql"
+      },
+      {
+        "title": "RFC 6922 - The application/sql Media Type",
+        "url": "https://www.rfc-editor.org/rfc/rfc6922"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/x-sql",
+    "description": "This is the unregistered form of the SQL media type, and the one more likely to appear in the wild. It was in use before RFC 6922 registered [application/sql](/application/sql) and carried on afterwards, as `x-` types generally do.\n\nNeither form replaces the other. Tools emit whichever they were written against, and both mean the same thing: a file of SQL statements whose dialect is not stated anywhere in the label.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/sql",
+        "text/plain"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".sql"
+    ],
+    "furtherReading": [
+      {
+        "title": "Let's Solve the File Format Problem!",
+        "url": "http://fileformats.archiveteam.org/wiki/SQL"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": true,
+      "communityContributed": true,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/zstd",
+    "description": "Zstandard is a lossless compression format defined by RFC 8878. At its default setting it reaches roughly gzip's ratio several times faster, and at high settings it compresses considerably harder than gzip can.\n\nIts distinguishing feature is the trained dictionary. Given a sample of the small documents you mean to compress, it derives a dictionary that lets each one compress well despite being far too small for the algorithm to find redundancy in on its own.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/gzip",
+        "application/zip"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".zst"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/zstd"
+      },
+      {
+        "title": "RFC 8878 - Zstandard Compression and the 'application/zstd' Media Type",
+        "url": "https://www.rfc-editor.org/rfc/rfc8878"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/sarif+json",
+    "description": "SARIF (Static Analysis Results Interchange Format) is the OASIS standard for reporting what a code analysis tool found. A run records the tool, the rules it applied, and every result with its location, severity and enough surrounding context to be understood without rerunning the tool.\n\nIt exists so that every linter and scanner stops inventing its own output format. GitHub code scanning consumes SARIF, which is most of why analysis tools now emit it alongside whatever they produced before.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".sarif",
+      ".sarif.json"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/sarif+json"
+      },
+      {
+        "title": "OASIS SARIF v2.1.0",
+        "url": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/sarif-v2.1.0.html"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/spdx+json",
+    "description": "SPDX (Software Package Data Exchange) is the Linux Foundation's standard for describing what a software release contains: its packages, their versions and licences, and the relationships between them. This type is the JSON serialisation of an SPDX document.\n\nIt is one of the formats accepted as a software bill of materials, which is what moved SPDX from a licence-compliance tool into something shipped alongside releases and checked by procurement.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".spdx.json"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/spdx+json"
+      },
+      {
+        "title": "SPDX specification v2.3",
+        "url": "https://spdx.github.io/spdx-spec/v2.3/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/vnd.mermaid",
+    "description": "Mermaid diagrams are written as plain text and rendered to SVG, so a flowchart or sequence diagram lives in version control and is reviewed as a diff rather than as an opaque attachment that has to be opened.\n\nThe syntax is line-oriented: name the diagram type, then declare nodes and the edges between them. Built-in rendering in GitHub and GitLab markdown is why it spread beyond its own tooling.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "text/markdown",
+        "image/svg+xml"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".mmd",
+      ".mermaid"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/vnd.mermaid"
+      },
+      {
+        "title": "Mermaid documentation",
+        "url": "https://mermaid.js.org/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/vnd.apache.parquet",
+    "description": "Parquet is the Apache Software Foundation's columnar storage format. Values from a single column are stored together, so a query touching three columns out of two hundred reads only those three, and each column compresses well because everything in it is alike.\n\nA file also carries its own schema and per-column statistics, letting a reader skip entire row groups that cannot satisfy a predicate. That combination is why it became the default for analytical data at rest. Where Parquet optimises storage, [application/vnd.apache.arrow.file](/application/vnd.apache.arrow.file) optimises handoff.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/vnd.apache.arrow.file"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".parquet"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/vnd.apache.parquet"
+      },
+      {
+        "title": "Apache Parquet documentation",
+        "url": "https://parquet.apache.org/docs/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/vnd.apache.arrow.file",
+    "description": "Arrow's IPC file format writes a columnar table to disk with a footer holding the schema and the position of every record batch, so a reader can seek directly to any batch instead of scanning from the start.\n\nThe point is Arrow's in-memory layout. Because the file holds the same representation the library already uses in memory, reading is closer to mapping than to parsing. The form without a footer, for pipes and sockets, is [application/vnd.apache.arrow.stream](/application/vnd.apache.arrow.stream).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/vnd.apache.arrow.stream",
+        "application/vnd.apache.parquet"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".arrow"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/vnd.apache.arrow.file"
+      },
+      {
+        "title": "Apache Arrow columnar format",
+        "url": "https://arrow.apache.org/docs/format/Columnar.html"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/vnd.apache.arrow.stream",
+    "description": "This is the streaming form of Arrow's IPC format: a schema message followed by record batches, written and read strictly in order, with no footer at the end.\n\nHaving no footer means there is nothing to seek to, so a consumer cannot jump to the tenth batch. It also means the stream does not have to exist in full before reading starts, which is what makes this the right choice over a socket or a pipe, where the random access of [application/vnd.apache.arrow.file](/application/vnd.apache.arrow.file) was never available anyway.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/vnd.apache.arrow.file",
+        "application/vnd.apache.parquet"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".arrows"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/vnd.apache.arrow.stream"
+      },
+      {
+        "title": "Apache Arrow columnar format",
+        "url": "https://arrow.apache.org/docs/format/Columnar.html"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "text/vcard",
+    "description": "vCard is the contact format defined by RFC 6350, which specifies version 4.0. A card is a run of properties such as FN, TEL, EMAIL and ADR between `BEGIN:VCARD` and `END:VCARD` lines, and one file may hold many cards in sequence.\n\nIt is what an address book exports and what a phone attaches when someone shares a contact. The registration lists both extensions, but `.vcf` is the one almost every implementation actually writes.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "text/calendar",
+        "text/plain"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".vcf",
+      ".vcard"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/text/vcard"
+      },
+      {
+        "title": "RFC 6350 - vCard Format Specification",
+        "url": "https://www.rfc-editor.org/rfc/rfc6350"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "text/xml",
+    "description": "RFC 7303 registers `text/xml` alongside `application/xml` for XML documents. The two are functionally equivalent, and the RFC recommends [application/xml](/application/xml) for general use.\n\nThe distinction is historical. A `text/` type once implied the content was readable without special tooling, and the two types also differed in how a missing charset parameter was interpreted. RFC 7303 settled that: both now default the same way, leaving little reason to prefer this spelling beyond the many servers already sending it.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/xml",
+        "text/plain",
+        "application/xhtml+xml"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".xml"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/text/xml"
+      },
+      {
+        "title": "RFC 7303 - XML Media Types",
+        "url": "https://www.rfc-editor.org/rfc/rfc7303"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/vnd.api+json",
+    "description": "JSON:API is a convention for building JSON APIs. It fixes how resources, relationships, pagination, filtering, sparse field selection and errors are shaped, so those decisions stop being renegotiated on every project.\n\nThe media type is part of the specification rather than incidental to it. A server signals JSON:API semantics by sending this type, and content negotiation on it is how a client asks for them, which is why the type matters more here than for most JSON formats.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".json"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/vnd.api+json"
+      },
+      {
+        "title": "JSON:API specification",
+        "url": "https://jsonapi.org/format/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "text/x-opml",
+    "description": "OPML (Outline Processor Markup Language) is an XML format for nested outlines. Its dominant use by a wide margin is exchanging feed subscription lists: nearly every feed reader imports and exports OPML, which is what makes moving between readers possible at all.\n\nThere is no IANA registration, so the `x-` form is what tools send and expect. The outline structure itself is generic, and a few outliners and mind-mapping tools use it for its original purpose.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/rss+xml",
+        "application/atom+xml",
+        "application/xml"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".opml"
+    ],
+    "furtherReading": [
+      {
+        "title": "OPML 2.0 specification",
+        "url": "https://opml.org/spec2.opml"
+      },
+      {
+        "title": "Let's Solve the File Format Problem!",
+        "url": "http://fileformats.archiveteam.org/wiki/OPML"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": true,
+      "communityContributed": true,
+      "popularUsage": null
+    }
   }
 ]
