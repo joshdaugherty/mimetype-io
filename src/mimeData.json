@@ -15148,5 +15148,295 @@
       "communityContributed": false,
       "popularUsage": null
     }
+  },
+  {
+    "name": "audio/3gpp",
+    "description": "The 3GP container is the multimedia file format 3GPP defined for mobile networks. RFC 3839 registers it and 3GPP TS 26.244 specifies it. It is a variant of the ISO base media file format, the same structure MP4 uses, restricted to the codecs handsets were expected to support.\n\n`audio/3gpp` labels a 3GP file that holds audio only. That audio is most often AMR (Adaptive Multi-Rate) speech from a phone's voice recorder, either the narrowband form or the wideband [audio/amr-wb](/audio/amr-wb). The same container holding video as well is [video/3gpp](/video/3gpp).\n\nThe counterpart for CDMA2000 (Code Division Multiple Access) networks is [audio/3gpp2](/audio/3gpp2).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "video/3gpp",
+        "audio/3gpp2",
+        "audio/amr",
+        "audio/amr-wb",
+        "audio/evs",
+        "audio/mp4"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".3gp",
+      ".3gpp"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/audio/3gpp"
+      },
+      {
+        "title": "RFC 3839 - MIME Type Registrations for 3rd Generation Partnership Project (3GPP) Multimedia files",
+        "url": "https://www.rfc-editor.org/rfc/rfc3839"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "audio/amr",
+    "description": "AMR (Adaptive Multi-Rate) is the narrowband speech codec 3GPP adopted for GSM (Global System for Mobile Communications) and UMTS (Universal Mobile Telecommunications System) telephony. RFC 4867 registers its file storage format and its RTP payload format. It codes 8 kHz speech at eight bitrates from 4.75 to 12.2 kbit/s, moving between them as radio conditions change.\n\nFeature phone voice recorders wrote `.amr` files in large numbers, which is why the extension is still common long after those handsets. The wideband version is [audio/amr-wb](/audio/amr-wb).\n\nIANA spells this type `audio/AMR`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "audio/amr-wb",
+        "audio/3gpp",
+        "audio/evs"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".amr"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/audio/AMR"
+      },
+      {
+        "title": "RFC 4867 - RTP Payload Format and File Storage Format for the Adaptive Multi-Rate (AMR) and Adaptive Multi-Rate Wideband (AMR-WB) Audio Codecs",
+        "url": "https://www.rfc-editor.org/rfc/rfc4867"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "audio/amr-wb",
+    "description": "AMR-WB (Adaptive Multi-Rate Wideband) extends AMR to a 16 kHz sampling rate, roughly doubling the coded bandwidth. It is standardised as ITU-T G.722.2 and 3GPP TS 26.190, and shares RFC 4867 with narrowband AMR for its storage and RTP payload formats.\n\nThat extra bandwidth carries the higher speech frequencies a narrowband call discards, which is what makes a wideband call sound clearer. It is the codec used for most first-generation HD Voice. Its successor in 3GPP is [audio/evs](/audio/evs).\n\nIANA spells this type `audio/AMR-WB`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "audio/amr",
+        "audio/evs",
+        "audio/3gpp"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".awb"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/audio/AMR-WB"
+      },
+      {
+        "title": "RFC 4867 - RTP Payload Format and File Storage Format for the Adaptive Multi-Rate (AMR) and Adaptive Multi-Rate Wideband (AMR-WB) Audio Codecs",
+        "url": "https://www.rfc-editor.org/rfc/rfc4867"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "audio/evs",
+    "description": "EVS (Enhanced Voice Services) is the 3GPP codec introduced in Release 12 for voice over LTE (Long Term Evolution), specified in 3GPP TS 26.441 and TS 26.445. It covers narrowband through fullband speech at rates from 5.9 to 128 kbit/s. Unlike earlier telephony codecs it also handles music well.\n\nIt carries most Voice over LTE calls sold as HD Voice. It also includes a mode that interoperates with its predecessor [audio/amr-wb](/audio/amr-wb), so calls reaching older networks need no transcoding.\n\nIANA spells this type `audio/EVS`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "audio/amr-wb",
+        "audio/amr",
+        "audio/3gpp"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".3gp",
+      ".3gpp"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/audio/EVS"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "audio/32kadpcm",
+    "description": "32 kbit/s ADPCM is the toll-quality speech coding of ITU-T G.726. RFC 3802 registered it as a media type, after it first appeared in the voice profile for internet mail in RFC 2421. Adaptive differential pulse-code modulation codes the difference between successive samples rather than the samples themselves. That halves the bitrate of G.711 with no loss a listener can hear on speech.\n\nIt was used by the voice messaging systems of that era. The `.726` extension names the ITU-T recommendation rather than the media type.\n\nADPCM in a RIFF wrapper is [audio/adpcm](/audio/adpcm).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "audio/adpcm",
+        "audio/basic"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".726"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/audio/32kadpcm"
+      },
+      {
+        "title": "RFC 3802 - Toll Quality Voice - 32 kbit/s Adaptive Differential Pulse Code Modulation (ADPCM) MIME Sub-type Registration",
+        "url": "https://www.rfc-editor.org/rfc/rfc3802"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "audio/asc",
+    "description": "An `audio/asc` object is a bare AudioSpecificConfig. That is the MPEG-4 Audio structure telling a decoder which coding tool, sampling rate and channel layout a stream uses. RFC 6295 registered it so that configuration could be fetched separately rather than carried inline with the audio.\n\nIts only defined use is configuring an `audio/mpeg4-generic` RTP stream in rtp-midi mode. That is why it is sent over HTTP or SMTP rather than stored in a media file.\n\nThe registration gives `.acn` as the file extension, not `.asc`.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "audio/midi",
+        "audio/mp4"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".acn"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/audio/asc"
+      },
+      {
+        "title": "RFC 6295 - RTP Payload Format for MIDI",
+        "url": "https://www.rfc-editor.org/rfc/rfc6295"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "audio/atrac3",
+    "description": "ATRAC3 is the third generation of Sony's Adaptive TRansform Acoustic Coding, the family that started in MiniDisc. It codes stereo at 66, 105 or 132 kbit/s, and was used by Sony's Connect music store, the Walkman line and the PlayStation Portable.\n\nRFC 5584 defines the RTP payload format for the whole ATRAC family and registers this media type. The later variants are [audio/atrac-x](/audio/atrac-x) and [audio/atrac-advanced-lossless](/audio/atrac-advanced-lossless).\n\nIANA spells this type `audio/ATRAC3`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "audio/atrac-x",
+        "audio/atrac-advanced-lossless"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".at3",
+      ".aa3",
+      ".omg"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/audio/ATRAC3"
+      },
+      {
+        "title": "RFC 5584 - RTP Payload Format for the Adaptive TRansform Acoustic Coding (ATRAC) Family",
+        "url": "https://www.rfc-editor.org/rfc/rfc5584"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "audio/atrac-advanced-lossless",
+    "description": "ATRAC Advanced Lossless stores a lossy ATRAC stream together with a correction layer that restores the original samples exactly. A player that understands only the lossy part still decodes the file. One that understands all of it reconstructs the source bit for bit.\n\nA single file could therefore be both the copy for a portable player and the archive copy. RFC 5584 registers it with the rest of the ATRAC family, alongside [audio/atrac3](/audio/atrac3) and [audio/atrac-x](/audio/atrac-x).\n\nIANA spells this type `audio/ATRAC-ADVANCED-LOSSLESS`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "audio/atrac3",
+        "audio/atrac-x"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".aal",
+      ".aa3",
+      ".omg"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/audio/ATRAC-ADVANCED-LOSSLESS"
+      },
+      {
+        "title": "RFC 5584 - RTP Payload Format for the Adaptive TRansform Acoustic Coding (ATRAC) Family",
+        "url": "https://www.rfc-editor.org/rfc/rfc5584"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "audio/atrac-x",
+    "description": "ATRAC-X is the media type for ATRAC3plus, Sony's revision of ATRAC3 (Adaptive TRansform Acoustic Coding, third generation). It roughly doubles coding efficiency and stays usable near 64 kbit/s. It was the default on later Walkman players, the PlayStation Portable and Hi-MD MiniDisc.\n\nRFC 5584 defines the RTP payload format for the ATRAC family and registers this type. The earlier generation is [audio/atrac3](/audio/atrac3).\n\nIANA spells this type `audio/ATRAC-X`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "audio/atrac3",
+        "audio/atrac-advanced-lossless"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".atx",
+      ".aa3",
+      ".omg"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/audio/ATRAC-X"
+      },
+      {
+        "title": "RFC 5584 - RTP Payload Format for the Adaptive TRansform Acoustic Coding (ATRAC) Family",
+        "url": "https://www.rfc-editor.org/rfc/rfc5584"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
   }
 ]
