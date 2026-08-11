@@ -1,7 +1,7 @@
 [
     {
         "name": "audio/dls",
-        "description": "DLS (Downloadable Sounds) is the MIDI Manufacturers Association format for shipping the instrument samples a MIDI sequence expects, so a score is not left to whatever synthesiser the playback device happens to have. RFC 4613 registers the media type.\n\nA DLS file holds wavetable samples together with the articulation data that maps them across the keyboard. Bundling one with a sequence for handsets is what [audio/mobile-xmf](/audio/mobile-xmf) does.",
+        "description": "DLS (Downloadable Sounds) is a format for shipping the instrument samples a MIDI (Musical Instrument Digital Interface) sequence expects. The MIDI Manufacturers Association defined it, and RFC 4613 registers the media type. Without it, a score is left to whatever synthesiser the playback device happens to have.\n\nA DLS file holds wavetable samples together with the articulation data that maps them across the keyboard. Bundling one with a sequence for handsets is what [audio/mobile-xmf](/audio/mobile-xmf) does.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/midi", "audio/sp-midi", "audio/mobile-xmf"],
@@ -27,7 +27,7 @@
     },
     {
         "name": "audio/mobile-xmf",
-        "description": "Mobile XMF is a profile of the Extensible Music Format aimed at handsets, registered by RFC 4723. XMF packages a MIDI sequence together with the DLS instrument bank it expects into one file, so a ringtone sounds the same everywhere rather than depending on each device's built-in synthesiser.\n\nThat bundling is the entire point of the format. The two parts it contains are [audio/midi](/audio/midi) and [audio/dls](/audio/dls).",
+        "description": "Mobile XMF is a profile of the Extensible Music Format aimed at handsets, registered by RFC 4723. XMF packages a MIDI (Musical Instrument Digital Interface) sequence together with the DLS (Downloadable Sounds) instrument bank it expects into one file. A ringtone therefore sounds the same everywhere, instead of depending on each device's built-in synthesiser.\n\nThat bundling is what the format exists for. The two parts it contains are [audio/midi](/audio/midi) and [audio/dls](/audio/dls).",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/midi", "audio/dls", "audio/sp-midi"],
@@ -53,7 +53,7 @@
     },
     {
         "name": "audio/sp-midi",
-        "description": "Scalable Polyphony MIDI constrains General MIDI so a sequence degrades predictably on a device that cannot sound every voice at once. The composer marks which notes matter most, and a synthesiser short of polyphony drops the others in a defined order instead of arbitrarily.\n\nIt was written for mobile phones, and the MIDI Manufacturers Association specifies it as RP-034, published December 2001. It shares the `.mid` extension with ordinary [audio/midi](/audio/midi).",
+        "description": "Scalable Polyphony MIDI constrains General MIDI so a sequence degrades predictably on a device that cannot sound every voice at once. The composer marks which notes matter most. A synthesiser short of polyphony then drops the others in a defined order rather than an arbitrary one.\n\nIt was written for mobile phones, and the MIDI Manufacturers Association specifies it as Recommended Practice RP-034, published December 2001. It shares the `.mid` extension with ordinary [audio/midi](/audio/midi).",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/midi", "audio/dls", "audio/mobile-xmf"],
@@ -75,7 +75,7 @@
     },
     {
         "name": "audio/evrc",
-        "description": "EVRC (Enhanced Variable Rate Codec) is the CDMA speech codec 3GPP2 standardised as C.S0014. It picks a rate frame by frame between full, half and eighth rate, spending bits on speech and almost none on silence, which is how CDMA networks fitted more calls onto a carrier.\n\nRFC 4788 registers the storage format for the EVRC family. Its later members are [audio/evrcb](/audio/evrcb), [audio/evrcwb](/audio/evrcwb) and [audio/evrcnw](/audio/evrcnw).\n\nIANA spells this type `audio/EVRC`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "EVRC (Enhanced Variable Rate Codec) is the speech codec 3GPP2 standardised as C.S0014 for CDMA (Code Division Multiple Access) networks. It picks a rate frame by frame between full, half and eighth rate. Speech gets the full rate and silence almost no bits at all, which is how CDMA networks fitted more calls onto one carrier.\n\nRFC 4788 registers the storage format for the EVRC family. Its later members are [audio/evrcb](/audio/evrcb), [audio/evrcwb](/audio/evrcwb) and [audio/evrcnw](/audio/evrcnw).\n\nIANA spells this type `audio/EVRC`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": [
@@ -107,7 +107,7 @@
     },
     {
         "name": "audio/evrc-qcp",
-        "description": "This is EVRC speech stored in QCP, the RIFF-based file format Qualcomm defined for vocoder data. RFC 3625 registers QCP together with the media types for the codecs carried inside it.\n\nQCP is how CDMA handsets saved voice memos and how vocoder test vectors were exchanged. The bare storage format without the wrapper is [audio/evrc](/audio/evrc), and the same wrapper around the SMV vocoder is [audio/smv-qcp](/audio/smv-qcp).\n\nIANA spells this type `audio/EVRC-QCP`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "This is EVRC speech stored in QCP, the RIFF-based file format Qualcomm defined for vocoder data. RFC 3625 registers QCP together with the media types for the codecs carried inside it.\n\nQCP is how CDMA (Code Division Multiple Access) handsets saved voice memos, and how vocoder test vectors were exchanged. The bare storage format without the wrapper is [audio/evrc](/audio/evrc), and the same wrapper around the Selectable Mode Vocoder is [audio/smv-qcp](/audio/smv-qcp).\n\nIANA spells this type `audio/EVRC-QCP`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/evrc", "audio/smv-qcp"],
@@ -133,7 +133,7 @@
     },
     {
         "name": "audio/evrcb",
-        "description": "EVRC-B is the second generation of the CDMA Enhanced Variable Rate Codec, standardised by 3GPP2 as C.S0014-B. It keeps the variable-rate structure of the original but adds finer control over the average rate, so an operator can trade capacity against voice quality across a wider range.\n\nRFC 5188 registers this media type alongside the wideband EVRC-WB. The narrowband original is [audio/evrc](/audio/evrc).\n\nIANA spells this type `audio/EVRCB`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "EVRC-B is the second generation of the CDMA (Code Division Multiple Access) Enhanced Variable Rate Codec, standardised by 3GPP2 as C.S0014-B. It keeps the variable-rate structure of the original. What it adds is finer control over the average rate, so an operator can balance capacity against voice quality across a wider range.\n\nRFC 5188 registers this media type alongside the wideband [audio/evrcwb](/audio/evrcwb). The narrowband original is [audio/evrc](/audio/evrc).\n\nIANA spells this type `audio/EVRCB`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/evrc", "audio/evrcwb", "audio/evrcnw"],
@@ -159,7 +159,7 @@
     },
     {
         "name": "audio/evrcnw",
-        "description": "EVRC-NW is the narrowband-wideband member of the CDMA EVRC family from 3GPP2. One stream can carry narrowband or wideband frames and switch between them mid-call, so a handset moving through changing coverage degrades smoothly instead of being handed to a different codec.\n\nRFC 6884 defines its RTP payload format and registers this media type. It follows [audio/evrcb](/audio/evrcb) and [audio/evrcwb](/audio/evrcwb).\n\nIANA spells this type `audio/EVRCNW`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "EVRC-NW is the narrowband-wideband member of the CDMA (Code Division Multiple Access) EVRC family from 3GPP2. One stream can carry narrowband or wideband frames and switch between them mid-call. A handset moving through changing coverage therefore degrades smoothly, instead of the call being switched to a different codec.\n\nRFC 6884 defines its RTP payload format and registers this media type. It follows [audio/evrcb](/audio/evrcb) and [audio/evrcwb](/audio/evrcwb).\n\nIANA spells this type `audio/EVRCNW`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/evrc", "audio/evrcb", "audio/evrcwb"],
@@ -185,7 +185,7 @@
     },
     {
         "name": "audio/evrcwb",
-        "description": "EVRC-WB is the wideband member of the CDMA EVRC family, taking the codec to a 16 kHz sampling rate for noticeably clearer speech than the narrowband original. It is standardised by 3GPP2 as C.S0014-C.\n\nRFC 5188 defines its RTP payload format and registers this media type, and in the same document updates the subtypes for EVRC-B. The narrowband original is [audio/evrc](/audio/evrc).\n\nIANA spells this type `audio/EVRCWB`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "EVRC-WB is the wideband member of the CDMA (Code Division Multiple Access) EVRC family. It takes the codec to a 16 kHz sampling rate, which gives noticeably clearer speech than the narrowband original. It is standardised by 3GPP2 as C.S0014-C.\n\nRFC 5188 defines its RTP payload format and registers this media type, and in the same document updates the subtypes for EVRC-B. The narrowband original is [audio/evrc](/audio/evrc).\n\nIANA spells this type `audio/EVRCWB`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/evrc", "audio/evrcb", "audio/evrcnw"],
@@ -211,7 +211,7 @@
     },
     {
         "name": "audio/smv",
-        "description": "SMV (Selectable Mode Vocoder) is the CDMA speech codec 3GPP2 standardised as C.S0030. Its design goal was to let an operator choose a working point between network capacity and voice quality by selecting one of several modes, rather than committing to one trade at deployment time.\n\nRFC 3558 defines the RTP payload format for SMV and for the EVRC codecs, and registers this media type. Wrapped in Qualcomm's QCP file format it becomes [audio/smv-qcp](/audio/smv-qcp).\n\nIANA spells this type `audio/SMV`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "SMV (Selectable Mode Vocoder) is the speech codec 3GPP2 standardised as C.S0030 for CDMA (Code Division Multiple Access) networks. Its design goal was to let an operator choose a working point between network capacity and voice quality. Selecting one of several modes does that, rather than fixing the balance when the network is deployed.\n\nRFC 3558 defines the RTP payload format for SMV and for the [audio/evrc](/audio/evrc) codecs, and registers this media type. Stored in the QCP file format Qualcomm defined for vocoder data, it becomes [audio/smv-qcp](/audio/smv-qcp).\n\nIANA spells this type `audio/SMV`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/smv-qcp", "audio/evrc"],
@@ -237,7 +237,7 @@
     },
     {
         "name": "audio/smv-qcp",
-        "description": "This is SMV speech stored in QCP, the RIFF-based container Qualcomm defined for vocoder data, registered by RFC 3625 along with the other codecs carried in it.\n\nThe `.qcp` extension is shared with [audio/evrc-qcp](/audio/evrc-qcp), because the wrapper is identical and only the vocoder inside differs. The bare SMV storage format is [audio/smv](/audio/smv).\n\nIANA spells this type `audio/SMV-QCP`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "This is SMV speech stored in QCP, the RIFF-based container Qualcomm defined for vocoder data. RFC 3625 registers it along with the other codecs carried in that container.\n\nThe `.qcp` extension is shared with [audio/evrc-qcp](/audio/evrc-qcp), because the wrapper is identical and only the vocoder inside differs. The bare SMV storage format is [audio/smv](/audio/smv).\n\nIANA spells this type `audio/SMV-QCP`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/smv", "audio/evrc-qcp"],
