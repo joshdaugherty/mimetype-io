@@ -15985,5 +15985,242 @@
       "communityContributed": false,
       "popularUsage": null
     }
+  },
+  {
+    "name": "text/vtt",
+    "description": "WebVTT (Web Video Text Tracks) is the W3C caption and subtitle format that the HTML `track` element loads. A file is plain UTF-8 text: the word `WEBVTT`, then cues giving a start time, an end time and the text to show between them.\n\nBeyond captions it carries chapters, descriptions and arbitrary metadata cues. Cue settings can position text anywhere in the frame rather than only along the bottom. That range is why it displaced SubRip, the `.srt` format, on the web, even though SubRip files are simpler to write.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "text/plain",
+        "text/html"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".vtt"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/text/vtt"
+      },
+      {
+        "title": "W3C WebVTT: The Web Video Text Tracks Format",
+        "url": "https://www.w3.org/TR/webvtt1/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/manifest+json",
+    "description": "A web app manifest is the JSON document that tells a browser how to install a site as an application. It gives the name, icons, start URL, display mode and theme colour. The W3C Web Application Manifest specification defines it, and a page points at one with a `link` element whose `rel` is `manifest`.\n\nIt is what makes a Progressive Web App installable rather than merely bookmarkable. The registered extension is `.webmanifest`, though a great many sites serve the same document as `manifest.json`.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".webmanifest"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/manifest+json"
+      },
+      {
+        "title": "W3C Web Application Manifest",
+        "url": "https://www.w3.org/TR/appmanifest/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/ld+json",
+    "description": "JSON-LD is JSON carrying a `@context` that maps its keys onto IRIs, so a document that reads like ordinary JSON also has machine-readable meaning. The W3C specifies it.\n\nMost of the structured data on the web is JSON-LD. It appears inside a `script` element carrying this media type, describing a page's schema.org entities to search engines. Because the context does the linking, code that ignores it entirely still sees plain, readable JSON.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".jsonld"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/ld+json"
+      },
+      {
+        "title": "W3C JSON-LD 1.1",
+        "url": "https://www.w3.org/TR/json-ld11/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "text/cache-manifest",
+    "description": "An application cache manifest listed the files a browser should retain for offline use. It arrived with HTML5 as AppCache, and both the W3C and browser vendors have since removed it.\n\nIt failed for a specific reason worth remembering. A manifest that could not be fetched left users stuck with stale files, and the update model gave a page no way to recover. Service workers replaced it. Files still exist in old projects, so the type is worth recognising, but nothing new should use it.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "text/plain"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".appcache",
+      ".manifest"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/text/cache-manifest"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/dash+xml",
+    "description": "An MPD (Media Presentation Description) is the manifest for MPEG-DASH, standardised as ISO/IEC 23009-1. It is an XML document listing the periods of a presentation, the adaptation sets within each, and the representations a player may choose between. For every segment it gives the URL or the byte range.\n\nDASH is codec-agnostic, and the MPD is where that shows. A player reads it and switches representation as available bandwidth changes, and the format itself does not care what codec is inside.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/xml",
+        "video/mp4"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".mpd"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/dash+xml"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "text/wgsl",
+    "description": "WGSL (WebGPU Shading Language) is the shader language for WebGPU, specified by the W3C GPU for the Web working group. WebGPU accepts WGSL source directly rather than a compiled bytecode, so a `.wgsl` file is human-readable text that the browser compiles.\n\nIt exists because the web needed a shading language it could parse and validate itself. The browser then translates it safely to Direct3D, Metal and Vulkan, without trusting a binary from the page.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/wasm",
+        "text/plain"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".wgsl"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/text/wgsl"
+      },
+      {
+        "title": "W3C WebGPU Shading Language",
+        "url": "https://www.w3.org/TR/WGSL/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/toml",
+    "description": "TOML (Tom's Obvious Minimal Language) is a configuration format designed to map unambiguously onto a hash table while staying obvious to read. It has sections in square brackets, `key = value` beneath them, and real types for strings, integers, dates and arrays.\n\nRust's `Cargo.toml` and Python's `pyproject.toml` are where most people first see it. Against YAML it trades expressiveness for predictability, since there is far less that can be written two different ways.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/yaml",
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".toml"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/toml"
+      },
+      {
+        "title": "TOML v1.0.0 specification",
+        "url": "https://toml.io/en/v1.0.0"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/cbor",
+    "description": "CBOR (Concise Binary Object Representation) is a binary format defined by RFC 8949. It covers roughly JSON's data model and adds byte strings, unambiguous integers and floats, and an extension mechanism through numeric tags.\n\nIt is designed to be encoded and decoded without a schema and in very little code. That is why it appears in constrained devices, in CBOR Object Signing and Encryption (COSE), and in WebAuthn attestation.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".cbor"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/cbor"
+      },
+      {
+        "title": "RFC 8949 - Concise Binary Object Representation (CBOR)",
+        "url": "https://www.rfc-editor.org/rfc/rfc8949"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
   }
 ]
