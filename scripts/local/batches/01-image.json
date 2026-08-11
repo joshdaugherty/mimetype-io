@@ -365,7 +365,7 @@
         "description": "KTX 2.0 is the second version of the Khronos texture container, and it addresses the problem that made [image/ktx](/image/ktx) awkward to ship: GPU texture formats are not portable, so a KTX 1 file had to be built per target platform.\n\nKTX 2.0 adds Basis Universal supercompression, storing textures in an intermediate form that transcodes cheaply to whichever block format the device actually supports at load time. One file, every GPU.\n\nglTF consumes it through the `KHR_texture_basisu` extension, which is where most people meet it.",
         "links": {
             "deprecates": [],
-            "relatedTo": ["image/ktx"],
+            "relatedTo": ["image/ktx", "model/gltf-binary"],
             "parentOf": [],
             "alternativeTo": []
         },
