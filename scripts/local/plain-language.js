@@ -219,15 +219,30 @@ const prose = text =>
     text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/`([^`]+)`/g, "$1")
 
 /**
+ * Removes code spans outright rather than unwrapping them, for the checks that
+ * ask what a reader has to interpret. A backticked `FN` or `BEGIN:VCARD` is a
+ * literal quoted from the format, not an abbreviation the prose owes anyone an
+ * expansion for, and treating it as one asked text/vcard to gloss six property
+ * names it was only naming.
+ */
+const proseWithoutCode = text =>
+    text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/`[^`]+`/g, " ")
+
+/**
  * Splits on any sentence end, not only one followed by a capital. A sentence
  * starting with a linked type name begins lowercase once the markdown is
  * stripped, and requiring a capital silently merged it with the sentence
  * before, reporting a 40-word sentence that was really two of twenty.
+ *
+ * The lookahead also allows a leading dot so a sentence opening with a file
+ * extension starts a sentence. Requiring a letter merged ".webmanifest is the
+ * registered extension" into the sentence before it. The dot must be followed
+ * by a letter or digit, which keeps "section 5.1, so ..." from splitting.
  */
 const sentencesOf = text =>
     prose(text)
         .replace(/\n+/g, " ")
-        .split(/(?<=[.!?])\s+(?=[A-Za-z\d])/)
+        .split(/(?<=[.!?])\s+(?=[A-Za-z\d]|\.[A-Za-z\d])/)
         .map(s => s.trim())
         .filter(Boolean)
 
@@ -277,9 +292,14 @@ const NOT_ABBREVIATIONS = new Set([
 const abbreviationsIn = (text, name) => {
     const own = name.toUpperCase().replace(/[^A-Z0-9]/g, "")
     const found = new Set()
-    for (const m of prose(text).matchAll(/\b([A-Z][A-Z0-9]{1,7})\b/g)) {
+    for (const m of proseWithoutCode(text).matchAll(
+        /\b([A-Z][A-Z0-9]{1,7})\b/g,
+    )) {
         const token = m[1]
         if (ASSUMED.has(token) || NOT_ABBREVIATIONS.has(token)) continue
+        // A version number on the end does not make a new abbreviation: a
+        // reader who has HTML has HTML5.
+        if (ASSUMED.has(token.replace(/\d+$/, ""))) continue
         if (/^\d/.test(token)) continue
         if (own.includes(token.replace(/[^A-Z0-9]/g, ""))) continue
         found.add(token)
