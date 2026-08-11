@@ -1,7 +1,7 @@
 [
     {
         "name": "audio/3gpp",
-        "description": "The 3GP container is the multimedia file format 3GPP defined for mobile networks, registered by RFC 3839 and specified in 3GPP TS 26.244. It is a variant of the ISO base media file format, the same structure underneath MP4, trimmed to the codecs handsets were expected to carry.\n\n`audio/3gpp` labels a 3GP file whose contents are audio only, most often AMR or AMR-WB speech from a phone's voice recorder. The same container holding video as well is [video/3gpp](/video/3gpp).\n\nThe counterpart from the CDMA2000 side of the industry is [audio/3gpp2](/audio/3gpp2).",
+        "description": "The 3GP container is the multimedia file format 3GPP defined for mobile networks. RFC 3839 registers it and 3GPP TS 26.244 specifies it. It is a variant of the ISO base media file format, the same structure MP4 uses, restricted to the codecs handsets were expected to support.\n\n`audio/3gpp` labels a 3GP file that holds audio only. That audio is most often AMR (Adaptive Multi-Rate) speech from a phone's voice recorder, either the narrowband form or the wideband [audio/amr-wb](/audio/amr-wb). The same container holding video as well is [video/3gpp](/video/3gpp).\n\nThe counterpart for CDMA2000 (Code Division Multiple Access) networks is [audio/3gpp2](/audio/3gpp2).",
         "links": {
             "deprecates": [],
             "relatedTo": [
@@ -34,7 +34,7 @@
     },
     {
         "name": "audio/32kadpcm",
-        "description": "32 kbit/s ADPCM is the toll-quality speech coding of ITU-T G.726, registered as a media type by RFC 3802 after first appearing in the voice profile for internet mail in RFC 2421. Adaptive differential PCM codes the difference between successive samples rather than the samples themselves, halving the bitrate of G.711 with no perceptible loss on speech.\n\nIt is the coding behind voice messaging systems of that era. The `.726` extension names the ITU-T recommendation rather than the media type.\n\nADPCM in a RIFF wrapper is [audio/adpcm](/audio/adpcm).",
+        "description": "32 kbit/s ADPCM is the toll-quality speech coding of ITU-T G.726. RFC 3802 registered it as a media type, after it first appeared in the voice profile for internet mail in RFC 2421. Adaptive differential pulse-code modulation codes the difference between successive samples rather than the samples themselves. That halves the bitrate of G.711 with no loss a listener can hear on speech.\n\nIt was used by the voice messaging systems of that era. The `.726` extension names the ITU-T recommendation rather than the media type.\n\nADPCM in a RIFF wrapper is [audio/adpcm](/audio/adpcm).",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/adpcm", "audio/basic"],
@@ -60,7 +60,7 @@
     },
     {
         "name": "audio/amr",
-        "description": "AMR (Adaptive Multi-Rate) is the narrowband speech codec 3GPP adopted for GSM and UMTS telephony. RFC 4867 registers both its file storage format and its RTP payload format. It codes 8 kHz speech at eight bitrates between 4.75 and 12.2 kbit/s and moves between them as radio conditions change.\n\nVoice recorder apps on feature phones wrote `.amr` files by the million, which is why the extension long outlived the networks it was designed for. The wideband version is [audio/amr-wb](/audio/amr-wb).\n\nIANA spells this type `audio/AMR`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "AMR (Adaptive Multi-Rate) is the narrowband speech codec 3GPP adopted for GSM (Global System for Mobile Communications) and UMTS (Universal Mobile Telecommunications System) telephony. RFC 4867 registers its file storage format and its RTP payload format. It codes 8 kHz speech at eight bitrates from 4.75 to 12.2 kbit/s, moving between them as radio conditions change.\n\nFeature phone voice recorders wrote `.amr` files in large numbers, which is why the extension is still common long after those handsets. The wideband version is [audio/amr-wb](/audio/amr-wb).\n\nIANA spells this type `audio/AMR`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/amr-wb", "audio/3gpp", "audio/evs"],
@@ -86,7 +86,7 @@
     },
     {
         "name": "audio/amr-wb",
-        "description": "AMR-WB (Adaptive Multi-Rate Wideband) extends AMR to a 16 kHz sampling rate, roughly doubling the coded bandwidth. It is standardised as ITU-T G.722.2 and 3GPP TS 26.190, and shares RFC 4867 with narrowband AMR for its storage and RTP payload formats.\n\nThat extra bandwidth is what stops a call sounding like a telephone, and it is the codec behind most first-generation HD Voice. Its successor in 3GPP is [audio/evs](/audio/evs).\n\nIANA spells this type `audio/AMR-WB`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "AMR-WB (Adaptive Multi-Rate Wideband) extends AMR to a 16 kHz sampling rate, roughly doubling the coded bandwidth. It is standardised as ITU-T G.722.2 and 3GPP TS 26.190, and shares RFC 4867 with narrowband AMR for its storage and RTP payload formats.\n\nThat extra bandwidth carries the higher speech frequencies a narrowband call discards, which is what makes a wideband call sound clearer. It is the codec used for most first-generation HD Voice. Its successor in 3GPP is [audio/evs](/audio/evs).\n\nIANA spells this type `audio/AMR-WB`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/amr", "audio/evs", "audio/3gpp"],
@@ -112,7 +112,7 @@
     },
     {
         "name": "audio/asc",
-        "description": "An `audio/asc` object is a bare AudioSpecificConfig, the MPEG-4 Audio structure that tells a decoder which coding tool, sampling rate and channel layout a stream uses. RFC 6295 registered it so that configuration could be fetched separately rather than carried inline with the audio.\n\nIts only defined use is configuring an `audio/mpeg4-generic` RTP stream in rtp-midi mode, which is why it travels over HTTP or SMTP rather than sitting in a media file.\n\nThe registration gives `.acn` as the file extension, not `.asc`.",
+        "description": "An `audio/asc` object is a bare AudioSpecificConfig. That is the MPEG-4 Audio structure telling a decoder which coding tool, sampling rate and channel layout a stream uses. RFC 6295 registered it so that configuration could be fetched separately rather than carried inline with the audio.\n\nIts only defined use is configuring an `audio/mpeg4-generic` RTP stream in rtp-midi mode. That is why it is sent over HTTP or SMTP rather than stored in a media file.\n\nThe registration gives `.acn` as the file extension, not `.asc`.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/midi", "audio/mp4"],
@@ -138,7 +138,7 @@
     },
     {
         "name": "audio/atrac3",
-        "description": "ATRAC3 is the third generation of Sony's Adaptive TRansform Acoustic Coding, the family that started in MiniDisc. It codes stereo at 66, 105 or 132 kbit/s and carried Sony's Connect music store, the Walkman line and the PSP.\n\nRFC 5584 defines the RTP payload format for the whole ATRAC family and registers this media type. The later variants are [audio/atrac-x](/audio/atrac-x) and [audio/atrac-advanced-lossless](/audio/atrac-advanced-lossless).\n\nIANA spells this type `audio/ATRAC3`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "ATRAC3 is the third generation of Sony's Adaptive TRansform Acoustic Coding, the family that started in MiniDisc. It codes stereo at 66, 105 or 132 kbit/s, and was used by Sony's Connect music store, the Walkman line and the PlayStation Portable.\n\nRFC 5584 defines the RTP payload format for the whole ATRAC family and registers this media type. The later variants are [audio/atrac-x](/audio/atrac-x) and [audio/atrac-advanced-lossless](/audio/atrac-advanced-lossless).\n\nIANA spells this type `audio/ATRAC3`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/atrac-x", "audio/atrac-advanced-lossless"],
@@ -164,7 +164,7 @@
     },
     {
         "name": "audio/atrac-advanced-lossless",
-        "description": "ATRAC Advanced Lossless stores a lossy ATRAC stream together with a correction layer that restores the original samples exactly. A player that understands only the lossy part still decodes the file; one that understands all of it reconstructs the source bit for bit.\n\nThat hybrid let a single file serve both a portable player and an archive copy. RFC 5584 registers it with the rest of the ATRAC family, alongside [audio/atrac3](/audio/atrac3) and [audio/atrac-x](/audio/atrac-x).\n\nIANA spells this type `audio/ATRAC-ADVANCED-LOSSLESS`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "ATRAC Advanced Lossless stores a lossy ATRAC stream together with a correction layer that restores the original samples exactly. A player that understands only the lossy part still decodes the file. One that understands all of it reconstructs the source bit for bit.\n\nA single file could therefore be both the copy for a portable player and the archive copy. RFC 5584 registers it with the rest of the ATRAC family, alongside [audio/atrac3](/audio/atrac3) and [audio/atrac-x](/audio/atrac-x).\n\nIANA spells this type `audio/ATRAC-ADVANCED-LOSSLESS`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/atrac3", "audio/atrac-x"],
@@ -190,7 +190,7 @@
     },
     {
         "name": "audio/atrac-x",
-        "description": "ATRAC-X is the media type for ATRAC3plus, Sony's revision of ATRAC3 that roughly doubles coding efficiency and stays usable near 64 kbit/s. It was the default on later Walkman players, the PSP and Hi-MD MiniDisc.\n\nRFC 5584 defines the RTP payload format for the ATRAC family and registers this type. The earlier generation is [audio/atrac3](/audio/atrac3).\n\nIANA spells this type `audio/ATRAC-X`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "ATRAC-X is the media type for ATRAC3plus, Sony's revision of ATRAC3 (Adaptive TRansform Acoustic Coding, third generation). It roughly doubles coding efficiency and stays usable near 64 kbit/s. It was the default on later Walkman players, the PlayStation Portable and Hi-MD MiniDisc.\n\nRFC 5584 defines the RTP payload format for the ATRAC family and registers this type. The earlier generation is [audio/atrac3](/audio/atrac3).\n\nIANA spells this type `audio/ATRAC-X`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/atrac3", "audio/atrac-advanced-lossless"],
@@ -216,7 +216,7 @@
     },
     {
         "name": "audio/dls",
-        "description": "DLS (Downloadable Sounds) is the MIDI Manufacturers Association format for shipping the instrument samples a MIDI sequence expects, so a score is not left to whatever synthesiser the playback device happens to have. RFC 4613 registers the media type.\n\nA DLS file holds wavetable samples together with the articulation data that maps them across the keyboard. Bundling one with a sequence for handsets is what [audio/mobile-xmf](/audio/mobile-xmf) does.",
+        "description": "DLS (Downloadable Sounds) is a format for shipping the instrument samples a MIDI (Musical Instrument Digital Interface) sequence expects. The MIDI Manufacturers Association defined it, and RFC 4613 registers the media type. Without it, a score is left to whatever synthesiser the playback device happens to have.\n\nA DLS file holds wavetable samples together with the articulation data that maps them across the keyboard. Bundling one with a sequence for handsets is what [audio/mobile-xmf](/audio/mobile-xmf) does.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/midi", "audio/sp-midi", "audio/mobile-xmf"],
@@ -242,7 +242,7 @@
     },
     {
         "name": "audio/evrc",
-        "description": "EVRC (Enhanced Variable Rate Codec) is the CDMA speech codec 3GPP2 standardised as C.S0014. It picks a rate frame by frame between full, half and eighth rate, spending bits on speech and almost none on silence, which is how CDMA networks fitted more calls onto a carrier.\n\nRFC 4788 registers the storage format for the EVRC family. Its later members are [audio/evrcb](/audio/evrcb), [audio/evrcwb](/audio/evrcwb) and [audio/evrcnw](/audio/evrcnw).\n\nIANA spells this type `audio/EVRC`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "EVRC (Enhanced Variable Rate Codec) is the speech codec 3GPP2 standardised as C.S0014 for CDMA (Code Division Multiple Access) networks. It picks a rate frame by frame between full, half and eighth rate. Speech gets the full rate and silence almost no bits at all, which is how CDMA networks fitted more calls onto one carrier.\n\nRFC 4788 registers the storage format for the EVRC family. Its later members are [audio/evrcb](/audio/evrcb), [audio/evrcwb](/audio/evrcwb) and [audio/evrcnw](/audio/evrcnw).\n\nIANA spells this type `audio/EVRC`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": [
@@ -274,7 +274,7 @@
     },
     {
         "name": "audio/evrc-qcp",
-        "description": "This is EVRC speech stored in QCP, the RIFF-based file format Qualcomm defined for vocoder data. RFC 3625 registers QCP together with the media types for the codecs carried inside it.\n\nQCP is how CDMA handsets saved voice memos and how vocoder test vectors were exchanged. The bare storage format without the wrapper is [audio/evrc](/audio/evrc), and the same wrapper around the SMV vocoder is [audio/smv-qcp](/audio/smv-qcp).\n\nIANA spells this type `audio/EVRC-QCP`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "This is EVRC speech stored in QCP, the RIFF-based file format Qualcomm defined for vocoder data. RFC 3625 registers QCP together with the media types for the codecs carried inside it.\n\nQCP is how CDMA (Code Division Multiple Access) handsets saved voice memos, and how vocoder test vectors were exchanged. The bare storage format without the wrapper is [audio/evrc](/audio/evrc), and the same wrapper around the Selectable Mode Vocoder is [audio/smv-qcp](/audio/smv-qcp).\n\nIANA spells this type `audio/EVRC-QCP`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/evrc", "audio/smv-qcp"],
@@ -300,7 +300,7 @@
     },
     {
         "name": "audio/evrcb",
-        "description": "EVRC-B is the second generation of the CDMA Enhanced Variable Rate Codec, standardised by 3GPP2 as C.S0014-B. It keeps the variable-rate structure of the original but adds finer control over the average rate, so an operator can trade capacity against voice quality across a wider range.\n\nRFC 5188 registers this media type alongside the wideband EVRC-WB. The narrowband original is [audio/evrc](/audio/evrc).\n\nIANA spells this type `audio/EVRCB`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "EVRC-B is the second generation of the CDMA (Code Division Multiple Access) Enhanced Variable Rate Codec, standardised by 3GPP2 as C.S0014-B. It keeps the variable-rate structure of the original. What it adds is finer control over the average rate, so an operator can balance capacity against voice quality across a wider range.\n\nRFC 5188 registers this media type alongside the wideband [audio/evrcwb](/audio/evrcwb). The narrowband original is [audio/evrc](/audio/evrc).\n\nIANA spells this type `audio/EVRCB`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/evrc", "audio/evrcwb", "audio/evrcnw"],
@@ -326,7 +326,7 @@
     },
     {
         "name": "audio/evrcnw",
-        "description": "EVRC-NW is the narrowband-wideband member of the CDMA EVRC family from 3GPP2. One stream can carry narrowband or wideband frames and switch between them mid-call, so a handset moving through changing coverage degrades smoothly instead of being handed to a different codec.\n\nRFC 6884 defines its RTP payload format and registers this media type. It follows [audio/evrcb](/audio/evrcb) and [audio/evrcwb](/audio/evrcwb).\n\nIANA spells this type `audio/EVRCNW`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "EVRC-NW is the narrowband-wideband member of the CDMA (Code Division Multiple Access) EVRC family from 3GPP2. One stream can carry narrowband or wideband frames and switch between them mid-call. A handset moving through changing coverage therefore degrades smoothly, instead of the call being switched to a different codec.\n\nRFC 6884 defines its RTP payload format and registers this media type. It follows [audio/evrcb](/audio/evrcb) and [audio/evrcwb](/audio/evrcwb).\n\nIANA spells this type `audio/EVRCNW`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/evrc", "audio/evrcb", "audio/evrcwb"],
@@ -352,7 +352,7 @@
     },
     {
         "name": "audio/evrcwb",
-        "description": "EVRC-WB is the wideband member of the CDMA EVRC family, taking the codec to a 16 kHz sampling rate for noticeably clearer speech than the narrowband original. It is standardised by 3GPP2 as C.S0014-C.\n\nRFC 5188 defines its RTP payload format and registers this media type, and in the same document updates the subtypes for EVRC-B. The narrowband original is [audio/evrc](/audio/evrc).\n\nIANA spells this type `audio/EVRCWB`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "EVRC-WB is the wideband member of the CDMA (Code Division Multiple Access) EVRC family. It takes the codec to a 16 kHz sampling rate, which gives noticeably clearer speech than the narrowband original. It is standardised by 3GPP2 as C.S0014-C.\n\nRFC 5188 defines its RTP payload format and registers this media type, and in the same document updates the subtypes for EVRC-B. The narrowband original is [audio/evrc](/audio/evrc).\n\nIANA spells this type `audio/EVRCWB`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/evrc", "audio/evrcb", "audio/evrcnw"],
@@ -378,7 +378,7 @@
     },
     {
         "name": "audio/evs",
-        "description": "EVS (Enhanced Voice Services) is the 3GPP codec introduced in Release 12 for voice over LTE, specified in 3GPP TS 26.441 and TS 26.445. It covers narrowband through fullband speech at rates from 5.9 to 128 kbit/s, and unlike earlier telephony codecs it handles music without falling apart.\n\nIt carries most VoLTE HD Voice, and includes an AMR-WB interoperable mode so calls reaching older networks need no transcoding. Its predecessor is [audio/amr-wb](/audio/amr-wb).\n\nIANA spells this type `audio/EVS`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "EVS (Enhanced Voice Services) is the 3GPP codec introduced in Release 12 for voice over LTE (Long Term Evolution), specified in 3GPP TS 26.441 and TS 26.445. It covers narrowband through fullband speech at rates from 5.9 to 128 kbit/s. Unlike earlier telephony codecs it also handles music well.\n\nIt carries most Voice over LTE calls sold as HD Voice. It also includes a mode that interoperates with its predecessor [audio/amr-wb](/audio/amr-wb), so calls reaching older networks need no transcoding.\n\nIANA spells this type `audio/EVS`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/amr-wb", "audio/amr", "audio/3gpp"],
@@ -400,7 +400,7 @@
     },
     {
         "name": "audio/ilbc",
-        "description": "iLBC (internet Low Bitrate Codec) codes narrowband speech at 13.33 or 15.2 kbit/s in independent frames. Because no frame depends on the one before it, a lost packet damages only what it carried instead of corrupting the decoder state that follows, which made it a common choice for VoIP over lossy links.\n\nRFC 3952 defines its RTP payload format and registers this media type; the codec itself is specified in RFC 3951. The general-purpose codec that replaced it is [audio/opus](/audio/opus).\n\nIANA spells this type `audio/iLBC`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "iLBC (internet Low Bitrate Codec) codes narrowband speech at 13.33 or 15.2 kbit/s in independent frames. No frame depends on the one before it, so a lost packet damages only what it carried. It does not corrupt the decoder state for the frames that follow, which made iLBC a common choice for VoIP over lossy links.\n\nRFC 3952 defines its RTP payload format and registers this media type. The codec itself is specified in RFC 3951. The general-purpose codec that replaced it is [audio/opus](/audio/opus).\n\nIANA spells this type `audio/iLBC`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/opus", "audio/basic"],
@@ -426,7 +426,7 @@
     },
     {
         "name": "audio/l16",
-        "description": "L16 is uncompressed 16-bit linear PCM, big-endian, as carried in the RTP profile for audio and video conferences. RFC 4856 registers it with the other payload formats in that profile. It defaults to 8 kHz mono, with rate and channel count set by media type parameters rather than by any header inside the data.\n\nThere is no container here at all: the payload is nothing but samples. PCM wrapped with a header that describes it is [audio/vnd.wav](/audio/vnd.wav).\n\nIANA spells this type `audio/L16`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "L16 is uncompressed 16-bit linear pulse-code modulation (PCM), big-endian, as carried in the RTP profile for audio and video conferences. RFC 4856 registers it with the other payload formats in that profile. It defaults to 8 kHz mono. Rate and channel count are set by media type parameters rather than by any header inside the data.\n\nThere is no container here at all: the payload is nothing but samples. PCM wrapped with a header that describes it is [audio/vnd.wav](/audio/vnd.wav).\n\nIANA spells this type `audio/L16`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/vnd.wav", "audio/basic"],
@@ -452,7 +452,7 @@
     },
     {
         "name": "audio/matroska",
-        "description": "Matroska is the open container format specified by RFC 9559, built on EBML, a binary encoding that behaves like a typed and length-prefixed XML. `audio/matroska` labels a Matroska file holding audio only, conventionally saved as `.mka`.\n\nThe container is codec-agnostic and carries chapters, attachments and any number of selectable tracks, which is why WebM was derived from it. Before RFC 9559 gave it a registration the format circulated as [audio/x-matroska](/audio/x-matroska).",
+        "description": "Matroska is the open container format specified by RFC 9559. It is built on EBML (Extensible Binary Meta Language), a binary encoding that behaves like a typed and length-prefixed XML. `audio/matroska` labels a Matroska file holding audio only, conventionally saved as `.mka`.\n\nThe container is codec-agnostic and carries chapters, attachments and any number of selectable tracks, which is why WebM was derived from it. Before RFC 9559 registered it, the format was labelled [audio/x-matroska](/audio/x-matroska).",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/x-matroska", "audio/webm", "audio/ogg"],
@@ -478,7 +478,7 @@
     },
     {
         "name": "audio/mhas",
-        "description": "MHAS (MPEG-H Audio Stream) is the self-contained packet format for MPEG-H 3D Audio, defined in ISO/IEC 23008-3. Each stream carries the configuration needed to decode it alongside the audio itself, so a receiver can join partway through without a separate setup channel.\n\nThat property is why MHAS is the form MPEG-H takes in broadcast, where it provides next-generation audio for ATSC 3.0 and DVB. The same content packaged in an MP4 container is [audio/mp4](/audio/mp4).",
+        "description": "MHAS (MPEG-H Audio Stream) is the self-contained packet format for MPEG-H 3D Audio, defined in ISO/IEC 23008-3. Each stream carries the configuration needed to decode it alongside the audio itself, so a receiver can join partway through without a separate setup channel.\n\nThat property is why MHAS is the form MPEG-H takes in broadcast. It provides next-generation audio for the Advanced Television Systems Committee (ATSC) 3.0 standard and for Digital Video Broadcasting (DVB). The same content packaged in an MP4 container is [audio/mp4](/audio/mp4).",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/mp4", "audio/usac"],
@@ -500,7 +500,7 @@
     },
     {
         "name": "audio/midi-clip",
-        "description": "A MIDI Clip File carries MIDI 2.0 data, the first substantial revision to MIDI since 1983. MIDI 2.0 widens 7-bit values to as much as 32 bits, adds per-note controllers, and makes the protocol bidirectional so devices can negotiate what they support instead of assuming.\n\nThe MIDI Association specifies the format as M2-116-U, version 1.0 of June 2023. It uses the `.midi2` extension to keep it distinct from the original [audio/midi](/audio/midi).",
+        "description": "A MIDI Clip File carries MIDI 2.0 data, the first substantial revision to MIDI since 1983. MIDI 2.0 widens 7-bit values to as much as 32 bits and adds per-note controllers. It also makes the protocol bidirectional, so devices can negotiate what they support instead of assuming it.\n\nThe MIDI Association specifies the format as M2-116-U, version 1.0 of June 2023. It uses the `.midi2` extension to keep it distinct from the original [audio/midi](/audio/midi).",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/midi", "audio/sp-midi"],
@@ -522,7 +522,7 @@
     },
     {
         "name": "audio/mobile-xmf",
-        "description": "Mobile XMF is a profile of the Extensible Music Format aimed at handsets, registered by RFC 4723. XMF packages a MIDI sequence together with the DLS instrument bank it expects into one file, so a ringtone sounds the same everywhere rather than depending on each device's built-in synthesiser.\n\nThat bundling is the entire point of the format. The two parts it contains are [audio/midi](/audio/midi) and [audio/dls](/audio/dls).",
+        "description": "Mobile XMF is a profile of the Extensible Music Format aimed at handsets, registered by RFC 4723. XMF packages a MIDI (Musical Instrument Digital Interface) sequence together with the DLS (Downloadable Sounds) instrument bank it expects into one file. A ringtone therefore sounds the same everywhere, instead of depending on each device's built-in synthesiser.\n\nThat bundling is what the format exists for. The two parts it contains are [audio/midi](/audio/midi) and [audio/dls](/audio/dls).",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/midi", "audio/dls", "audio/sp-midi"],
@@ -548,7 +548,7 @@
     },
     {
         "name": "audio/prs.sid",
-        "description": "A PSID file holds music for the SID chip, the three-voice synthesiser in the Commodore 64. Instead of sampled audio it stores the 6502 machine code that drives the chip's registers, so playing one means emulating the processor and the SID together.\n\nThat is why a few kilobytes can hold several minutes of music, and why the tens of thousands of tunes collected by the demoscene remain playable today. The type sits in IANA's personal tree, which is what the `prs.` prefix marks.",
+        "description": "A PSID file holds music for the SID chip, the three-voice synthesiser in the Commodore 64. Instead of sampled audio it stores the 6502 machine code that drives the chip's registers. Playing one means emulating the processor and the SID together.\n\nThat is why a few kilobytes can hold several minutes of music. It is also why the tens of thousands of tunes collected by the demoscene remain playable today. PSID is the four-byte header these files begin with, and the type is registered in IANA's personal tree, which is what the `prs.` prefix marks.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/midi"],
@@ -574,7 +574,7 @@
     },
     {
         "name": "audio/smv",
-        "description": "SMV (Selectable Mode Vocoder) is the CDMA speech codec 3GPP2 standardised as C.S0030. Its design goal was to let an operator choose a working point between network capacity and voice quality by selecting one of several modes, rather than committing to one trade at deployment time.\n\nRFC 3558 defines the RTP payload format for SMV and for the EVRC codecs, and registers this media type. Wrapped in Qualcomm's QCP file format it becomes [audio/smv-qcp](/audio/smv-qcp).\n\nIANA spells this type `audio/SMV`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "SMV (Selectable Mode Vocoder) is the speech codec 3GPP2 standardised as C.S0030 for CDMA (Code Division Multiple Access) networks. Its design goal was to let an operator choose a working point between network capacity and voice quality. Selecting one of several modes does that, rather than fixing the balance when the network is deployed.\n\nRFC 3558 defines the RTP payload format for SMV and for the [audio/evrc](/audio/evrc) codecs, and registers this media type. Stored in the QCP file format Qualcomm defined for vocoder data, it becomes [audio/smv-qcp](/audio/smv-qcp).\n\nIANA spells this type `audio/SMV`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/smv-qcp", "audio/evrc"],
@@ -600,7 +600,7 @@
     },
     {
         "name": "audio/smv-qcp",
-        "description": "This is SMV speech stored in QCP, the RIFF-based container Qualcomm defined for vocoder data, registered by RFC 3625 along with the other codecs carried in it.\n\nThe `.qcp` extension is shared with [audio/evrc-qcp](/audio/evrc-qcp), because the wrapper is identical and only the vocoder inside differs. The bare SMV storage format is [audio/smv](/audio/smv).\n\nIANA spells this type `audio/SMV-QCP`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+        "description": "This is SMV speech stored in QCP, the RIFF-based container Qualcomm defined for vocoder data. RFC 3625 registers it along with the other codecs carried in that container.\n\nThe `.qcp` extension is shared with [audio/evrc-qcp](/audio/evrc-qcp), because the wrapper is identical and only the vocoder inside differs. The bare SMV storage format is [audio/smv](/audio/smv).\n\nIANA spells this type `audio/SMV-QCP`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/smv", "audio/evrc-qcp"],
@@ -626,7 +626,7 @@
     },
     {
         "name": "audio/sofa",
-        "description": "SOFA (Spatially Oriented Format for Acoustics) stores head-related transfer functions and room impulse responses: measurements of how a sound changes on its way to a listener depending on the direction it came from. Binaural renderers read them to place a sound in space over ordinary headphones.\n\nThe format is standardised as AES69 and built on netCDF, so a file carries self-describing multidimensional arrays together with the geometry of the measurement rig that produced them.",
+        "description": "SOFA (Spatially Oriented Format for Acoustics) stores head-related transfer functions and room impulse responses. Both are measurements of how a sound changes on its way to a listener, depending on the direction it came from. Binaural renderers read them to place a sound in space over ordinary headphones.\n\nThe Audio Engineering Society standardises the format as AES69, and it is built on netCDF. A file therefore carries self-describing multidimensional arrays, together with the geometry of the measurement rig that produced them.",
         "links": {
             "deprecates": [],
             "relatedTo": [],
@@ -648,7 +648,7 @@
     },
     {
         "name": "audio/sp-midi",
-        "description": "Scalable Polyphony MIDI constrains General MIDI so a sequence degrades predictably on a device that cannot sound every voice at once. The composer marks which notes matter most, and a synthesiser short of polyphony drops the others in a defined order instead of arbitrarily.\n\nIt was written for mobile phones, and the MIDI Manufacturers Association specifies it as RP-034, published December 2001. It shares the `.mid` extension with ordinary [audio/midi](/audio/midi).",
+        "description": "Scalable Polyphony MIDI constrains General MIDI so a sequence degrades predictably on a device that cannot sound every voice at once. The composer marks which notes matter most. A synthesiser short of polyphony then drops the others in a defined order rather than an arbitrary one.\n\nIt was written for mobile phones, and the MIDI Manufacturers Association specifies it as Recommended Practice RP-034, published December 2001. It shares the `.mid` extension with ordinary [audio/midi](/audio/midi).",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/midi", "audio/dls", "audio/mobile-xmf"],
@@ -670,7 +670,7 @@
     },
     {
         "name": "audio/usac",
-        "description": "USAC (Unified Speech and Audio Coding) is defined in ISO/IEC 23003-3. It puts a speech coder and a general audio coder in one design and switches between them as the signal changes, so material mixing voice and music stays efficient instead of suffering whichever tool was the wrong choice.\n\nSold as xHE-AAC, it stays usable well below 32 kbit/s, which is why streaming services reach for it on low-bandwidth tiers. The registration gives `.loas` as the preferred extension. In an MP4 container the same coding appears as [audio/mp4](/audio/mp4).",
+        "description": "USAC (Unified Speech and Audio Coding) is defined in ISO/IEC 23003-3. It puts a speech coder and a general audio coder in one design, and switches between them as the signal changes. Material that mixes voice and music therefore stays efficient, instead of being coded throughout by a tool suited to only one of them.\n\nMarketed as xHE-AAC, it stays usable well below 32 kbit/s, which is why streaming services use it for low-bandwidth tiers. The registration gives `.loas` as the preferred extension. In an MP4 container the same coding appears as [audio/mp4](/audio/mp4).",
         "links": {
             "deprecates": [],
             "relatedTo": ["audio/mp4", "audio/aac", "audio/mhas"],
