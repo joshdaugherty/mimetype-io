@@ -16466,5 +16466,255 @@
       "communityContributed": false,
       "popularUsage": null
     }
+  },
+  {
+    "name": "application/vnd.mermaid",
+    "description": "Mermaid diagrams are written as plain text and rendered to SVG. A flowchart or sequence diagram is therefore stored in version control and reviewed as a diff, rather than as an opaque attachment that has to be opened.\n\nThe syntax is line-oriented: name the diagram type, then declare nodes and the edges between them. Built-in rendering in GitHub and GitLab markdown is why it spread beyond its own tooling.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "text/markdown",
+        "image/svg+xml"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".mmd",
+      ".mermaid"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/vnd.mermaid"
+      },
+      {
+        "title": "Mermaid documentation",
+        "url": "https://mermaid.js.org/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/vnd.apache.parquet",
+    "description": "Parquet is the Apache Software Foundation's columnar storage format. Values from a single column are stored together. A query touching three columns out of two hundred therefore reads only those three, and each column compresses well because everything in it is alike.\n\nA file also carries its own schema and per-column statistics, letting a reader skip entire row groups that cannot satisfy a predicate. That combination is why it became the default for analytical data at rest. Where Parquet optimises storage, [application/vnd.apache.arrow.file](/application/vnd.apache.arrow.file) optimises passing data between processes.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/vnd.apache.arrow.file"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".parquet"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/vnd.apache.parquet"
+      },
+      {
+        "title": "Apache Parquet documentation",
+        "url": "https://parquet.apache.org/docs/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/vnd.apache.arrow.file",
+    "description": "Arrow's IPC (inter-process communication) file format writes a columnar table to disk. A footer holds the schema and the position of every record batch, so a reader can seek directly to any batch instead of scanning from the start.\n\nThe point is Arrow's in-memory layout. Because the file holds the same representation the library already uses in memory, reading is closer to mapping than to parsing. The form without a footer, for pipes and sockets, is [application/vnd.apache.arrow.stream](/application/vnd.apache.arrow.stream).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/vnd.apache.arrow.stream",
+        "application/vnd.apache.parquet"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".arrow"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/vnd.apache.arrow.file"
+      },
+      {
+        "title": "Apache Arrow columnar format",
+        "url": "https://arrow.apache.org/docs/format/Columnar.html"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/vnd.apache.arrow.stream",
+    "description": "This is the streaming form of Arrow's IPC (inter-process communication) format. It is a schema message followed by record batches, written and read strictly in order, with no footer at the end.\n\nHaving no footer means there is nothing to seek to, so a consumer cannot jump to the tenth batch. It also means the stream does not have to exist in full before reading starts. That is what makes this the right choice over a socket or a pipe, where the random access of [application/vnd.apache.arrow.file](/application/vnd.apache.arrow.file) was never available anyway.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/vnd.apache.arrow.file",
+        "application/vnd.apache.parquet"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".arrows"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/vnd.apache.arrow.stream"
+      },
+      {
+        "title": "Apache Arrow columnar format",
+        "url": "https://arrow.apache.org/docs/format/Columnar.html"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "text/vcard",
+    "description": "vCard is the contact format defined by RFC 6350, which specifies version 4.0. A card is a run of properties such as `FN`, `TEL`, `EMAIL` and `ADR`, between `BEGIN:VCARD` and `END:VCARD` lines. One file may hold many cards in sequence.\n\nIt is what an address book exports and what a phone attaches when someone shares a contact. The registration lists both extensions, but `.vcf` is the one almost every implementation writes.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "text/calendar",
+        "text/plain"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".vcf",
+      ".vcard"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/text/vcard"
+      },
+      {
+        "title": "RFC 6350 - vCard Format Specification",
+        "url": "https://www.rfc-editor.org/rfc/rfc6350"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "text/xml",
+    "description": "RFC 7303 registers `text/xml` alongside `application/xml` for XML documents. The two are functionally equivalent, and the RFC recommends [application/xml](/application/xml) for general use.\n\nThe distinction is historical. A `text/` type once implied the content was readable without special tooling. The two types also differed in how a missing charset parameter was interpreted. RFC 7303 settled that: both now default the same way, leaving little reason to prefer this spelling beyond the many servers already sending it.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/xml",
+        "text/plain",
+        "application/xhtml+xml"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".xml"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/text/xml"
+      },
+      {
+        "title": "RFC 7303 - XML Media Types",
+        "url": "https://www.rfc-editor.org/rfc/rfc7303"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/vnd.api+json",
+    "description": "JSON:API is a convention for building JSON APIs. It fixes how resources, relationships, pagination, filtering, sparse field selection and errors are shaped, so those decisions stop being renegotiated on every project.\n\nThe media type is part of the specification rather than incidental to it. A server signals JSON:API semantics by sending this type, and a client asks for them by content negotiation on it. That is why the type matters more here than for most JSON formats.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".json"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/vnd.api+json"
+      },
+      {
+        "title": "JSON:API specification",
+        "url": "https://jsonapi.org/format/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "text/x-opml",
+    "description": "OPML (Outline Processor Markup Language) is an XML format for nested outlines. Its dominant use by a wide margin is exchanging feed subscription lists. Nearly every feed reader imports and exports OPML, which is what makes moving between readers possible at all.\n\nThere is no IANA registration, so the `x-` form is what tools send and expect. The outline structure itself is generic, and a few outliners and mind-mapping tools use it for its original purpose.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/rss+xml",
+        "application/atom+xml",
+        "application/xml"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".opml"
+    ],
+    "furtherReading": [
+      {
+        "title": "OPML 2.0 specification",
+        "url": "https://opml.org/spec2.opml"
+      },
+      {
+        "title": "Let's Solve the File Format Problem!",
+        "url": "http://fileformats.archiveteam.org/wiki/OPML"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": true,
+      "communityContributed": true,
+      "popularUsage": null
+    }
   }
 ]
