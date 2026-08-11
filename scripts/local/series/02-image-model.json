@@ -98,7 +98,7 @@
     },
     {
         "name": "image/avcs",
-        "description": "The image sequence counterpart to [image/avci](/image/avci): several AVC-coded images in one HEIF container (ISO/IEC 23008-12), used for bursts, animations and derived sequences rather than a single still.\n\nIt stands in the same relation to `image/avci` as [image/heic-sequence](/image/heic-sequence) does to [image/heic](/image/heic).",
+        "description": "The image sequence counterpart to [image/avci](/image/avci): several AVC-coded images in one HEIF container (ISO/IEC 23008-12), used for bursts, animations and derived sequences rather than a single still.\n\nA sequence is carried as a track rather than a lone item, which is why the registration borrows its encoding considerations from `video/mp4` and expects the first entry of a `codecs` parameter to name a track with the `pict` handler.\n\nIt stands in the same relation to `image/avci` as [image/heic-sequence](/image/heic-sequence) does to [image/heic](/image/heic).",
         "links": {
             "deprecates": [],
             "relatedTo": [

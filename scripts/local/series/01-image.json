@@ -85,7 +85,7 @@
     },
     {
         "name": "image/j2c",
-        "description": "A bare JPEG 2000 codestream, with none of the boxes that make up a [image/jp2](/image/jp2) file. It is the raw output of the Part 1 (ISO/IEC 15444-1) encoder: entropy-coded wavelet data plus the markers a decoder needs, and nothing describing colour space or metadata.\n\nYou meet it embedded inside other containers — DICOM images, MXF video, PDF — where the wrapper already carries that information and a second copy would be redundant.\n\nIANA registers no file extension for this type. `.j2c` and `.j2k` are both conventional and both common, and neither is official.",
+        "description": "A bare JPEG 2000 codestream, with none of the boxes that make up a [image/jp2](/image/jp2) file: entropy-coded wavelet data plus the markers a decoder needs, and nothing describing colour space or metadata. The registration is deliberately broad, covering a codestream that draws on any part of ISO/IEC 15444 rather than Part 1 alone.\n\nYou meet it embedded inside other containers, such as DICOM images, MXF video and PDF, where the wrapper already carries that information and a second copy would be redundant.\n\nBoth `.j2c` and `.j2k` are registered extensions, and IANA records that both are in widespread use.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/jp2", "image/jphc"],
@@ -107,7 +107,7 @@
     },
     {
         "name": "image/jph",
-        "description": "JPH is the file format for High-Throughput JPEG 2000, defined in ISO/IEC 15444-15. It keeps the box structure and the wavelet transform of [image/jp2](/image/jp2), and replaces only the block coder with one roughly an order of magnitude faster in both directions.\n\nThe trade is a small loss of compression efficiency in exchange for encode and decode speeds that make JPEG 2000 practical in live and interactive workflows rather than only archival ones. The codestream is not backwards compatible, so existing JP2 tooling needs updating to read it.\n\nThe bare codestream form, without the boxes, is [image/jphc](/image/jphc).",
+        "description": "JPH is the file format for High-Throughput JPEG 2000, defined in ISO/IEC 15444-15. It keeps the box structure and the wavelet transform of [image/jp2](/image/jp2), and replaces only the block coder with one roughly an order of magnitude faster in both directions.\n\nThe trade is a small loss of compression efficiency in exchange for encode and decode speeds that make JPEG 2000 practical in live and interactive workflows rather than only archival ones. A legacy JPEG 2000 decoder cannot read the result directly, but the two are convertible without loss in either direction, so an archive can be moved across and back.\n\nThe bare codestream form, without the boxes, is [image/jphc](/image/jphc).",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/jp2", "image/jphc"],
@@ -119,6 +119,10 @@
             {
                 "title": "Internet Assigned Numbers Authority (IANA)",
                 "url": "https://www.iana.org/assignments/media-types/image/jph"
+            },
+            {
+                "title": "JPEG - High Throughput JPEG 2000",
+                "url": "https://jpeg.org/jpeg2000/htj2k.html"
             }
         ],
         "notices": {
@@ -151,7 +155,7 @@
     },
     {
         "name": "image/jxl",
-        "description": "JPEG XL (ISO/IEC 18181) is a still and animated image format built around a new codec, with one capability its neighbours lack: it can losslessly re-encode an existing JPEG file, typically around 20% smaller, and reconstruct the original bit for bit.\n\nIt also offers progressive decoding, lossless and lossy modes in a single codestream, wide colour gamut, high bit depth, transparency and animation — roughly the union of what [image/jpeg](/image/jpeg), [image/png](/image/png) and [image/webp](/image/webp) each do separately.\n\nAdoption, not the technology, has been the sticking point. Check current browser support before serving it without a fallback.",
+        "description": "JPEG XL (ISO/IEC 18181) is a still and animated image format built around a new codec, with one capability its neighbours lack: it can losslessly transcode an existing JPEG file to something smaller, and reconstruct that original file exactly, byte for byte.\n\nIt also offers progressive decoding, lossless and lossy modes in a single codestream, wide colour gamut, high bit depth, transparency and animation — roughly the union of what [image/jpeg](/image/jpeg), [image/png](/image/png) and [image/webp](/image/webp) each do separately.\n\nAdoption, not the technology, has been the sticking point. Check current browser support before serving it without a fallback.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/jpeg", "image/avif", "image/webp"],
@@ -173,7 +177,7 @@
     },
     {
         "name": "image/jxr",
-        "description": "JPEG XR (ITU-T T.832, also published as ISO/IEC 29199-2) is a still image codec supporting lossy and lossless compression, high dynamic range and bit depths up to 32 bits per channel, at a computational cost close to ordinary JPEG.\n\nIt began at Microsoft as Windows Media Photo and was renamed HD Photo before standardisation, which is why `.wdp` files and the unregistered `image/vnd.ms-photo` label describe the same format.\n\nOutside Microsoft's own stack it never displaced [image/jpeg](/image/jpeg), and support today is sparse.",
+        "description": "JPEG XR (ITU-T T.832, also published as ISO/IEC 29199-2) is a still image codec supporting lossy and lossless compression, high dynamic range and bit depths up to 32 bits per channel, with low computational and memory requirements.\n\nIt began at Microsoft as Windows Media Photo and was renamed HD Photo before standardisation, which is why `.wdp` files and the unregistered `image/vnd.ms-photo` label describe the same format.\n\nOutside Microsoft's own stack it never displaced [image/jpeg](/image/jpeg), and support today is sparse.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/jpeg"],
@@ -185,6 +189,10 @@
             {
                 "title": "Internet Assigned Numbers Authority (IANA)",
                 "url": "https://www.iana.org/assignments/media-types/image/jxr"
+            },
+            {
+                "title": "Library of Congress - JPEG XR File Format (JXR)",
+                "url": "https://www.loc.gov/preservation/digital/formats/fdd/fdd000524.shtml"
             }
         ],
         "notices": {
@@ -195,7 +203,7 @@
     },
     {
         "name": "image/jls",
-        "description": "JPEG-LS (ITU-T T.87, also ISO/IEC 14495-1) is a lossless and near-lossless still image codec based on the LOCO-I algorithm. Despite the name it shares little with baseline JPEG: it uses prediction and context modelling rather than a discrete cosine transform.\n\nNear-lossless mode is the distinctive part. You set a maximum permitted error per sample and the encoder guarantees no pixel deviates by more than that — a bounded, inspectable loss rather than an open-ended one. Medical imaging adopted it for exactly that reason, and DICOM defines transfer syntaxes for it.\n\nIt is fast and simple to implement, which keeps it in use in embedded and scientific capture despite newer options.",
+        "description": "JPEG-LS (ITU-T T.87, also ISO/IEC 14495-1) is a lossless and near-lossless codec for continuous-tone still images. Despite the name it shares little with baseline JPEG: it predicts each sample from its neighbours and codes the difference, with no discrete cosine transform anywhere.\n\nNear-lossless mode is the distinctive part. You set a maximum permitted error per sample and the encoder guarantees no pixel deviates by more than that — a bounded, inspectable loss rather than an open-ended one. Medical imaging adopted it for exactly that reason, and DICOM defines transfer syntaxes for it.\n\nJPEG's own overview calls it especially suited to low-complexity hardware, which is what keeps it in embedded and scientific capture despite newer options.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/jpeg", "image/dicom-rle"],
@@ -207,6 +215,10 @@
             {
                 "title": "Internet Assigned Numbers Authority (IANA)",
                 "url": "https://www.iana.org/assignments/media-types/image/jls"
+            },
+            {
+                "title": "JPEG - JPEG LS overview",
+                "url": "https://jpeg.org/jpegls/index.html"
             }
         ],
         "notices": {
@@ -217,7 +229,7 @@
     },
     {
         "name": "image/dicom-rle",
-        "description": "The run-length encoding defined by the DICOM standard for medical images, specified in PS3.5 Annex G. It is a byte-oriented RLE scheme derived from PackBits, applied separately to each colour plane.\n\nLossless compression matters in diagnostic imaging, where an artefact could be read as pathology. RLE is the simplest of DICOM's lossless options: it achieves very little on photographic data, but works well on the large uniform regions typical of segmentation masks and some modalities.\n\nWhere stronger lossless compression is needed, [image/jls](/image/jls) is the usual alternative.",
+        "description": "The run-length encoding defined by the DICOM standard for medical images, specified in PS3.5 Annex G. Pixel codes are split into byte segments, one per byte, so an 8-bit RGB image gives a segment per colour while a 16-bit greyscale image gives a high-byte and a low-byte segment. Each segment is compressed on its own, and no run crosses a row boundary.\n\nLossless compression matters in diagnostic imaging, where an artefact could be read as pathology. RLE is the simplest of DICOM's lossless options: it achieves very little on photographic data, but works well on the large uniform regions typical of segmentation masks and some modalities.\n\nWhere stronger lossless compression is needed, [image/jls](/image/jls) is the usual alternative.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/jls"],
