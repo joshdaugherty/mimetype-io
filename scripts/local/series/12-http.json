@@ -1,7 +1,7 @@
 [
     {
         "name": "application/problem+json",
-        "description": "A problem details object is the standard shape for an HTTP error body, defined by RFC 9457. Instead of inventing a JSON envelope per API, a response carries `type`, `title`, `status`, `detail` and `instance`, where `type` is a URI naming the kind of problem so a client can branch on it without reading prose.\n\nRFC 9457 replaced RFC 7807, adding a registry of common problem type URIs and guidance for type URIs that cannot be dereferenced. The same model serialised as XML is [application/problem+xml](/application/problem+xml).",
+        "description": "A problem details object is the standard shape for an HTTP error body, defined by RFC 9457. Instead of inventing a JSON envelope per API, a response carries `type`, `title`, `status`, `detail` and `instance`. The `type` member is a URI naming the kind of problem, so a client can branch on it without reading prose.\n\nRFC 9457 replaced RFC 7807, adding a registry of common problem type URIs and guidance for type URIs that cannot be dereferenced. The same model serialised as XML is [application/problem+xml](/application/problem+xml).",
         "links": {
             "deprecates": [],
             "relatedTo": ["application/problem+xml", "application/json"],
@@ -27,7 +27,7 @@
     },
     {
         "name": "application/problem+xml",
-        "description": "The XML serialisation of the problem details model from RFC 9457, the standard shape for an HTTP error body. It carries the same members as the JSON form, `type`, `title`, `status`, `detail` and `instance`, as child elements of a `problem` element in the `urn:ietf:rfc:7807` namespace.\n\nThat namespace still names the older specification, because RFC 9457 kept it unchanged when it replaced RFC 7807. Most APIs reach for [application/problem+json](/application/problem+json); this exists so an XML API does not have to invent an error format of its own.",
+        "description": "The XML serialisation of the problem details model from RFC 9457, the standard shape for an HTTP error body. It carries the same members as the JSON form: `type`, `title`, `status`, `detail` and `instance`. They appear as child elements of a `problem` element in the `urn:ietf:rfc:7807` namespace.\n\nThat namespace still names the older specification, because RFC 9457 kept it unchanged when it replaced RFC 7807. Most APIs use [application/problem+json](/application/problem+json). This type exists so an XML API does not have to invent an error format of its own.",
         "links": {
             "deprecates": [],
             "relatedTo": ["application/problem+json", "application/xml"],
@@ -53,7 +53,7 @@
     },
     {
         "name": "application/merge-patch+json",
-        "description": "JSON Merge Patch, defined by RFC 7396, describes a change to a JSON document by sending something that looks like the document. Members in the patch replace the ones they match, a member set to `null` is removed, and anything left out is untouched.\n\nThat shape is easy to write and easy to get wrong. It cannot address a single array element, cannot express a precondition, and has no way to set a member to `null`, because `null` already means delete. When any of that matters, [application/json-patch+json](/application/json-patch+json) spells each operation out instead.",
+        "description": "JSON Merge Patch, defined by RFC 7396, describes a change to a JSON document by sending something that looks like the document. Members in the patch replace the ones they match, a member set to `null` is removed, and anything left out is untouched.\n\nThat shape is easy to write and easy to get wrong. It cannot address a single array element and cannot express a precondition. It also has no way to set a member to `null`, because `null` already means delete. When any of that matters, [application/json-patch+json](/application/json-patch+json) spells each operation out instead.",
         "links": {
             "deprecates": [],
             "relatedTo": ["application/json-patch+json", "application/json"],
@@ -79,7 +79,7 @@
     },
     {
         "name": "application/json-seq",
-        "description": "A JSON text sequence is any number of JSON values in one stream, each preceded by an ASCII record separator (0x1E) and followed by a line feed, as defined by RFC 7464. The separator cannot appear unescaped inside a JSON text, so a reader can always find where the next value starts.\n\nThat suits a long or never-ending sequence that would be awkward as a single enormous array: a consumer handles each value as it arrives instead of waiting for a closing bracket, and one malformed value need not be fatal. `jq` reads and writes it with the `--seq` flag.",
+        "description": "A JSON text sequence is any number of JSON values in one stream, as defined by RFC 7464. Each value is preceded by an ASCII record separator (0x1E) and followed by a line feed. The separator cannot appear unescaped inside a JSON text, so a reader can always find where the next value starts.\n\nThat suits a long or never-ending sequence that would be awkward as a single enormous array. A consumer handles each value as it arrives instead of waiting for a closing bracket, and one malformed value need not be fatal. `jq` reads and writes it with the `--seq` flag.",
         "links": {
             "deprecates": [],
             "relatedTo": ["application/json"],
@@ -105,7 +105,7 @@
     },
     {
         "name": "application/jsonpath",
-        "description": "JSONPath selects values out of a JSON document. An expression starts at the root `$` and applies segments, so `$.store.book[*].author` picks the author of every book and `$..price` finds every price at any depth.\n\nThe syntax began as Stefan Gössner's 2007 proposal and spread through dozens of libraries long before anyone wrote it down, which left implementations quietly incompatible with each other. RFC 9535 is the specification that fixes that, and this media type is registered for carrying a query, not the values it returns.",
+        "description": "JSONPath selects values out of a JSON document. An expression starts at the root `$` and applies segments. So `$.store.book[*].author` picks the author of every book, and `$..price` finds every price at any depth.\n\nThe syntax began as Stefan Gössner's 2007 proposal. Dozens of libraries implemented it long before anyone wrote it down, which left them quietly incompatible with each other. RFC 9535 is the specification that fixes that, and this media type is registered for carrying a query, not the values it returns.",
         "links": {
             "deprecates": [],
             "relatedTo": ["application/json"],
@@ -131,7 +131,7 @@
     },
     {
         "name": "application/x-www-form-urlencoded",
-        "description": "This is what an HTML form posts by default: each name and value percent-encoded, pairs joined with `&`, name separated from value by `=`, and a space written as `+`. It is older than most of this list and is specified today in the WHATWG URL Standard rather than in HTML itself.\n\nThe `+` is the part that catches people out, since percent-encoding elsewhere writes a space as `%20`. The format also has no way to carry a file, which is what multipart/form-data exists for. Its registration gives no file extension, because it only ever appears on the wire.",
+        "description": "This is what an HTML form posts by default. Each name and value is percent-encoded, pairs are joined with `&`, name is separated from value by `=`, and a space is written as `+`. It is older than most of this list, and is specified today in the WHATWG URL Standard rather than in HTML itself.\n\nThe `+` is the part people get wrong, since percent-encoding elsewhere writes a space as `%20`. The format also has no way to carry a file, which is what multipart/form-data exists for. Its registration gives no file extension, because it is only ever sent in a message and never saved as a file.",
         "links": {
             "deprecates": [],
             "relatedTo": ["text/html"],
