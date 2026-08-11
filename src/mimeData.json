@@ -18332,7 +18332,7 @@
   },
   {
     "name": "application/link-format",
-    "description": "CoRE Link Format is how a constrained server says what it has. A GET on `/.well-known/core` returns the server's resources and their attributes in the same syntax as an HTTP Link header field, carried as a payload instead of a header. RFC 6690 defines it for devices too small to serve a discovery document of any real size.\n\nA server may also treat the query string as a filter, so a client can ask for only the resources with a given resource type rather than reading the whole list. That is what lets a gateway walk a building's worth of sensors from one well-known path.",
+    "description": "CoRE Link Format is how a constrained server says what it has. A GET on `/.well-known/core` returns the server's resources and their attributes. They use the same syntax as an HTTP Link header field, carried as a payload instead of a header. RFC 6690 defines it for devices too small to serve a discovery document of any real size.\n\nA server may also treat the query string as a filter. A client can then ask for only the resources with a given resource type, rather than reading the whole list. That is what lets a gateway walk a building's worth of sensors from one well-known path.",
     "links": {
       "deprecates": [],
       "relatedTo": [
@@ -18362,7 +18362,7 @@
   },
   {
     "name": "application/coap-payload",
-    "description": "When a proxy translating between HTTP and CoAP meets a CoAP Content-Format it does not recognise, it still has to hand the client something. RFC 8075 says it returns this generic type with the numeric format identifier in a `cf` parameter, so `application/coap-payload;cf=60` means a payload the CoAP side labelled 60.\n\nThat is an honest answer rather than a guess. The bytes are passed through and the client is told exactly what the constrained side called them, which means a proxy deployed before a format was registered keeps working instead of rejecting the response.",
+    "description": "When a proxy translating between HTTP and CoAP meets a CoAP Content-Format it does not recognise, it still has to hand the client something. RFC 8075 says it returns this generic type, with the numeric format identifier in a `cf` parameter. So `application/coap-payload;cf=60` means a payload the CoAP side labelled 60.\n\nThat is an honest answer rather than a guess. The bytes are passed through, and the client is told exactly what the constrained side called them. A proxy deployed before a format was registered therefore keeps working, instead of rejecting the response.",
     "links": {
       "deprecates": [],
       "relatedTo": [
@@ -18421,7 +18421,7 @@
   },
   {
     "name": "application/missing-blocks+cbor-seq",
-    "description": "RFC 9177 adds block-wise transfer options to CoAP that survive a lossy link. When a server has received only part of a body it answers 4.08 Request Entity Incomplete carrying this type, whose payload is a CBOR sequence of the block numbers that never arrived.\n\nThe client then resends only those blocks. Without it, a 4.08 says merely that something is missing and the transfer begins again, which over a constrained radio is the difference between recovering and giving up. The sequence format it is built on is [application/cbor-seq](/application/cbor-seq).",
+    "description": "RFC 9177 adds block-wise transfer options to CoAP that survive a lossy link. When a server has received only part of a body, it answers 4.08 Request Entity Incomplete carrying this type. The payload is a CBOR sequence of the block numbers that never arrived.\n\nThe client then resends only those blocks. Without it, a 4.08 says merely that something is missing and the transfer begins again. Over a constrained radio that is the difference between recovering and giving up. The sequence format it is built on is [application/cbor-seq](/application/cbor-seq).",
     "links": {
       "deprecates": [],
       "relatedTo": [
@@ -18449,7 +18449,7 @@
   },
   {
     "name": "application/dots+cbor",
-    "description": "DOTS lets a network under attack ask for help. A client signals to a mitigation service that it is being flooded and what should be filtered, and RFC 9132 defines that signal channel. This type marks its CBOR-encoded messages.\n\nRunning the signal channel over CoAP is a deliberate choice, not a preference for small formats. When the link is already saturated by the attack, the request for help has to fit in as few bytes as possible and get through on an unreliable transport. Configuration and management travel separately, over the DOTS data channel.",
+    "description": "DOTS lets a network under attack ask for help. A client signals to a mitigation service that it is being flooded and what should be filtered, and RFC 9132 defines that signal channel. This type marks its CBOR-encoded messages.\n\nRunning the signal channel over CoAP is a deliberate choice, not a preference for small formats. When the link is already saturated by the attack, the request for help has to fit in as few bytes as possible. It also has to get through on an unreliable transport. Configuration and management travel separately, over the DOTS data channel.",
     "links": {
       "deprecates": [],
       "relatedTo": [
