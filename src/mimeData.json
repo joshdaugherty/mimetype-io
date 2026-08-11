@@ -18106,5 +18106,216 @@
       "communityContributed": false,
       "popularUsage": null
     }
+  },
+  {
+    "name": "application/cose",
+    "description": "COSE is what JOSE would have been if it had been designed for CBOR. RFC 9052 defines how to sign, encrypt and authenticate a CBOR payload using the same ideas as JSON Web Signature and JSON Web Encryption, with the structures encoded as CBOR arrays and the header parameters as small integers rather than strings.\n\nThat last part is the whole point: a constrained device can afford the cryptography but not the JSON around it. This generic type covers any COSE structure. The keys used with it are [application/cose-key](/application/cose-key), and the equivalent in the JSON world is [application/jose](/application/jose).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/jose",
+        "application/cose-key",
+        "application/cbor"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".cbor"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/cose"
+      },
+      {
+        "title": "RFC 9052 - CBOR Object Signing and Encryption (COSE): Structures and Process",
+        "url": "https://www.rfc-editor.org/rfc/rfc9052"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/cose-key",
+    "description": "A COSE Key is one cryptographic key encoded as a CBOR map, defined alongside the COSE structures in RFC 9052. It carries what a JSON Web Key carries, the key type, the curve or modulus, an identifier, with the labels as integers and the key material as byte strings rather than base64url text.\n\nThe byte strings matter more than they sound. A key in CBOR is close to its natural size, where base64url costs a third extra for no benefit on a link that was never text in the first place. Several keys together make [application/cose-key-set](/application/cose-key-set); the JSON equivalent is [application/jwk+json](/application/jwk+json).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/cose-key-set",
+        "application/jwk+json",
+        "application/cose"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".cbor"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/cose-key"
+      },
+      {
+        "title": "RFC 9052 - CBOR Object Signing and Encryption (COSE): Structures and Process",
+        "url": "https://www.rfc-editor.org/rfc/rfc9052"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/cose-key-set",
+    "description": "A COSE Key Set is an array of COSE Keys, the CBOR counterpart of a JWK Set. It is the document a service publishes so others can verify what it signs, and it is what makes changing a key possible without a flag day: publish the new one beside the old, sign with it, drop the old one later.\n\nA verifier picks the right entry by matching the key identifier on the COSE structure it received. One key on its own is [application/cose-key](/application/cose-key), and the JSON world publishes the same thing as [application/jwk-set+json](/application/jwk-set+json).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/cose-key",
+        "application/jwk-set+json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".cbor"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/cose-key-set"
+      },
+      {
+        "title": "RFC 9052 - CBOR Object Signing and Encryption (COSE): Structures and Process",
+        "url": "https://www.rfc-editor.org/rfc/rfc9052"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/cbor-seq",
+    "description": "A CBOR sequence is any number of CBOR data items concatenated with nothing at all between them. No separator is needed, because every CBOR item is self-delimiting: a decoder that has finished one item is already at the start of the next.\n\nRFC 8742 defines the format and also registers `+cbor-seq` as a structured syntax suffix, so other media types can say they are built on it. The JSON equivalent cannot be this simple. [application/json-seq](/application/json-seq) has to frame every value with a record separator character, because JSON texts do not announce their own end.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/cbor",
+        "application/json-seq"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/cbor-seq"
+      },
+      {
+        "title": "RFC 8742 - Concise Binary Object Representation (CBOR) Sequences",
+        "url": "https://www.rfc-editor.org/rfc/rfc8742"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/concise-problem-details+cbor",
+    "description": "The CoAP counterpart of a problem details response. RFC 9290 defines a compact CBOR map carrying machine-readable error detail, so an API on a constrained device does not have to invent an error format of its own. Its abstract says it is inspired by, but more concise than, the HTTP problem details format.\n\nThe concision is structural, not cosmetic: the keys are integers, and anything the CoAP response code already says is left out. The RFC names RFC 7807, which [application/problem+json](/application/problem+json) has since moved on from, but the relationship between the two formats is unchanged.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/problem+json",
+        "application/cbor"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/concise-problem-details+cbor"
+      },
+      {
+        "title": "RFC 9290 - Concise Problem Details for Constrained Application Protocol (CoAP) APIs",
+        "url": "https://www.rfc-editor.org/rfc/rfc9290"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/ace+cbor",
+    "description": "ACE-OAuth adapts OAuth 2.0 to devices that cannot spare the bytes for it. RFC 9200 keeps the roles unchanged, a client, a resource server and an authorization server, and re-encodes the protocol parameters as a CBOR map so that a token request fits inside a CoAP message.\n\nThis type marks those messages. The tokens they carry are usually protected with [application/cose](/application/cose), which is what allows a resource server to validate one without a round trip to the authorization server, the thing a constrained network can least afford. The JSON encoding of the same parameters is [application/ace+json](/application/ace+json).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/ace+json",
+        "application/cose"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/ace+cbor"
+      },
+      {
+        "title": "RFC 9200 - Authentication and Authorization for Constrained Environments Using the OAuth 2.0 Framework (ACE-OAuth)",
+        "url": "https://www.rfc-editor.org/rfc/rfc9200"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/ace+json",
+    "description": "The JSON encoding of the ACE framework's protocol parameters, registered by RFC 9431 in the MQTT and TLS profile of ACE. In that profile the exchanges with the authorization server are described over HTTPS using this type, while the traffic between the client and the message broker is MQTT.\n\nThat is why a JSON form exists at all. The constrained hop is not always the hop talking to the authorization server, and where it is not, there is nothing to gain from a binary encoding. Where every hop is constrained, [application/ace+cbor](/application/ace+cbor) is used instead.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/ace+cbor",
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/ace+json"
+      },
+      {
+        "title": "RFC 9431 - Message Queuing Telemetry Transport (MQTT) and Transport Layer Security (TLS) Profile of Authentication and Authorization for Constrained Environments (ACE) Framework",
+        "url": "https://www.rfc-editor.org/rfc/rfc9431"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
   }
 ]
