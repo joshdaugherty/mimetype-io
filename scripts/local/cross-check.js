@@ -58,6 +58,7 @@ const run = async () => {
     )
 
     const unregistered = []
+    const declaredUnregistered = []
     const urlMismatch = []
     const rfcConfirmed = []
     const rfcUnconfirmed = []
@@ -67,7 +68,23 @@ const run = async () => {
         const record = mirror[entry.name]
         const sources = record?.sources ?? []
 
-        if (!record) unregistered.push(entry.name)
+        /**
+         * Absent from the registry is only a contradiction when the entry
+         * claims otherwise. An `x-` type that sets `hasNoOfficial` and cites
+         * something other than IANA is telling the truth, and upstream carries
+         * several of those already (text/x-python, application/x-ipynb+json).
+         * Reporting them as problems would mean the check could never pass on
+         * a batch containing one.
+         */
+        if (!record) {
+            const claimsRegistration =
+                entry.notices?.hasNoOfficial !== true ||
+                (entry.furtherReading ?? []).some(r =>
+                    r.url.includes("iana.org"),
+                )
+            if (claimsRegistration) unregistered.push(entry.name)
+            else declaredUnregistered.push(entry.name)
+        }
 
         for (const ref of entry.furtherReading ?? []) {
             const { url } = ref
@@ -110,6 +127,10 @@ const run = async () => {
     console.log()
 
     report("Types the mirror does not list as IANA-registered", unregistered)
+    report(
+        "Types that declare themselves unregistered, which the mirror agrees with",
+        declaredUnregistered,
+    )
     report("IANA URLs that differ from the registry's own", urlMismatch)
     report(
         "RFC citations the mirror does not corroborate - check these by hand",
