@@ -7,9 +7,17 @@
  *
  * Past those limits GitHub stops rendering the diff, which for this work would
  * be fatal: the maintainer closed PR #68 because 22,189 lines were not
- * reviewable, and a PR he cannot open at all is worse. The soft threshold
- * matters as much as the hard one. A file over 400 lines or 20 KB arrives
- * collapsed behind a "Load diff" button, so it is reported too.
+ * reviewable, and a PR he cannot open at all is worse.
+ *
+ * The threshold that actually bites is softer and lower. GitHub loads 400
+ * lines and 20 KB of a file automatically; past either, the file arrives
+ * collapsed behind a "Load diff" button. A reviewer who has to click before
+ * seeing anything is the problem this whole effort exists to avoid, so
+ * --inline promotes that threshold to a failure and every pull request in this
+ * series is expected to pass it.
+ *
+ * At about 31 diff lines per entry that ceiling is twelve entries per pull
+ * request. --entries reports the count and what is left in the budget.
  *
  * The line counts here are the whole unified diff, context included, because
  * that is what GitHub renders. `git diff --numstat` counts only changed lines
@@ -17,6 +25,7 @@
  *
  * Usage:
  *   node scripts/local/pr-size.js                    # the branch as one PR
+ *   node scripts/local/pr-size.js --inline           # also require no collapse
  *   node scripts/local/pr-size.js --per-commit       # each commit as its own PR
  *   node scripts/local/pr-size.js --range upstream/master..HEAD
  *   node scripts/local/pr-size.js --include-local    # count scripts/local too
@@ -88,6 +97,11 @@ const measureFile = (revs, file) => {
         bytes: buf.length,
         lines: text.split("\n").length - 1,
         renderable: RENDERABLE.test(file),
+        // Added entries, so the report can talk in the unit batches are
+        // planned in rather than in diff lines.
+        entries: file.endsWith("mimeData.json")
+            ? (text.match(/^\+\s+"name":/gm) ?? []).length
+            : 0,
     }
 }
 
@@ -109,6 +123,7 @@ const measure = revs => {
         files: measured,
         totalBytes: measured.reduce((a, f) => a + f.bytes, 0),
         totalLines: measured.reduce((a, f) => a + f.lines, 0),
+        entries: measured.reduce((a, f) => a + f.entries, 0),
         renderable: measured.filter(f => f.renderable).length,
         commits: Number(
             gitText(["rev-list", "--count", `${revs[0]}..${revs[1]}`]).trim(),
@@ -158,6 +173,21 @@ const report = m => {
         ),
     )
 
+    if (flag("--inline"))
+        checks.push(
+            check(
+                "inline: largest file, lines",
+                worstFileLines.lines,
+                AUTOLOAD_LINES,
+            ),
+            check(
+                "inline: largest file, bytes",
+                worstFileBytes.bytes,
+                AUTOLOAD_BYTES,
+                kb,
+            ),
+        )
+
     for (const c of checks) console.log(c.line)
     console.log(
         `        largest by lines: ${worstFileLines.file}\n        largest by bytes: ${worstFileBytes.file}`,
@@ -174,6 +204,15 @@ const report = m => {
             console.log(
                 `        ${f.file.padEnd(30)} ${String(f.lines).padStart(6)} lines  ${kb(f.bytes).padStart(10)}`,
             )
+    }
+
+    if (m.entries) {
+        const perEntry = m.totalLines / m.entries
+        const fits = Math.floor(AUTOLOAD_LINES / perEntry)
+        console.log(
+            `\n  ${m.entries} entr(ies) added, ${perEntry.toFixed(1)} diff lines each. ` +
+                `At that size ${fits} fit under the ${AUTOLOAD_LINES}-line inline ceiling.`,
+        )
     }
 
     return {
