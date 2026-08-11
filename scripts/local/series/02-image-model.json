@@ -168,7 +168,7 @@
     },
     {
         "name": "model/gltf+json",
-        "description": "glTF (GL Transmission Format) is the Khronos Group's runtime format for 3D scenes and models. It is built for delivery rather than authoring: a file holds the scene graph, materials and animations, and points at binary buffers of geometry that an engine can hand to the GPU with almost no processing.\n\nThat focus on load time is why it gets called the JPEG of 3D. This type is the JSON form, which references its buffers and textures as separate files. Everything packed into a single binary container is [model/gltf-binary](/model/gltf-binary).",
+        "description": "glTF (GL Transmission Format) is the Khronos Group's runtime format for 3D scenes and models. It is built for delivery rather than authoring. A file holds the scene graph, materials and animations, and points at binary buffers of geometry that an engine can hand to the GPU with almost no processing.\n\nThat focus on load time is why it is often called the JPEG of 3D: a format for delivering finished assets rather than for editing them. This type is the JSON form, which references its buffers and textures as separate files. Everything packed into a single binary container is [model/gltf-binary](/model/gltf-binary).",
         "links": {
             "deprecates": [],
             "relatedTo": ["model/gltf-binary", "application/json"],
@@ -194,7 +194,7 @@
     },
     {
         "name": "model/gltf-binary",
-        "description": "GLB is the single-file form of glTF: the same JSON scene description, with its binary buffers and textures packed into one container behind a short header. Nothing has to be fetched separately, which makes it the practical choice for shipping a model over a network.\n\nTextures inside a GLB are often Basis Universal supercompressed and carried as [image/ktx2](/image/ktx2), through the KHR_texture_basisu extension. The form that keeps its buffers as separate files is [model/gltf+json](/model/gltf+json).",
+        "description": "GLB is the single-file form of glTF. It has the same JSON scene description, with its binary buffers and textures packed into one container behind a short header. Nothing has to be fetched separately, which makes it the practical choice for shipping a model over a network.\n\nTextures inside a GLB are often Basis Universal supercompressed and carried as [image/ktx2](/image/ktx2), through the KHR_texture_basisu extension. The form that keeps its buffers as separate files is [model/gltf+json](/model/gltf+json).",
         "links": {
             "deprecates": [],
             "relatedTo": ["model/gltf+json", "image/ktx2"],
