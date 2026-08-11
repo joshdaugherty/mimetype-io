@@ -121,6 +121,8 @@ const ASSUMED = new Set([
     "SVG",
     "DICOM",
     "OAuth",
+    // Expanding to three surnames tells a reader nothing they can use.
+    "RSA",
     "REST",
     "CD",
     "DVD",
@@ -353,9 +355,16 @@ for (const entry of entries) {
     // Lowercased at comparison rather than trusting the list to be lowercase:
     // "the JPEG of" carries capitals from the format it names, and against an
     // already-lowercased haystack it could never match.
-    for (const phrase of NON_LITERAL)
-        if (lower.includes(phrase.toLowerCase()))
+    //
+    // Matched on word boundaries rather than as a substring, which is how
+    // "bite" was being reported inside "prohibited".
+    for (const phrase of NON_LITERAL) {
+        const escaped = phrase
+            .toLowerCase()
+            .replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+        if (new RegExp(`\\b${escaped}\\b`).test(lower))
             add("non-literal", `"${phrase}"`)
+    }
     for (const word of FILLER) {
         const re = new RegExp(`\\b${word}\\b`, "gi")
         const hits = lower.match(re)
