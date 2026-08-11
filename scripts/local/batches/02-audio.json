@@ -560,6 +560,10 @@
             {
                 "title": "Internet Assigned Numbers Authority (IANA)",
                 "url": "https://www.iana.org/assignments/media-types/audio/prs.sid"
+            },
+            {
+                "title": "SIDPLAY documentation - sidtune file formats (Internet Archive, 2001)",
+                "url": "https://web.archive.org/web/20011201210857/http://www.geocities.com/SiliconValley/Lakes/5147/sidplay/docs.html#fileformats"
             }
         ],
         "notices": {
