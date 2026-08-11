@@ -16982,5 +16982,309 @@
       "communityContributed": false,
       "popularUsage": null
     }
+  },
+  {
+    "name": "model/vnd.usda",
+    "description": "USD (Universal Scene Description) is Pixar's system for composing large 3D scenes out of layers that reference and override one another. Many artists can therefore work on one scene without ever editing the same file. This type is the human-readable ASCII form.\n\nBeing text, it can be diffed and edited by hand. That is why it is the form used for layer files that do composition work, rather than for carrying heavy geometry. The packaged single-file form is [model/vnd.usdz+zip](/model/vnd.usdz+zip).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "model/vnd.usdz+zip"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".usda"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/model/vnd.usda"
+      },
+      {
+        "title": "OpenUSD documentation",
+        "url": "https://openusd.org/release/index.html"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "model/vnd.usdz+zip",
+    "description": "USDZ packages a USD scene together with its textures in a single ZIP. The contents are stored uncompressed and aligned, so a reader can memory-map assets straight out of the archive without extracting anything first.\n\nLeaving it uncompressed is intentional. It trades file size for the ability to begin rendering immediately. That is what makes it Apple's format for AR Quick Look, its augmented reality viewer. The text form of the scene description itself is [model/vnd.usda](/model/vnd.usda).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "model/vnd.usda",
+        "application/zip"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".usdz"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/model/vnd.usdz+zip"
+      },
+      {
+        "title": "USDZ file format specification",
+        "url": "https://openusd.org/release/spec_usdz.html"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "model/x3d+xml",
+    "description": "X3D is the Web3D Consortium's successor to VRML (Virtual Reality Modeling Language), standardised as ISO/IEC 19775. This type is the XML encoding, which is the most common way X3D scenes are written and the one ordinary XML tooling can validate.\n\nThe registration sets a compression convention shared by every X3D encoding. Append `z` to the extension when the file is GZIP compressed, so `.x3dz` is a gzipped `.x3d`. The other encodings are [model/x3d-vrml](/model/x3d-vrml) and [model/x3d+fastinfoset](/model/x3d+fastinfoset), and the format it succeeds is [model/vrml](/model/vrml).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "model/x3d-vrml",
+        "model/x3d+fastinfoset",
+        "model/vrml",
+        "application/xml"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".x3d",
+      ".x3dz"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/model/x3d+xml"
+      },
+      {
+        "title": "Web3D Consortium standards",
+        "url": "https://www.web3d.org/standards"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "model/x3d-vrml",
+    "description": "This is X3D written in the classic VRML syntax rather than XML, for tools and content carried forward from VRML. The scene graph is identical to the XML encoding; only the way it is written down differs.\n\nNote the hyphen in the type name. It is `model/x3d-vrml`, not `x3d+vrml`. The `+suffix` convention is reserved for structured syntaxes such as XML or JSON, and the VRML classic encoding is not one of those. GZIP compressed, the extension becomes `.x3dvz`.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "model/x3d+xml",
+        "model/vrml",
+        "model/x3d+fastinfoset"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".x3dv",
+      ".x3dvz"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/model/x3d-vrml"
+      },
+      {
+        "title": "Web3D Consortium standards",
+        "url": "https://www.web3d.org/standards"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "model/x3d+fastinfoset",
+    "description": "This is the binary encoding of X3D, using Fast Infoset (ISO/IEC 24824-1), a standardised binary serialisation of an XML infoset. The scene is the same as the XML form, but compact and quicker to parse.\n\nFast Infoset replaced an earlier binary proposal, which is why older material sometimes mentions a `model/x3d+binary` type. That name was never registered and resolves to nothing. GZIP compressed, this encoding uses `.x3dbz`. The text form is [model/x3d+xml](/model/x3d+xml).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "model/x3d+xml",
+        "model/x3d-vrml"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".x3db",
+      ".x3dbz"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/model/x3d+fastinfoset"
+      },
+      {
+        "title": "Web3D Consortium standards",
+        "url": "https://www.web3d.org/standards"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "model/u3d",
+    "description": "U3D (Universal 3D) is defined by ECMA-363, which ECMA publishes free of charge. It carries meshes, materials, lighting and animation in a compact binary form. That form supports progressive refinement, so a coarse version of a model can be shown while detail is still arriving.\n\nIts main use today is 3D content embedded in PDF. A U3D stream, or a [model/prc](/model/prc) one, is what makes an interactive model inside a document possible.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "model/prc"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".u3d"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/model/u3d"
+      },
+      {
+        "title": "ECMA-363 Universal 3D file format",
+        "url": "https://ecma-international.org/publications-and-standards/standards/ecma-363/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "model/prc",
+    "description": "PRC (Product Representation Compact) is defined by ISO 14739-1 and is the second format PDF supports for embedded 3D. Unlike a mesh format it can carry exact boundary representation geometry, so an engineering model keeps its true curved surfaces inside the document.\n\nThat is the difference from [model/u3d](/model/u3d). U3D is a visualisation format, while PRC can hold the computer-aided design (CAD) data itself. That matters when the PDF is the deliverable for a part someone has to manufacture.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "model/u3d",
+        "model/step"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".prc"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/model/prc"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "model/vnd.collada+xml",
+    "description": "COLLADA is Khronos's XML interchange format for 3D assets. It is intended to move a scene between digital content creation tools without either tool imposing its native format. A `.dae` file can hold geometry, materials, shaders, physics and animation.\n\nIt was the interchange standard of the 2000s and remains widely readable. For delivery to a runtime, as opposed to exchange between authoring tools, Khronos now points at [model/gltf+json](/model/gltf+json).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "model/gltf+json",
+        "application/xml"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".dae"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/model/vnd.collada+xml"
+      },
+      {
+        "title": "Khronos COLLADA",
+        "url": "https://www.khronos.org/collada/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "model/jt",
+    "description": "JT is the lightweight visualisation format used across automotive and aerospace engineering, standardised as ISO 14306. It carries tessellated geometry at several levels of detail, optionally alongside the exact boundary representation. A design review can therefore open a complete vehicle assembly without loading the full computer-aided design (CAD) model.\n\nSelective loading is what the format is for. A viewer fetches only the parts and the detail levels it currently needs, which is what makes assemblies of that size workable at all. Related: [model/step](/model/step).\n\nIANA spells this type `model/JT`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "model/step"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".jt"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/model/JT"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "model/vnd.opengex",
+    "description": "OpenGEX (Open Game Engine Exchange) is a text-based interchange format for game engine assets. It carries geometry, materials, animation and skinning in a structure meant to be read straight into an engine's own representation.\n\nIt was designed as a reaction to the complexity of COLLADA. The aim was a format an engine could import without pulling in a large library. Related: [model/vnd.collada+xml](/model/vnd.collada+xml).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "model/vnd.collada+xml"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".ogex"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/model/vnd.opengex"
+      },
+      {
+        "title": "Open Game Engine Exchange specification",
+        "url": "http://opengex.org/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
   }
 ]
