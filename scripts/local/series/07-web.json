@@ -1,7 +1,7 @@
 [
     {
         "name": "text/vtt",
-        "description": "WebVTT (Web Video Text Tracks) is the W3C caption and subtitle format that the HTML `track` element loads. A file is plain UTF-8 text: the word `WEBVTT`, then cues giving a start time, an end time and the text to show between them.\n\nBeyond captions it carries chapters, descriptions and arbitrary metadata cues, and cue settings can position text anywhere in the frame rather than only along the bottom. That range is why it displaced SRT on the web despite SRT being simpler to write.",
+        "description": "WebVTT (Web Video Text Tracks) is the W3C caption and subtitle format that the HTML `track` element loads. A file is plain UTF-8 text: the word `WEBVTT`, then cues giving a start time, an end time and the text to show between them.\n\nBeyond captions it carries chapters, descriptions and arbitrary metadata cues. Cue settings can position text anywhere in the frame rather than only along the bottom. That range is why it displaced SubRip, the `.srt` format, on the web, even though SubRip files are simpler to write.",
         "links": {
             "deprecates": [],
             "relatedTo": ["text/plain", "text/html"],
@@ -27,7 +27,7 @@
     },
     {
         "name": "application/manifest+json",
-        "description": "A web app manifest is the JSON document that tells a browser how to install a site as an application: its name, icons, start URL, display mode and theme colour. The W3C Web Application Manifest specification defines it, and a page points at one with a `link` element whose `rel` is `manifest`.\n\nIt is what makes a Progressive Web App installable rather than merely bookmarkable. `.webmanifest` is the registered extension, though a great many sites serve the same document as `manifest.json`.",
+        "description": "A web app manifest is the JSON document that tells a browser how to install a site as an application. It gives the name, icons, start URL, display mode and theme colour. The W3C Web Application Manifest specification defines it, and a page points at one with a `link` element whose `rel` is `manifest`.\n\nIt is what makes a Progressive Web App installable rather than merely bookmarkable. The registered extension is `.webmanifest`, though a great many sites serve the same document as `manifest.json`.",
         "links": {
             "deprecates": [],
             "relatedTo": ["application/json"],
@@ -53,7 +53,7 @@
     },
     {
         "name": "application/ld+json",
-        "description": "JSON-LD is JSON carrying a `@context` that maps its keys onto IRIs, so a document that reads like ordinary JSON also has machine-readable meaning. The W3C specifies it.\n\nMost of the structured data on the web is JSON-LD inside a `script` element carrying this media type, describing a page's schema.org entities to search engines. Because the context does the linking, code that ignores it entirely still sees plain, readable JSON.",
+        "description": "JSON-LD is JSON carrying a `@context` that maps its keys onto IRIs, so a document that reads like ordinary JSON also has machine-readable meaning. The W3C specifies it.\n\nMost of the structured data on the web is JSON-LD. It appears inside a `script` element carrying this media type, describing a page's schema.org entities to search engines. Because the context does the linking, code that ignores it entirely still sees plain, readable JSON.",
         "links": {
             "deprecates": [],
             "relatedTo": ["application/json"],
@@ -79,7 +79,7 @@
     },
     {
         "name": "text/cache-manifest",
-        "description": "An application cache manifest listed the files a browser should retain for offline use. It arrived with HTML5 as AppCache, and both the W3C and browser vendors have since removed it.\n\nIt failed for a specific reason worth remembering: a manifest that could not be fetched left users pinned to stale files with no path back, and the update model gave a page no way to recover. Service workers replaced it. Files still exist in old projects, so the type is worth recognising, but nothing new should use it.",
+        "description": "An application cache manifest listed the files a browser should retain for offline use. It arrived with HTML5 as AppCache, and both the W3C and browser vendors have since removed it.\n\nIt failed for a specific reason worth remembering. A manifest that could not be fetched left users stuck with stale files, and the update model gave a page no way to recover. Service workers replaced it. Files still exist in old projects, so the type is worth recognising, but nothing new should use it.",
         "links": {
             "deprecates": [],
             "relatedTo": ["text/plain"],
@@ -101,7 +101,7 @@
     },
     {
         "name": "application/dash+xml",
-        "description": "An MPD (Media Presentation Description) is the manifest for MPEG-DASH, standardised as ISO/IEC 23009-1. It is an XML document listing the periods of a presentation, the adaptation sets within each, and the representations a player may choose between, with the URLs or byte ranges of every segment.\n\nDASH is deliberately codec-agnostic, and the MPD is where that shows: a player reads it and switches representation as available bandwidth changes, without the format caring what codec sits inside.",
+        "description": "An MPD (Media Presentation Description) is the manifest for MPEG-DASH, standardised as ISO/IEC 23009-1. It is an XML document listing the periods of a presentation, the adaptation sets within each, and the representations a player may choose between. For every segment it gives the URL or the byte range.\n\nDASH is codec-agnostic, and the MPD is where that shows. A player reads it and switches representation as available bandwidth changes, and the format itself does not care what codec is inside.",
         "links": {
             "deprecates": [],
             "relatedTo": ["application/xml", "video/mp4"],
@@ -123,7 +123,7 @@
     },
     {
         "name": "text/wgsl",
-        "description": "WGSL (WebGPU Shading Language) is the shader language for WebGPU, specified by the W3C GPU for the Web working group. WebGPU accepts WGSL source directly rather than a compiled bytecode, so a `.wgsl` file is human-readable text that the browser compiles.\n\nIt exists because the web needed a shading language it could parse and validate itself, then translate safely to Direct3D, Metal and Vulkan, without trusting a binary from the page.",
+        "description": "WGSL (WebGPU Shading Language) is the shader language for WebGPU, specified by the W3C GPU for the Web working group. WebGPU accepts WGSL source directly rather than a compiled bytecode, so a `.wgsl` file is human-readable text that the browser compiles.\n\nIt exists because the web needed a shading language it could parse and validate itself. The browser then translates it safely to Direct3D, Metal and Vulkan, without trusting a binary from the page.",
         "links": {
             "deprecates": [],
             "relatedTo": ["application/wasm", "text/plain"],
@@ -149,7 +149,7 @@
     },
     {
         "name": "application/toml",
-        "description": "TOML (Tom's Obvious Minimal Language) is a configuration format designed to map unambiguously onto a hash table while staying obvious to read: sections in square brackets, `key = value` beneath them, and real types for strings, integers, dates and arrays.\n\nRust's `Cargo.toml` and Python's `pyproject.toml` are why most people meet it. Against YAML it trades expressiveness for predictability, since there is far less that can be written two different ways.",
+        "description": "TOML (Tom's Obvious Minimal Language) is a configuration format designed to map unambiguously onto a hash table while staying obvious to read. It has sections in square brackets, `key = value` beneath them, and real types for strings, integers, dates and arrays.\n\nRust's `Cargo.toml` and Python's `pyproject.toml` are where most people first see it. Against YAML it trades expressiveness for predictability, since there is far less that can be written two different ways.",
         "links": {
             "deprecates": [],
             "relatedTo": ["application/yaml", "application/json"],
@@ -175,7 +175,7 @@
     },
     {
         "name": "application/cbor",
-        "description": "CBOR (Concise Binary Object Representation) is a binary format defined by RFC 8949. It covers roughly JSON's data model and adds byte strings, unambiguous integers and floats, and an extension mechanism through numeric tags.\n\nIt is designed to be encoded and decoded without a schema and in very little code, which is why it turns up in constrained devices, in COSE for signing and encryption, and in WebAuthn attestation.",
+        "description": "CBOR (Concise Binary Object Representation) is a binary format defined by RFC 8949. It covers roughly JSON's data model and adds byte strings, unambiguous integers and floats, and an extension mechanism through numeric tags.\n\nIt is designed to be encoded and decoded without a schema and in very little code. That is why it appears in constrained devices, in CBOR Object Signing and Encryption (COSE), and in WebAuthn attestation.",
         "links": {
             "deprecates": [],
             "relatedTo": ["application/json"],

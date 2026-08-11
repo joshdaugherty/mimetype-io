@@ -1,7 +1,7 @@
 [
     {
         "name": "application/vnd.mermaid",
-        "description": "Mermaid diagrams are written as plain text and rendered to SVG, so a flowchart or sequence diagram lives in version control and is reviewed as a diff rather than as an opaque attachment that has to be opened.\n\nThe syntax is line-oriented: name the diagram type, then declare nodes and the edges between them. Built-in rendering in GitHub and GitLab markdown is why it spread beyond its own tooling.",
+        "description": "Mermaid diagrams are written as plain text and rendered to SVG. A flowchart or sequence diagram is therefore stored in version control and reviewed as a diff, rather than as an opaque attachment that has to be opened.\n\nThe syntax is line-oriented: name the diagram type, then declare nodes and the edges between them. Built-in rendering in GitHub and GitLab markdown is why it spread beyond its own tooling.",
         "links": {
             "deprecates": [],
             "relatedTo": ["text/markdown", "image/svg+xml"],
@@ -27,7 +27,7 @@
     },
     {
         "name": "application/vnd.apache.parquet",
-        "description": "Parquet is the Apache Software Foundation's columnar storage format. Values from a single column are stored together, so a query touching three columns out of two hundred reads only those three, and each column compresses well because everything in it is alike.\n\nA file also carries its own schema and per-column statistics, letting a reader skip entire row groups that cannot satisfy a predicate. That combination is why it became the default for analytical data at rest. Where Parquet optimises storage, [application/vnd.apache.arrow.file](/application/vnd.apache.arrow.file) optimises handoff.",
+        "description": "Parquet is the Apache Software Foundation's columnar storage format. Values from a single column are stored together. A query touching three columns out of two hundred therefore reads only those three, and each column compresses well because everything in it is alike.\n\nA file also carries its own schema and per-column statistics, letting a reader skip entire row groups that cannot satisfy a predicate. That combination is why it became the default for analytical data at rest. Where Parquet optimises storage, [application/vnd.apache.arrow.file](/application/vnd.apache.arrow.file) optimises passing data between processes.",
         "links": {
             "deprecates": [],
             "relatedTo": ["application/vnd.apache.arrow.file"],
@@ -53,7 +53,7 @@
     },
     {
         "name": "application/vnd.apache.arrow.file",
-        "description": "Arrow's IPC file format writes a columnar table to disk with a footer holding the schema and the position of every record batch, so a reader can seek directly to any batch instead of scanning from the start.\n\nThe point is Arrow's in-memory layout. Because the file holds the same representation the library already uses in memory, reading is closer to mapping than to parsing. The form without a footer, for pipes and sockets, is [application/vnd.apache.arrow.stream](/application/vnd.apache.arrow.stream).",
+        "description": "Arrow's IPC (inter-process communication) file format writes a columnar table to disk. A footer holds the schema and the position of every record batch, so a reader can seek directly to any batch instead of scanning from the start.\n\nThe point is Arrow's in-memory layout. Because the file holds the same representation the library already uses in memory, reading is closer to mapping than to parsing. The form without a footer, for pipes and sockets, is [application/vnd.apache.arrow.stream](/application/vnd.apache.arrow.stream).",
         "links": {
             "deprecates": [],
             "relatedTo": [
@@ -82,7 +82,7 @@
     },
     {
         "name": "application/vnd.apache.arrow.stream",
-        "description": "This is the streaming form of Arrow's IPC format: a schema message followed by record batches, written and read strictly in order, with no footer at the end.\n\nHaving no footer means there is nothing to seek to, so a consumer cannot jump to the tenth batch. It also means the stream does not have to exist in full before reading starts, which is what makes this the right choice over a socket or a pipe, where the random access of [application/vnd.apache.arrow.file](/application/vnd.apache.arrow.file) was never available anyway.",
+        "description": "This is the streaming form of Arrow's IPC (inter-process communication) format. It is a schema message followed by record batches, written and read strictly in order, with no footer at the end.\n\nHaving no footer means there is nothing to seek to, so a consumer cannot jump to the tenth batch. It also means the stream does not have to exist in full before reading starts. That is what makes this the right choice over a socket or a pipe, where the random access of [application/vnd.apache.arrow.file](/application/vnd.apache.arrow.file) was never available anyway.",
         "links": {
             "deprecates": [],
             "relatedTo": [
@@ -111,7 +111,7 @@
     },
     {
         "name": "text/vcard",
-        "description": "vCard is the contact format defined by RFC 6350, which specifies version 4.0. A card is a run of properties such as FN, TEL, EMAIL and ADR between `BEGIN:VCARD` and `END:VCARD` lines, and one file may hold many cards in sequence.\n\nIt is what an address book exports and what a phone attaches when someone shares a contact. The registration lists both extensions, but `.vcf` is the one almost every implementation actually writes.",
+        "description": "vCard is the contact format defined by RFC 6350, which specifies version 4.0. A card is a run of properties such as `FN`, `TEL`, `EMAIL` and `ADR`, between `BEGIN:VCARD` and `END:VCARD` lines. One file may hold many cards in sequence.\n\nIt is what an address book exports and what a phone attaches when someone shares a contact. The registration lists both extensions, but `.vcf` is the one almost every implementation writes.",
         "links": {
             "deprecates": [],
             "relatedTo": ["text/calendar", "text/plain"],
@@ -137,7 +137,7 @@
     },
     {
         "name": "text/xml",
-        "description": "RFC 7303 registers `text/xml` alongside `application/xml` for XML documents. The two are functionally equivalent, and the RFC recommends [application/xml](/application/xml) for general use.\n\nThe distinction is historical. A `text/` type once implied the content was readable without special tooling, and the two types also differed in how a missing charset parameter was interpreted. RFC 7303 settled that: both now default the same way, leaving little reason to prefer this spelling beyond the many servers already sending it.",
+        "description": "RFC 7303 registers `text/xml` alongside `application/xml` for XML documents. The two are functionally equivalent, and the RFC recommends [application/xml](/application/xml) for general use.\n\nThe distinction is historical. A `text/` type once implied the content was readable without special tooling. The two types also differed in how a missing charset parameter was interpreted. RFC 7303 settled that: both now default the same way, leaving little reason to prefer this spelling beyond the many servers already sending it.",
         "links": {
             "deprecates": [],
             "relatedTo": [
@@ -167,7 +167,7 @@
     },
     {
         "name": "application/vnd.api+json",
-        "description": "JSON:API is a convention for building JSON APIs. It fixes how resources, relationships, pagination, filtering, sparse field selection and errors are shaped, so those decisions stop being renegotiated on every project.\n\nThe media type is part of the specification rather than incidental to it. A server signals JSON:API semantics by sending this type, and content negotiation on it is how a client asks for them, which is why the type matters more here than for most JSON formats.",
+        "description": "JSON:API is a convention for building JSON APIs. It fixes how resources, relationships, pagination, filtering, sparse field selection and errors are shaped, so those decisions stop being renegotiated on every project.\n\nThe media type is part of the specification rather than incidental to it. A server signals JSON:API semantics by sending this type, and a client asks for them by content negotiation on it. That is why the type matters more here than for most JSON formats.",
         "links": {
             "deprecates": [],
             "relatedTo": ["application/json"],
@@ -193,7 +193,7 @@
     },
     {
         "name": "text/x-opml",
-        "description": "OPML (Outline Processor Markup Language) is an XML format for nested outlines. Its dominant use by a wide margin is exchanging feed subscription lists: nearly every feed reader imports and exports OPML, which is what makes moving between readers possible at all.\n\nThere is no IANA registration, so the `x-` form is what tools send and expect. The outline structure itself is generic, and a few outliners and mind-mapping tools use it for its original purpose.",
+        "description": "OPML (Outline Processor Markup Language) is an XML format for nested outlines. Its dominant use by a wide margin is exchanging feed subscription lists. Nearly every feed reader imports and exports OPML, which is what makes moving between readers possible at all.\n\nThere is no IANA registration, so the `x-` form is what tools send and expect. The outline structure itself is generic, and a few outliners and mind-mapping tools use it for its original purpose.",
         "links": {
             "deprecates": [],
             "relatedTo": [

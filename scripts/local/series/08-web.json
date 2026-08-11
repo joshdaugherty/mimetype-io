@@ -1,7 +1,7 @@
 [
     {
         "name": "application/geo+json",
-        "description": "GeoJSON encodes geographic features as JSON, defined by RFC 7946. A document is a Feature or a FeatureCollection, and each feature pairs a geometry (Point, LineString, Polygon, or their multi- forms) with arbitrary properties.\n\nRFC 7946 pinned the coordinate reference system to WGS 84 with longitude before latitude. That single decision removed the largest source of disagreement between implementations of the earlier community specification.",
+        "description": "GeoJSON encodes geographic features as JSON, defined by RFC 7946. A document is a Feature or a FeatureCollection, and each feature pairs a geometry (Point, LineString, Polygon, or their multi- forms) with arbitrary properties.\n\nRFC 7946 fixed the coordinate reference system as the World Geodetic System 1984 datum, WGS 84, with longitude before latitude. That single decision removed the largest source of disagreement between implementations of the earlier community specification.",
         "links": {
             "deprecates": [],
             "relatedTo": ["application/json"],
@@ -27,7 +27,7 @@
     },
     {
         "name": "application/json-patch+json",
-        "description": "JSON Patch describes a change to a JSON document, defined by RFC 6902. A patch is an array of operations, each naming one of add, remove, replace, move, copy or test and pointing at a location with a JSON Pointer.\n\nSent as the body of an HTTP PATCH it lets a client alter one field without transmitting or overwriting the whole resource. The `test` operation is what makes an update safely conditional: if the document is not in the expected state the patch fails rather than silently clobbering a concurrent edit.",
+        "description": "JSON Patch describes a change to a JSON document, defined by RFC 6902. A patch is an array of operations. Each names one of add, remove, replace, move, copy or test, and points at a location with a JSON Pointer.\n\nSent as the body of an HTTP PATCH it lets a client alter one field without transmitting or overwriting the whole resource. The `test` operation is what makes an update safely conditional. If the document is not in the expected state the patch fails, rather than overwriting a concurrent edit without warning.",
         "links": {
             "deprecates": [],
             "relatedTo": ["application/json"],
@@ -53,7 +53,7 @@
     },
     {
         "name": "application/node",
-        "description": "This type labels JavaScript intended to run as a Node.js CommonJS module rather than to be delivered to a browser. The registration is maintained by the Node.js Technical Steering Committee.\n\nThe registration is candid about the overlap. It notes that the type \"occupies the same file extension as other media types\", and that a `.js` file \"should be considered ambiguous if the intended execution environment is unknown\". Server-side and browser JavaScript share the extension, and a web server should still send [text/javascript](/text/javascript).",
+        "description": "This type labels JavaScript intended to run as a Node.js CommonJS module rather than to be delivered to a browser. The registration is maintained by the Node.js Technical Steering Committee.\n\nThe registration is candid about the overlap. It notes that the type \"occupies the same file extension as other media types\". It also says a `.js` file \"should be considered ambiguous if the intended execution environment is unknown\". Server-side and browser JavaScript share the extension, and a web server should still send [text/javascript](/text/javascript).",
         "links": {
             "deprecates": [],
             "relatedTo": ["text/javascript", "application/ecmascript"],
@@ -79,7 +79,7 @@
     },
     {
         "name": "application/sql",
-        "description": "RFC 6922 registers this type so that a file of SQL statements can be labelled as such in transit. The registration deliberately says nothing about which dialect the statements are written in.\n\nThat silence matters in practice. A dump from PostgreSQL, from MySQL and from SQLite all carry this same type, and none of them will load into the others unedited. The type tells you the file is SQL, not that your database can read it. The unregistered spelling still in common use is [application/x-sql](/application/x-sql).",
+        "description": "RFC 6922 registers this type so that a file of SQL statements can be labelled as such in transit. The registration says nothing about which dialect the statements are written in.\n\nThat silence matters. A dump from PostgreSQL, from MySQL and from SQLite all carry this same type, and none of them will load into the others unedited. The type tells you the file is SQL, not that your database can read it. The unregistered spelling still in common use is [application/x-sql](/application/x-sql).",
         "links": {
             "deprecates": [],
             "relatedTo": [
@@ -109,7 +109,7 @@
     },
     {
         "name": "application/x-sql",
-        "description": "This is the unregistered form of the SQL media type, and the one more likely to appear in the wild. It was in use before RFC 6922 registered [application/sql](/application/sql) and carried on afterwards, as `x-` types generally do.\n\nNeither form replaces the other. Tools emit whichever they were written against, and both mean the same thing: a file of SQL statements whose dialect is not stated anywhere in the label.",
+        "description": "This is the unregistered form of the SQL media type, and the one tools are more likely to send. It was in use before RFC 6922 registered [application/sql](/application/sql), and carried on afterwards, as `x-` types generally do.\n\nNeither form replaces the other. Tools emit whichever they were written against. Both mean the same thing: a file of SQL statements whose dialect is not stated anywhere in the label.",
         "links": {
             "deprecates": [],
             "relatedTo": ["application/sql", "text/plain"],
@@ -131,7 +131,7 @@
     },
     {
         "name": "application/zstd",
-        "description": "Zstandard is a lossless compression format defined by RFC 8878. At its default setting it reaches roughly gzip's ratio several times faster, and at high settings it compresses considerably harder than gzip can.\n\nIts distinguishing feature is the trained dictionary. Given a sample of the small documents you mean to compress, it derives a dictionary that lets each one compress well despite being far too small for the algorithm to find redundancy in on its own.",
+        "description": "Zstandard is a lossless compression format defined by RFC 8878. At its default setting it reaches roughly gzip's ratio several times faster, and at high settings it compresses considerably harder than gzip can.\n\nIts distinguishing feature is the trained dictionary. Give it a sample of the small documents you mean to compress, and it derives a dictionary from them. Each document then compresses well despite being far too small for the algorithm to find redundancy in on its own.",
         "links": {
             "deprecates": [],
             "relatedTo": ["application/gzip", "application/zip"],
@@ -157,7 +157,7 @@
     },
     {
         "name": "application/sarif+json",
-        "description": "SARIF (Static Analysis Results Interchange Format) is the OASIS standard for reporting what a code analysis tool found. A run records the tool, the rules it applied, and every result with its location, severity and enough surrounding context to be understood without rerunning the tool.\n\nIt exists so that every linter and scanner stops inventing its own output format. GitHub code scanning consumes SARIF, which is most of why analysis tools now emit it alongside whatever they produced before.",
+        "description": "SARIF (Static Analysis Results Interchange Format) is the OASIS standard for reporting what a code analysis tool found. A run records the tool and the rules it applied. It also records every result, with its location, severity and enough surrounding context to be understood without rerunning the tool.\n\nIt exists so that every linter and scanner stops inventing its own output format. GitHub code scanning consumes SARIF, which is most of why analysis tools now emit it alongside whatever they produced before.",
         "links": {
             "deprecates": [],
             "relatedTo": ["application/json"],
@@ -183,7 +183,7 @@
     },
     {
         "name": "application/spdx+json",
-        "description": "SPDX (Software Package Data Exchange) is the Linux Foundation's standard for describing what a software release contains: its packages, their versions and licences, and the relationships between them. This type is the JSON serialisation of an SPDX document.\n\nIt is one of the formats accepted as a software bill of materials, which is what moved SPDX from a licence-compliance tool into something shipped alongside releases and checked by procurement.",
+        "description": "SPDX (Software Package Data Exchange) is the Linux Foundation's standard for describing what a software release contains. It covers the packages, their versions and licences, and the relationships between them. This type is the JSON serialisation of an SPDX document.\n\nIt is one of the formats accepted as a software bill of materials. That is what moved SPDX from a licence-compliance tool into something shipped alongside releases and checked by procurement.",
         "links": {
             "deprecates": [],
             "relatedTo": ["application/json"],
