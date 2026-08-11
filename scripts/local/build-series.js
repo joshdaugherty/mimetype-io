@@ -11,22 +11,28 @@
  * the real index are never touched and the run is safe to repeat with
  * uncommitted work in progress.
  *
- * Two files move. src/mimeData.json gains the slice, appended textually the way
- * apply-batch.js does it, so no JSON round-trip rewrites unrelated lines.
- * scripts/validate-data.js arrives in the first commit with the dangling-link
- * check, at a baseline of 3, and drops to 2 in the slice that adds audio/3gpp,
- * which is the entry that fixes four of those links. Getting that order wrong
- * makes an intermediate pull request fail its own CI.
+ * Only src/mimeData.json moves. #2 asks for a pull request that changes nothing
+ * else, and our dangling-link check in scripts/validate-data.js is a separate
+ * offer tracked on #3: bundling it would make the first data PR hostage to a
+ * debate about a check. Entries are appended textually the way apply-batch.js
+ * does it, so no JSON round-trip rewrites unrelated lines.
  *
- * Verification runs the real validator against each intermediate state by
- * writing it into the working tree, checking it, and restoring the tree. That
- * is the only way to be sure every pull request in the series passes on its
- * own rather than only at the end.
+ * --with-validator includes it anyway, arriving in the first commit at a
+ * baseline of 3 and dropping to 2 in the slice that adds audio/3gpp, the entry
+ * that fixes four of those links. Getting that order wrong makes an
+ * intermediate pull request fail its own CI.
+ *
+ * Verification writes each intermediate state into the working tree and runs a
+ * validator against it, then restores the tree. The validator is the one the
+ * pull request would actually face: upstream's, unless --with-validator means
+ * we are shipping ours. Checking against our stricter local copy would fail
+ * states that upstream would pass, which is a false alarm rather than a finding.
  *
  * Usage:
- *   node scripts/local/build-series.js              # build and verify
- *   node scripts/local/build-series.js --no-verify  # build only
- *   node scripts/local/build-series.js --prefix pr/ # branch name prefix
+ *   node scripts/local/build-series.js                   # build and verify
+ *   node scripts/local/build-series.js --with-validator  # bundle the #3 check
+ *   node scripts/local/build-series.js --no-verify       # build only
+ *   node scripts/local/build-series.js --prefix pr/      # branch name prefix
  */
 
 const { execFileSync } = require("child_process")
@@ -131,8 +137,11 @@ if (!slices.length) {
     process.exit(1)
 }
 
+const WITH_VALIDATOR = flag("--with-validator")
+
 const validatorThree = show(`${VALIDATOR_AT_THREE}:scripts/validate-data.js`)
 const validatorTwo = show(`${VALIDATOR_AT_TWO}:scripts/validate-data.js`)
+const validatorUpstream = show(`${BASE}:scripts/validate-data.js`)
 const lowersAt = slices.findIndex(s =>
     s.entries.some(e => e.name === LOWERS_THE_BASELINE),
 )
@@ -147,23 +156,21 @@ const built = []
 
 for (const [i, slice] of slices.entries()) {
     data = append(data, slice.entries)
-    const validator = i < lowersAt ? validatorThree : validatorTwo
-
-    const dataBlob = hashBlob(data)
-    const validatorBlob = hashBlob(validator)
 
     const env = { ...process.env, GIT_INDEX_FILE: indexFile }
     git(["read-tree", parent], { env })
-    git(
-        [
-            "update-index",
+    const cacheinfo = [
+        "--cacheinfo",
+        `100644,${hashBlob(data)},src/mimeData.json`,
+    ]
+    if (WITH_VALIDATOR) {
+        const validator = i < lowersAt ? validatorThree : validatorTwo
+        cacheinfo.push(
             "--cacheinfo",
-            `100644,${dataBlob},src/mimeData.json`,
-            "--cacheinfo",
-            `100644,${validatorBlob},scripts/validate-data.js`,
-        ],
-        { env },
-    )
+            `100644,${hashBlob(validator)},scripts/validate-data.js`,
+        )
+    }
+    git(["update-index", ...cacheinfo], { env })
     const tree = gitText(["write-tree"], { env })
 
     const kinds = [...new Set(slice.entries.map(e => e.name.split("/")[0]))]
@@ -217,14 +224,22 @@ for (const b of built) {
 
 if (flag("--no-verify")) process.exit(0)
 
-console.log(`\nVerifying each state with the real validator.`)
+console.log(
+    `\nVerifying each state with the validator these pull requests would face` +
+        `${WITH_VALIDATOR ? " (ours, shipping with them)" : ` (${BASE}'s)`}.`,
+)
 const originalData = readFileSync(DATA)
 const originalValidator = readFileSync(VALIDATOR)
 let ok = true
 try {
-    for (const [i, b] of built.entries()) {
+    for (const b of built) {
         writeFileSync(DATA, show(`${b.commit}:src/mimeData.json`))
-        writeFileSync(VALIDATOR, show(`${b.commit}:scripts/validate-data.js`))
+        writeFileSync(
+            VALIDATOR,
+            WITH_VALIDATOR
+                ? show(`${b.commit}:scripts/validate-data.js`)
+                : validatorUpstream,
+        )
         try {
             execFileSync("node", ["scripts/validate-data.js"], {
                 cwd: ROOT,
