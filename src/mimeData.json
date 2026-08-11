@@ -15753,5 +15753,237 @@
       "communityContributed": false,
       "popularUsage": null
     }
+  },
+  {
+    "name": "audio/ilbc",
+    "description": "iLBC (internet Low Bitrate Codec) codes narrowband speech at 13.33 or 15.2 kbit/s in independent frames. No frame depends on the one before it, so a lost packet damages only what it carried. It does not corrupt the decoder state for the frames that follow, which made iLBC a common choice for VoIP over lossy links.\n\nRFC 3952 defines its RTP payload format and registers this media type. The codec itself is specified in RFC 3951. The general-purpose codec that replaced it is [audio/opus](/audio/opus).\n\nIANA spells this type `audio/iLBC`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "audio/opus",
+        "audio/basic"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".lbc"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/audio/iLBC"
+      },
+      {
+        "title": "RFC 3952 - Real-time Transport Protocol (RTP) Payload Format for internet Low Bit Rate Codec (iLBC) Speech",
+        "url": "https://www.rfc-editor.org/rfc/rfc3952"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "audio/l16",
+    "description": "L16 is uncompressed 16-bit linear pulse-code modulation (PCM), big-endian, as carried in the RTP profile for audio and video conferences. RFC 4856 registers it with the other payload formats in that profile. It defaults to 8 kHz mono. Rate and channel count are set by media type parameters rather than by any header inside the data.\n\nThere is no container here at all: the payload is nothing but samples. PCM wrapped with a header that describes it is [audio/vnd.wav](/audio/vnd.wav).\n\nIANA spells this type `audio/L16`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "audio/vnd.wav",
+        "audio/basic"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".wav"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/audio/L16"
+      },
+      {
+        "title": "RFC 4856 - Media Type Registration of Payload Formats in the RTP Profile for Audio and Video Conferences",
+        "url": "https://www.rfc-editor.org/rfc/rfc4856"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "audio/matroska",
+    "description": "Matroska is the open container format specified by RFC 9559. It is built on EBML (Extensible Binary Meta Language), a binary encoding that behaves like a typed and length-prefixed XML. `audio/matroska` labels a Matroska file holding audio only, conventionally saved as `.mka`.\n\nThe container is codec-agnostic and carries chapters, attachments and any number of selectable tracks, which is why WebM was derived from it. Before RFC 9559 registered it, the format was labelled [audio/x-matroska](/audio/x-matroska).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "audio/x-matroska",
+        "audio/webm",
+        "audio/ogg"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".mka"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/audio/matroska"
+      },
+      {
+        "title": "RFC 9559 - Matroska Media Container Format Specification",
+        "url": "https://www.rfc-editor.org/rfc/rfc9559"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "audio/mhas",
+    "description": "MHAS (MPEG-H Audio Stream) is the self-contained packet format for MPEG-H 3D Audio, defined in ISO/IEC 23008-3. Each stream carries the configuration needed to decode it alongside the audio itself, so a receiver can join partway through without a separate setup channel.\n\nThat property is why MHAS is the form MPEG-H takes in broadcast. It provides next-generation audio for the Advanced Television Systems Committee (ATSC) 3.0 standard and for Digital Video Broadcasting (DVB). The same content packaged in an MP4 container is [audio/mp4](/audio/mp4).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "audio/mp4",
+        "audio/usac"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".mhas"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/audio/mhas"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "audio/usac",
+    "description": "USAC (Unified Speech and Audio Coding) is defined in ISO/IEC 23003-3. It puts a speech coder and a general audio coder in one design, and switches between them as the signal changes. Material that mixes voice and music therefore stays efficient, instead of being coded throughout by a tool suited to only one of them.\n\nMarketed as xHE-AAC, it stays usable well below 32 kbit/s, which is why streaming services use it for low-bandwidth tiers. The registration gives `.loas` as the preferred extension. In an MP4 container the same coding appears as [audio/mp4](/audio/mp4).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "audio/mp4",
+        "audio/aac",
+        "audio/mhas"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".loas",
+      ".xhe"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/audio/usac"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "audio/midi-clip",
+    "description": "A MIDI Clip File carries MIDI 2.0 data, the first substantial revision to MIDI since 1983. MIDI 2.0 widens 7-bit values to as much as 32 bits and adds per-note controllers. It also makes the protocol bidirectional, so devices can negotiate what they support instead of assuming it.\n\nThe MIDI Association specifies the format as M2-116-U, version 1.0 of June 2023. It uses the `.midi2` extension to keep it distinct from the original [audio/midi](/audio/midi).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "audio/midi",
+        "audio/sp-midi"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".midi2"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/audio/midi-clip"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "audio/prs.sid",
+    "description": "A PSID file holds music for the SID chip, the three-voice synthesiser in the Commodore 64. Instead of sampled audio it stores the 6502 machine code that drives the chip's registers. Playing one means emulating the processor and the SID together.\n\nThat is why a few kilobytes can hold several minutes of music. It is also why the tens of thousands of tunes collected by the demoscene remain playable today. PSID is the four-byte header these files begin with, and the type is registered in IANA's personal tree, which is what the `prs.` prefix marks.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "audio/midi"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".sid",
+      ".psid"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/audio/prs.sid"
+      },
+      {
+        "title": "SIDPLAY documentation - sidtune file formats (Internet Archive, 2001)",
+        "url": "https://web.archive.org/web/20011201210857/http://www.geocities.com/SiliconValley/Lakes/5147/sidplay/docs.html#fileformats"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "audio/sofa",
+    "description": "SOFA (Spatially Oriented Format for Acoustics) stores head-related transfer functions and room impulse responses. Both are measurements of how a sound changes on its way to a listener, depending on the direction it came from. Binaural renderers read them to place a sound in space over ordinary headphones.\n\nThe Audio Engineering Society standardises the format as AES69, and it is built on netCDF. A file therefore carries self-describing multidimensional arrays, together with the geometry of the measurement rig that produced them.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".sofa"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/audio/sofa"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
   }
 ]
