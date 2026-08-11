@@ -1,7 +1,7 @@
 [
     {
         "name": "application/senml+json",
-        "description": "SenML is a small data model for sensor readings, defined by RFC 8428. A Pack is one array of Records, each carrying a name, a value, a unit and a time, and any Record may set base fields that apply to it and to every Record after it until another one sets them again.\n\nThose base fields are what keep it small: a device writes its long identifier once as a base name, then a run of readings that carry only what changed. This is the JSON form, and the one every other SenML type is described against. The binary form is [application/senml+cbor](/application/senml+cbor).",
+        "description": "SenML is a small data model for sensor readings, defined by RFC 8428. A Pack is one array of Records, each carrying a name, a value, a unit and a time. Any Record may set base fields, which apply to it and to every Record after it until another one sets them again.\n\nThose base fields are what keep it small. A device writes its long identifier once as a base name, then a run of readings that carry only what changed. This is the JSON form, and the one every other SenML type is described against. The binary form is [application/senml+cbor](/application/senml+cbor).",
         "links": {
             "deprecates": [],
             "relatedTo": [
@@ -31,7 +31,7 @@
     },
     {
         "name": "application/senml+cbor",
-        "description": "The CBOR form of a SenML Pack. RFC 8428 makes one change beyond the encoding itself: for compactness the field labels become integers, so a base name is key -2 and a value is key 2, rather than the two-character strings the JSON form spells out.\n\nOn a device reporting every few seconds over a radio link, that is the difference that justifies a second encoding at all. The data model does not change, so [application/senml+json](/application/senml+json) describes this one too. The unbounded version of the same thing is [application/sensml+cbor](/application/sensml+cbor).",
+        "description": "The CBOR form of a SenML Pack. RFC 8428 makes one change beyond the encoding itself: for compactness the field labels become integers. A base name is key -2 and a value is key 2, rather than the two-character strings the JSON form spells out.\n\nOn a device reporting every few seconds over a radio link, that is the difference that justifies a second encoding at all. The data model does not change, so [application/senml+json](/application/senml+json) describes this one too. The unbounded version of the same thing is [application/sensml+cbor](/application/sensml+cbor).",
         "links": {
             "deprecates": [],
             "relatedTo": [
@@ -61,7 +61,7 @@
     },
     {
         "name": "application/senml+xml",
-        "description": "The XML form of a SenML Pack. Each Record becomes a `senml` element with the SenML fields written as attributes, and the whole Pack sits inside a `sensml` root element.\n\nThat root element is the one structural difference from the JSON form, and it is not an accident: a complete Pack in XML is the same document as a stream that has been closed. The form exists for places where an XML toolchain is already in the path or a schema is required, and the receiver is not the constrained end. The data model is the one described on [application/senml+json](/application/senml+json).",
+        "description": "The XML form of a SenML Pack. Each Record becomes a `senml` element with the SenML fields written as attributes, and the whole Pack sits inside a `sensml` root element.\n\nThat root element is the one structural difference from the JSON form, and it is not an accident. A complete Pack in XML is the same document as a stream that has been closed. The form exists for places where an XML toolchain is already in the path, or a schema is required. In those places the receiver is not the constrained end. The data model is the one described on [application/senml+json](/application/senml+json).",
         "links": {
             "deprecates": [],
             "relatedTo": [
@@ -91,7 +91,7 @@
     },
     {
         "name": "application/sensml+json",
-        "description": "A SenML Stream is a Pack that has not finished. The array is opened and Records are appended as measurements happen, typically over a long-lived POST from the producer to the consumer, so each reading can be reported at the moment it was taken.\n\nThat is the only difference from [application/senml+json](/application/senml+json), and it is a real one: a stream has no end, so nothing that needs a whole document before it starts can consume it. Note the extra letter. SenML is the pack, SensML is the stream, and the two names are one character apart.",
+        "description": "A SenML Stream is a Pack that has not finished. The array is opened and Records are appended as measurements happen. That is typically done over a long-lived POST from the producer to the consumer, so each reading can be reported at the moment it was taken.\n\nThat is the only difference from [application/senml+json](/application/senml+json), and it is a real one. A stream has no end, so nothing that needs a whole document before it starts can consume it. Note the extra letter: SenML is the pack, SensML is the stream, and the only difference in the names is the `s`.",
         "links": {
             "deprecates": [],
             "relatedTo": [
@@ -121,7 +121,7 @@
     },
     {
         "name": "application/sensml+cbor",
-        "description": "The CBOR form of a SenML Stream. RFC 8428 is specific about the difference from a Pack: a streaming SensML array should use an indefinite length, where a non-streaming one must use a definite length.\n\nThat rule is what makes CBOR suit a stream better than JSON does. An open-ended array is part of the format rather than a convention, so a consumer knows it holds a complete Record the moment one has decoded, and a producer never has to state a length it does not know. The bounded version is [application/senml+cbor](/application/senml+cbor).",
+        "description": "The CBOR form of a SenML Stream. RFC 8428 is specific about the difference from a Pack. A streaming SensML array should use an indefinite length, where a non-streaming one must use a definite length.\n\nThat rule is what makes CBOR suit a stream better than JSON does. An open-ended array is part of the format rather than a convention. A consumer therefore knows it holds a complete Record the moment one has decoded, and a producer never has to state a length it does not know. The bounded version is [application/senml+cbor](/application/senml+cbor).",
         "links": {
             "deprecates": [],
             "relatedTo": [
@@ -151,7 +151,7 @@
     },
     {
         "name": "application/sensml+xml",
-        "description": "The XML form of a SenML Stream. The `sensml` root element is opened and `senml` elements are written into it as measurements arrive, which is exactly what an XML Pack looks like before its root is closed.\n\nOf the three encodings this is the one where a stream and a pack are most obviously the same document at different moments, because the wrapper the pack seems to carry for no reason is the thing being held open here. The finished form is [application/senml+xml](/application/senml+xml).",
+        "description": "The XML form of a SenML Stream. The `sensml` root element is opened and `senml` elements are written into it as measurements arrive. That is exactly what an XML Pack looks like before its root is closed.\n\nOf the three encodings, this is the one where a stream and a pack are most obviously the same document at different moments. The wrapper the pack seems to carry for no reason is the thing being held open here. The finished form is [application/senml+xml](/application/senml+xml).",
         "links": {
             "deprecates": [],
             "relatedTo": [
@@ -181,7 +181,7 @@
     },
     {
         "name": "application/senml-etch+json",
-        "description": "SenML describes readings. This describes a change to them. RFC 8790 defines a format for the CoAP FETCH, PATCH and iPATCH methods, so one request can read or update several fields of a resource, or several resources at once, instead of a round trip for each.\n\nThe odd name is the tail of FETCH and PATCH. A request lists the SenML names it cares about, and for a patch the values to set; a Record whose value is null removes it. On a battery-powered device the saving is the radio time of the requests that never happen. The CBOR form is [application/senml-etch+cbor](/application/senml-etch+cbor).",
+        "description": "SenML describes readings. This describes a change to them. RFC 8790 defines a format for the CoAP FETCH, PATCH and iPATCH methods. One request can then read or update several fields of a resource, or several resources at once, instead of a round trip for each.\n\nThe `-etch` in the name comes from the FETCH and PATCH methods it serves. A request lists the SenML names it cares about, and for a patch the values to set; a Record whose value is null removes it. On a battery-powered device the saving is the radio time of the requests that never happen. The CBOR form is [application/senml-etch+cbor](/application/senml-etch+cbor).",
         "links": {
             "deprecates": [],
             "relatedTo": [
