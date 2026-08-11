@@ -1,7 +1,7 @@
 [
     {
         "name": "image/jp2",
-        "description": "JP2 is the file format defined by JPEG 2000 Part 1 (ISO/IEC 15444-1) and registered by RFC 3745. It wraps a wavelet-coded image in a sequence of boxes carrying colour space, resolution and metadata alongside the picture data, so a decoder knows how to interpret the pixels without anything told to it out of band.\n\nWavelet coding gives it two properties JPEG lacks: genuinely lossless compression, and a codestream that can be truncated to yield a smaller or lower-quality image without re-encoding. That made it the format of choice for digital cinema distribution and for large-scale archival scanning at national libraries.\n\nIf your file is a bare codestream with no boxes around it, the right label is [image/j2c](/image/j2c).",
+        "description": "JP2 is the file format defined by JPEG 2000 Part 1 (ISO/IEC 15444-1) and registered by RFC 3745. It wraps a wavelet-coded image in a sequence of boxes. Those boxes carry colour space, resolution and metadata alongside the picture data, so a decoder can interpret the pixels without being told anything separately.\n\nWavelet coding gives it two properties JPEG lacks. It can compress without any loss, and its codestream can be cut short to give a smaller or lower-quality image without re-encoding. That made it the format of choice for digital cinema distribution and for large-scale archival scanning at national libraries.\n\nIf your file is a bare codestream with no boxes around it, the right label is [image/j2c](/image/j2c).",
         "links": {
             "deprecates": [],
             "relatedTo": [
@@ -33,7 +33,7 @@
     },
     {
         "name": "image/jpx",
-        "description": "JPX is the extended file format from JPEG 2000 Part 2 (ISO/IEC 15444-2), registered alongside JP2 in RFC 3745. It uses the same box structure as [image/jp2](/image/jp2) but lifts its restrictions: multiple codestreams in one file, colour spaces beyond sRGB and greyscale, compositing instructions and richer metadata.\n\nRFC 3745 registers `.jpf` for it. You will also meet `.jpx` in the wild, which is the same format under a more obvious name.\n\nA file that only uses Part 1 features should be labelled image/jp2. JPX is for the ones that genuinely need the extensions.",
+        "description": "JPX is the extended file format from JPEG 2000 Part 2 (ISO/IEC 15444-2). RFC 3745 registered it alongside JP2, the Part 1 format. It uses the same box structure as [image/jp2](/image/jp2) but lifts that format's restrictions: several codestreams in one file, colour spaces beyond sRGB and greyscale, compositing instructions and richer metadata.\n\nRFC 3745 registers `.jpf` for it. You will also see `.jpx` used, which is the same format under a name that matches the media type.\n\nA file that uses only Part 1 features should be labelled image/jp2. JPX is for files that need the extensions.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/jp2", "image/jpm"],
@@ -59,7 +59,7 @@
     },
     {
         "name": "image/jpm",
-        "description": "JPM is the compound image format from JPEG 2000 Part 6 (ISO/IEC 15444-6), registered by RFC 3745. It stores a page under a mixed raster content model: a low-resolution background layer, a high-resolution binary mask for text and line art, and a foreground colour layer.\n\nSplitting a scanned page that way lets each layer use the compression that suits it, which is why JPM turns up in document capture and archiving systems rather than in general photography.\n\nBoth `.jpm` and `.jpgm` are registered for it.",
+        "description": "JPM is the compound image format from JPEG 2000 Part 6 (ISO/IEC 15444-6), registered by RFC 3745. It stores a page under a mixed raster content model. That means three layers: a low-resolution background, a high-resolution binary mask for text and line art, and a foreground colour layer.\n\nSplitting a scanned page that way lets each layer use the compression that suits it. That is why JPM appears in document capture and archiving systems rather than in general photography.\n\nBoth `.jpm` and `.jpgm` are registered for it.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/jp2", "image/jpx"],
@@ -85,7 +85,7 @@
     },
     {
         "name": "image/j2c",
-        "description": "A bare JPEG 2000 codestream, with none of the boxes that make up a [image/jp2](/image/jp2) file: entropy-coded wavelet data plus the markers a decoder needs, and nothing describing colour space or metadata. The registration is deliberately broad, covering a codestream that draws on any part of ISO/IEC 15444 rather than Part 1 alone.\n\nYou meet it embedded inside other containers, such as DICOM images, MXF video and PDF, where the wrapper already carries that information and a second copy would be redundant.\n\nBoth `.j2c` and `.j2k` are registered extensions, and IANA records that both are in widespread use.",
+        "description": "A bare JPEG 2000 codestream, with none of the boxes that make up a [image/jp2](/image/jp2) file. It holds entropy-coded wavelet data and the markers a decoder needs, and nothing describing colour space or metadata. The registration is broad: it covers a codestream drawing on any part of ISO/IEC 15444, not Part 1 alone.\n\nIt usually appears inside another container, such as a DICOM image, an MXF (Material Exchange Format) video file or a PDF. Those wrappers already carry the colour and metadata, so repeating it would be redundant.\n\nBoth `.j2c` and `.j2k` are registered extensions, and IANA records that both are in widespread use.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/jp2", "image/jphc"],
@@ -107,7 +107,7 @@
     },
     {
         "name": "image/jph",
-        "description": "JPH is the file format for High-Throughput JPEG 2000, defined in ISO/IEC 15444-15. It keeps the box structure and the wavelet transform of [image/jp2](/image/jp2), and replaces only the block coder with one roughly an order of magnitude faster in both directions.\n\nThe trade is a small loss of compression efficiency in exchange for encode and decode speeds that make JPEG 2000 practical in live and interactive workflows rather than only archival ones. A legacy JPEG 2000 decoder cannot read the result directly, but the two are convertible without loss in either direction, so an archive can be moved across and back.\n\nThe bare codestream form, without the boxes, is [image/jphc](/image/jphc).",
+        "description": "JPH is the file format for High-Throughput JPEG 2000, defined in ISO/IEC 15444-15. It keeps the box structure and the wavelet transform of [image/jp2](/image/jp2). It replaces only the block coder, with one roughly an order of magnitude faster in both directions.\n\nThe trade is a small loss of compression efficiency. In exchange, encode and decode speeds make JPEG 2000 practical for live and interactive work rather than only archival work. A legacy JPEG 2000 decoder cannot read the result directly, but the two forms convert to each other without loss, so an archive can be moved across and back.\n\nThe bare codestream form, without the boxes, is [image/jphc](/image/jphc).",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/jp2", "image/jphc"],
@@ -133,7 +133,7 @@
     },
     {
         "name": "image/jphc",
-        "description": "A bare High-Throughput JPEG 2000 codestream (ISO/IEC 15444-15), standing in the same relation to [image/jph](/image/jph) as [image/j2c](/image/j2c) does to [image/jp2](/image/jp2): the coded data and its markers, without the boxes that carry colour space and metadata.\n\nUse it where the surrounding container already describes the image and only the pixels are needed.\n\nThe registered extension is `.jhc`, not `.jphc`, which catches people out.",
+        "description": "A bare High-Throughput JPEG 2000 codestream (ISO/IEC 15444-15). It holds the coded data and its markers, without the boxes that carry colour space and metadata. It stands to [image/jph](/image/jph) as [image/j2c](/image/j2c) stands to [image/jp2](/image/jp2).\n\nUse it where the surrounding container already describes the image and only the pixels are needed.\n\nThe registered extension is `.jhc`, not `.jphc`. The shorter spelling is easy to get wrong.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/jph", "image/j2c"],
@@ -155,7 +155,7 @@
     },
     {
         "name": "image/jxl",
-        "description": "JPEG XL (ISO/IEC 18181) is a still and animated image format built around a new codec, with one capability its neighbours lack: it can losslessly transcode an existing JPEG file to something smaller, and reconstruct that original file exactly, byte for byte.\n\nIt also offers progressive decoding, lossless and lossy modes in a single codestream, wide colour gamut, high bit depth, transparency and animation — roughly the union of what [image/jpeg](/image/jpeg), [image/png](/image/png) and [image/webp](/image/webp) each do separately.\n\nAdoption, not the technology, has been the sticking point. Check current browser support before serving it without a fallback.",
+        "description": "JPEG XL (ISO/IEC 18181) is a still and animated image format built around a new codec. It has one capability its neighbours lack: it can transcode an existing JPEG file without loss to something smaller, then reconstruct that original file exactly, byte for byte.\n\nIt also offers progressive decoding, lossless and lossy modes in one codestream, wide colour gamut, high bit depth, transparency and animation. That is roughly the union of what [image/jpeg](/image/jpeg), [image/png](/image/png) and [image/webp](/image/webp) each do separately.\n\nAdoption has been the obstacle, not the technology. Check current browser support before serving it without a fallback.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/jpeg", "image/avif", "image/webp"],
@@ -177,7 +177,7 @@
     },
     {
         "name": "image/jxr",
-        "description": "JPEG XR (ITU-T T.832, also published as ISO/IEC 29199-2) is a still image codec supporting lossy and lossless compression, high dynamic range and bit depths up to 32 bits per channel, with low computational and memory requirements.\n\nIt began at Microsoft as Windows Media Photo and was renamed HD Photo before standardisation, which is why `.wdp` files and the unregistered `image/vnd.ms-photo` label describe the same format.\n\nOutside Microsoft's own stack it never displaced [image/jpeg](/image/jpeg), and support today is sparse.",
+        "description": "JPEG XR (ITU-T T.832, also published as ISO/IEC 29199-2) is a still image codec. It supports lossy and lossless compression, high dynamic range and bit depths up to 32 bits per channel, with low computational and memory requirements.\n\nIt began at Microsoft as Windows Media Photo. It was renamed HD Photo before standardisation, which is why `.wdp` files and the unregistered `image/vnd.ms-photo` label describe the same format.\n\nOutside Microsoft's own products it did not replace [image/jpeg](/image/jpeg), and support today is sparse.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/jpeg"],
@@ -203,7 +203,7 @@
     },
     {
         "name": "image/jls",
-        "description": "JPEG-LS (ITU-T T.87, also ISO/IEC 14495-1) is a lossless and near-lossless codec for continuous-tone still images. Despite the name it shares little with baseline JPEG: it predicts each sample from its neighbours and codes the difference, with no discrete cosine transform anywhere.\n\nNear-lossless mode is the distinctive part. You set a maximum permitted error per sample and the encoder guarantees no pixel deviates by more than that — a bounded, inspectable loss rather than an open-ended one. Medical imaging adopted it for exactly that reason, and DICOM defines transfer syntaxes for it.\n\nJPEG's own overview calls it especially suited to low-complexity hardware, which is what keeps it in embedded and scientific capture despite newer options.",
+        "description": "JPEG-LS (ITU-T T.87, also ISO/IEC 14495-1) is a lossless and near-lossless codec for continuous-tone still images. Despite the name it shares little with baseline JPEG. It predicts each sample from its neighbours and codes the difference, with no discrete cosine transform anywhere.\n\nNear-lossless mode is the distinctive part. You set a maximum permitted error per sample, and the encoder guarantees no pixel deviates by more than that. The loss is bounded and can be checked, rather than open-ended. Medical imaging adopted it for that reason, and DICOM defines transfer syntaxes for it.\n\nJPEG's own overview calls it especially suited to low-complexity hardware, which keeps it in embedded and scientific capture despite newer options.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/jpeg", "image/dicom-rle"],
@@ -229,7 +229,7 @@
     },
     {
         "name": "image/apng",
-        "description": "APNG extends PNG with animation: a control chunk plus a sequence of frame chunks, all placed in chunk types a plain PNG decoder is required to skip. The first frame is a complete, valid PNG image, so software that does not understand APNG shows a still picture rather than failing.\n\nThat backwards compatibility is why it displaced GIF for short loops on the web — full 8-bit alpha and 24-bit colour instead of a 256-colour palette and 1-bit transparency.\n\nIt began as a Mozilla extension and was later registered with IANA and folded into the W3C PNG specification proper. The older Mozilla-era label is at [image/vnd.mozilla.apng](/image/vnd.mozilla.apng).",
+        "description": "APNG extends PNG with animation. It adds a control chunk and a sequence of frame chunks, all placed in chunk types a plain PNG decoder is required to skip. The first frame is a complete, valid PNG image, so software that does not understand APNG shows a still picture rather than failing.\n\nThat backwards compatibility is why it replaced GIF for short loops on the web. It offers full 8-bit alpha and 24-bit colour instead of a 256-colour palette and 1-bit transparency.\n\nIt began as a Mozilla extension. It was later registered with IANA and folded into the W3C PNG specification. The older Mozilla-era label is at [image/vnd.mozilla.apng](/image/vnd.mozilla.apng).",
         "links": {
             "deprecates": [],
             "relatedTo": [
@@ -256,7 +256,7 @@
     },
     {
         "name": "image/jxs",
-        "description": "JPEG XS (ISO/IEC 21122) is a low-latency, visually lossless codec designed around the opposite trade to most: it compresses only modestly, but does so in a fraction of a frame, with end-to-end latency measured in scanlines rather than frames.\n\nThat makes it a mezzanine format rather than a delivery one. It carries near-uncompressed video over links that cannot quite take raw pixels, which is how it ended up in SMPTE ST 2110-22 for professional video over IP, with RFC 9134 defining the RTP payload format.\n\n`image/jxs` labels the file form; the bare codestream is [image/jxsc](/image/jxsc).",
+        "description": "JPEG XS (ISO/IEC 21122) is a low-latency, visually lossless codec. It is designed around the opposite trade to most codecs: it compresses only modestly, but does so in a fraction of a frame. End-to-end latency is measured in scanlines rather than frames.\n\nThat makes it a mezzanine format rather than a delivery one. It carries near-uncompressed video over links that cannot carry raw pixels. That is how it reached ST 2110-22, the Society of Motion Picture and Television Engineers standard for professional video over IP. RFC 9134 defines the matching RTP payload format.\n\n`image/jxs` labels the file form; the bare codestream is [image/jxsc](/image/jxsc).",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/jxsc"],
@@ -282,7 +282,7 @@
     },
     {
         "name": "image/jxsc",
-        "description": "A bare JPEG XS codestream (ISO/IEC 21122), without the file structure that [image/jxs](/image/jxs) provides. It is what travels over the wire on a professional video-over-IP link, where the transport already carries timing and format information.\n\nThe IANA registry lists further JPEG XS types for carriage inside ISO base media containers, which this site does not document yet.",
+        "description": "A bare JPEG XS codestream (ISO/IEC 21122), without the file structure that [image/jxs](/image/jxs) provides. It is the form sent over a professional video-over-IP link, where the transport already carries timing and format information.\n\nThe IANA registry lists further JPEG XS types for carriage inside ISO base media containers, which this site does not document yet.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/jxs"],
@@ -304,7 +304,7 @@
     },
     {
         "name": "image/avci",
-        "description": "AVCI is a still image coded with AVC (H.264) and stored in the HEIF container defined by ISO/IEC 23008-12 — the same container as [image/heif](/image/heif) and [image/heic](/image/heic), but committing to AVC rather than HEVC.\n\nIt exists because HEIF's container design is deliberately codec-agnostic, and the media type is how a file declares which codec is actually inside. In practice it is far rarer than HEIC, since the devices that adopted HEIF adopted HEVC along with it.\n\nThe image sequence form is [image/avcs](/image/avcs).",
+        "description": "AVCI is a still image coded with AVC (H.264) and stored in the HEIF container defined by ISO/IEC 23008-12. HEIF, the High Efficiency Image File Format, is the same container used by [image/heif](/image/heif) and [image/heic](/image/heic). This type commits to AVC rather than HEVC.\n\nIt exists because the HEIF container design is codec-agnostic by intent, and the media type is how a file declares which codec is inside. It is far rarer than HEIC, because the devices that adopted HEIF adopted HEVC, High Efficiency Video Coding, along with it.\n\nThe image sequence form is [image/avcs](/image/avcs).",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/heif", "image/heic", "image/avcs"],
@@ -326,7 +326,7 @@
     },
     {
         "name": "image/avcs",
-        "description": "The image sequence counterpart to [image/avci](/image/avci): several AVC-coded images in one HEIF container (ISO/IEC 23008-12), used for bursts, animations and derived sequences rather than a single still.\n\nA sequence is carried as a track rather than a lone item, which is why the registration borrows its encoding considerations from `video/mp4` and expects the first entry of a `codecs` parameter to name a track with the `pict` handler.\n\nIt stands in the same relation to `image/avci` as [image/heic-sequence](/image/heic-sequence) does to [image/heic](/image/heic).",
+        "description": "The image sequence counterpart to [image/avci](/image/avci). It holds several AVC-coded images in one HEIF container (ISO/IEC 23008-12), for bursts, animations and derived sequences rather than a single still. HEIF is the High Efficiency Image File Format.\n\nA sequence is carried as a track rather than a lone item. That is why the registration takes its encoding considerations from `video/mp4`, and expects the first entry of a `codecs` parameter to name a track with the `pict` handler.\n\nIt stands to `image/avci` as [image/heic-sequence](/image/heic-sequence) stands to [image/heic](/image/heic).",
         "links": {
             "deprecates": [],
             "relatedTo": [
@@ -352,7 +352,7 @@
     },
     {
         "name": "image/ktx",
-        "description": "KTX is the Khronos texture container: a thin wrapper around texture data that is already in a GPU-native compressed format, together with its mipmap chain, array layers and cube map faces.\n\nThe point is that the file needs no transcoding at load time. An engine reads the header, hands the payload straight to OpenGL or Vulkan, and the GPU consumes it as it stands — unlike [image/png](/image/png) or [image/jpeg](/image/jpeg), which must be decoded to raw pixels and then recompressed before they are useful as textures.\n\nVersion 2 is a separate media type, [image/ktx2](/image/ktx2).",
+        "description": "KTX is the Khronos texture container: a thin wrapper around texture data that is already in a GPU-native compressed format. It also carries the mipmap chain, array layers and cube map faces.\n\nThe point is that the file needs no transcoding at load time. An engine reads the header and passes the payload straight to OpenGL or Vulkan, and the GPU uses it as it stands. [image/png](/image/png) and [image/jpeg](/image/jpeg) must instead be decoded to raw pixels and recompressed before they are useful as textures.\n\nVersion 2 is a separate media type, [image/ktx2](/image/ktx2).",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/ktx2"],
@@ -374,7 +374,7 @@
     },
     {
         "name": "image/ktx2",
-        "description": "KTX 2.0 is the second version of the Khronos texture container, and it addresses the problem that made [image/ktx](/image/ktx) awkward to ship: GPU texture formats are not portable, so a KTX 1 file had to be built per target platform.\n\nKTX 2.0 adds Basis Universal supercompression, storing textures in an intermediate form that transcodes cheaply to whichever block format the device actually supports at load time. One file, every GPU.\n\nglTF consumes it through the `KHR_texture_basisu` extension, which is where most people meet it.",
+        "description": "KTX 2.0 is the second version of the Khronos texture container. It addresses the problem that made [image/ktx](/image/ktx) awkward to ship: GPU texture formats are not portable, so a KTX 1 file had to be built for each target platform.\n\nKTX 2.0 adds Basis Universal supercompression. Textures are stored in an intermediate form that transcodes cheaply, at load time, to whichever block format the device supports. One file serves every GPU.\n\nglTF consumes it through the `KHR_texture_basisu` extension, which is where most people encounter it.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/ktx", "model/gltf-binary"],
@@ -396,7 +396,7 @@
     },
     {
         "name": "image/vnd.valve.source.texture",
-        "description": "VTF is the texture format of Valve's Source engine — Half-Life 2, Portal, Team Fortress 2 and the games and mods built on them. A file holds the image data along with its mipmaps, flags and any animation frames the engine expects.\n\nVTF files are almost always paired with a `.vmt` material script, which tells the engine which shader to use and how to interpret the texture. On its own a VTF is just pixels.",
+        "description": "VTF, the Valve Texture Format, is the texture format of Valve's Source engine, used by Half-Life 2, Portal, Team Fortress 2 and the games and mods built on them. A file holds the image data along with its mipmaps, flags and any animation frames the engine expects.\n\nVTF files are almost always paired with a `.vmt` material script. That script tells the engine which shader to use and how to interpret the texture. On its own a VTF file is only pixels.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/ktx"],
@@ -418,7 +418,7 @@
     },
     {
         "name": "image/vnd.microsoft.icon",
-        "description": "The Windows icon format. An ICO file is a container: it holds several complete images at different sizes and colour depths, and the consumer picks whichever fits the space it needs to fill. That is how one `favicon.ico` serves both a 16-pixel browser tab and a 48-pixel desktop shortcut.\n\nImages inside are stored either as BMP data or, since Windows Vista, as [image/png](/image/png).\n\nNote the labelling mess: `image/vnd.microsoft.icon` is the registered type, but browsers and web servers overwhelmingly send [image/x-icon](/image/x-icon) instead. Both work in practice.",
+        "description": "The Windows icon format. An ICO file is a container. It holds several complete images at different sizes and colour depths, and the consumer picks whichever fits the space it needs to fill. That is how one `favicon.ico` serves both a 16-pixel browser tab and a 48-pixel desktop shortcut.\n\nImages inside are stored either as BMP data or, since Windows Vista, as [image/png](/image/png).\n\nThe labelling is inconsistent. `image/vnd.microsoft.icon` is the registered type, but browsers and web servers overwhelmingly send [image/x-icon](/image/x-icon) instead. Both are accepted.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/x-icon", "image/bmp", "image/png"],
@@ -440,7 +440,7 @@
     },
     {
         "name": "image/emf",
-        "description": "EMF, the Enhanced Metafile format, records a drawing as a replayable list of Windows GDI calls rather than as pixels — lines, curves, text and fills that scale cleanly to any resolution. It is registered by RFC 7903 and documented publicly as `[MS-EMF]`.\n\nIt is what lands on the clipboard when vector artwork is copied between Windows applications, and what Office embeds when a chart or diagram is pasted into a document.\n\nRFC 7903 also records `image/x-emf` as deprecated in favour of this type.",
+        "description": "EMF, the Enhanced Metafile format, records a drawing as a replayable list of Windows GDI calls rather than as pixels. GDI is the Graphics Device Interface, the drawing layer of Windows, and the calls are lines, curves, text and fills that scale cleanly to any resolution.\n\nIt is registered by RFC 7903 and documented publicly as `[MS-EMF]`, one of Microsoft's open specifications. It is the format placed on the clipboard when vector artwork is copied between Windows applications, and the one Office embeds when a chart or diagram is pasted into a document.\n\nRFC 7903 also records `image/x-emf` as deprecated in favour of this type.",
         "links": {
             "deprecates": ["image/x-emf"],
             "relatedTo": ["image/wmf"],
@@ -466,7 +466,7 @@
     },
     {
         "name": "image/wmf",
-        "description": "WMF is the original Windows Metafile format, the 16-bit predecessor to [image/emf](/image/emf), dating back to Windows 3.x. Like EMF it stores a sequence of GDI drawing commands rather than a bitmap, so the output scales, but the older record set is considerably more limited.\n\nIt is registered by RFC 7903 and documented as `[MS-WMF]`. You still find it inside older Office documents and clip-art libraries.\n\nRFC 7903 also records `image/x-wmf` as deprecated in favour of this type.",
+        "description": "WMF is the original Windows Metafile format, the 16-bit predecessor to [image/emf](/image/emf), introduced with Windows 3.x. Like the Enhanced Metafile format it stores a sequence of Graphics Device Interface drawing commands rather than a bitmap, so the output scales. Its older record set is much more limited.\n\nIt is registered by RFC 7903 and documented as `[MS-WMF]`, one of Microsoft's open specifications. You still find it inside older Office documents and clip-art libraries.\n\nRFC 7903 also records `image/x-wmf` as deprecated in favour of this type.",
         "links": {
             "deprecates": ["image/x-wmf"],
             "relatedTo": ["image/emf", "image/bmp"],
@@ -492,7 +492,7 @@
     },
     {
         "name": "image/dpx",
-        "description": "DPX (Digital Picture Exchange, SMPTE ST 268-1) stores a single motion picture frame. A sequence is a directory of numbered files, one per frame, which is exactly how film scanners and digital intermediate pipelines hand work between tools.\n\nThe header carries the metadata a post-production facility needs — timecode, film edge codes, the transfer characteristic — and the pixel data is typically 10 bits per channel in a logarithmic encoding that preserves highlight detail the way a film negative does.\n\nIt began as an evolution of Kodak's Cineon format and remains the common currency for uncompressed frame interchange.",
+        "description": "DPX (Digital Picture Exchange) stores a single motion picture frame. It is standardised as ST 268-1 by the Society of Motion Picture and Television Engineers. A sequence is a directory of numbered files, one per frame, which is how film scanners and digital intermediate pipelines pass work between tools.\n\nThe header carries the metadata a post-production facility needs: timecode, film edge codes and the transfer characteristic. The pixel data is typically 10 bits per channel, in a logarithmic encoding that preserves highlight detail the way a film negative does.\n\nIt began as an evolution of Kodak's Cineon format and is still the standard way to exchange uncompressed frames.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/aces", "image/tiff"],
@@ -514,7 +514,7 @@
     },
     {
         "name": "image/aces",
-        "description": "The ACES image container file layout, standardised as SMPTE ST 2065-4. It is a constrained profile of OpenEXR: the same file structure, with colour space, channel naming and required attributes pinned down so that any ACES-compliant tool interprets the contents identically.\n\nThat constraint is the entire point. ACES exists to make colour behave predictably as footage moves between facilities, and a container that permits fewer choices is easier to be strict about.\n\nWatch the extension. Files use `.exr`, the same as ordinary OpenEXR images, so the extension alone will not tell you whether a file follows the ACES profile.",
+        "description": "The ACES image container file layout, standardised as ST 2065-4 by the Society of Motion Picture and Television Engineers. ACES is the Academy Color Encoding System. The container is a constrained profile of OpenEXR: the same file structure, with colour space, channel naming and required attributes pinned down so any ACES-compliant tool reads the contents identically.\n\nThat constraint is the reason it exists. ACES makes colour behave predictably as footage moves between facilities, and a container permitting fewer choices is easier to be strict about.\n\nWatch the extension. Files use `.exr`, the same as ordinary OpenEXR images, so the extension alone will not tell you whether a file follows the ACES profile.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/dpx", "image/vnd.radiance"],
@@ -536,7 +536,7 @@
     },
     {
         "name": "image/vnd.radiance",
-        "description": "Radiance HDR, commonly called RGBE after its encoding, stores high dynamic range images by giving each pixel three 8-bit mantissas and one shared 8-bit exponent. Four bytes per pixel covers a range of many orders of magnitude — enough to hold both deep shadow and direct sun in one image.\n\nIt came out of the Radiance lighting simulation package at Lawrence Berkeley Laboratory and became the common format for environment maps and image-based lighting in 3D rendering.\n\nIANA registers no extension for it. `.hdr` is by far the most common, with `.pic`, `.rgbe` and `.xyze` also in use; `.pic` is badly ambiguous and worth avoiding.",
+        "description": "Radiance HDR stores high dynamic range images. It is commonly called RGBE after its encoding: each pixel gets three 8-bit mantissas for red, green and blue, plus one shared 8-bit exponent. Four bytes per pixel covers a range of many orders of magnitude, enough to hold both deep shadow and direct sun in one image.\n\nIt came out of the Radiance lighting simulation package at Lawrence Berkeley Laboratory. It became the common format for environment maps and image-based lighting in 3D rendering.\n\nIANA registers no extension for it. `.hdr` is the most common, with `.pic`, `.rgbe` and `.xyze` also in use. `.pic` is ambiguous and worth avoiding.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/aces"],
@@ -558,7 +558,7 @@
     },
     {
         "name": "image/fits",
-        "description": "FITS, the Flexible Image Transport System, is the standard data format of astronomy, registered by RFC 4047 and maintained by the International Astronomical Union. A file is a sequence of header-and-data units: a human-readable ASCII header of keyword and value pairs, followed by an n-dimensional array.\n\nIt is not really an image format. The array may be a photograph from a telescope, but it may equally be a spectrum, a data cube or a table, and the header carries the calibration and coordinate information needed to interpret it scientifically.\n\nBackwards compatibility is a stated design principle — files written decades ago still read correctly, which matters when the observations cannot be repeated.",
+        "description": "FITS, the Flexible Image Transport System, is the standard data format of astronomy. RFC 4047 registers it, and the International Astronomical Union maintains it. A file is a sequence of header-and-data units: a human-readable ASCII header of keyword and value pairs, followed by an n-dimensional array.\n\nIt is not only an image format. The array may be a photograph from a telescope, but it may equally be a spectrum, a data cube or a table. The header carries the calibration and coordinate information needed to interpret it scientifically.\n\nBackwards compatibility is a stated design principle. Files written decades ago still read correctly, which matters when the observations cannot be repeated.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/tiff"],
@@ -584,7 +584,7 @@
     },
     {
         "name": "image/tiff-fx",
-        "description": "TIFF-FX is the image format for internet fax, registered by RFC 3950 with the file format itself defined in RFC 3949. It is a constrained profile of [image/tiff](/image/tiff): a specific set of compression schemes, resolutions and tags that a receiving fax device is guaranteed to understand.\n\nThe profiles run from plain black and white at fax resolution up to JBIG and JPEG-coded colour. Restricting the parent format this way is what makes interoperability possible between devices that share nothing else.\n\nIt is the payload carried by the email-based fax profiles rather than a format anyone authors directly.",
+        "description": "TIFF-FX is the image format for internet fax. RFC 3950 registers it, and RFC 3949 defines the file format itself. It is a constrained profile of [image/tiff](/image/tiff): a specific set of compression schemes, resolutions and tags that a receiving fax device is guaranteed to understand.\n\nThe profiles run from plain black and white at fax resolution up to colour coded with JPEG or with JBIG, the Joint Bi-level Image Experts Group scheme. Restricting the parent format this way is what makes interoperability possible between devices that share nothing else.\n\nIt is the payload carried by the email-based fax profiles rather than a format anyone authors directly.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/tiff", "image/g3fax", "image/t38"],
@@ -610,7 +610,7 @@
     },
     {
         "name": "image/t38",
-        "description": "T.38 is the ITU-T recommendation for carrying fax over IP networks in real time, and this media type, registered by RFC 3362, labels the image data within it.\n\nRather than digitising the fax tones as audio and hoping they survive transcoding, a T.38 gateway demodulates the fax at one end, sends the page data over IP, and remodulates it at the other. That is what makes faxing work over VoIP at all.\n\nYou will meet this type inside SIP session descriptions rather than as a file on disk.",
+        "description": "T.38 is the ITU-T recommendation for carrying fax over IP networks in real time. This media type, registered by RFC 3362, labels the image data within it.\n\nA T.38 gateway does not digitise the fax tones as audio and hope they survive transcoding. It demodulates the fax at one end, sends the page data over IP, and remodulates it at the other. That is what makes faxing work over voice over IP at all.\n\nYou will find this type inside session descriptions for SIP, the Session Initiation Protocol, rather than as a file on disk.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/g3fax", "image/tiff-fx"],
@@ -636,7 +636,7 @@
     },
     {
         "name": "image/dicom-rle",
-        "description": "The run-length encoding defined by the DICOM standard for medical images, specified in PS3.5 Annex G. Pixel codes are split into byte segments, one per byte, so an 8-bit RGB image gives a segment per colour while a 16-bit greyscale image gives a high-byte and a low-byte segment. Each segment is compressed on its own, and no run crosses a row boundary.\n\nLossless compression matters in diagnostic imaging, where an artefact could be read as pathology. RLE is the simplest of DICOM's lossless options: it achieves very little on photographic data, but works well on the large uniform regions typical of segmentation masks and some modalities.\n\nWhere stronger lossless compression is needed, [image/jls](/image/jls) is the usual alternative.",
+        "description": "The run-length encoding defined by the DICOM standard for medical images, specified in PS3.5 Annex G. Pixel codes are split into byte segments, one per byte. An 8-bit RGB image gives a segment per colour; a 16-bit greyscale image gives a high-byte and a low-byte segment. Each segment is compressed on its own, and no run crosses a row boundary.\n\nLossless compression matters in diagnostic imaging, where an artefact could be read as pathology. RLE is the simplest of DICOM's lossless options. It achieves little on photographic data, but works well on the large uniform regions typical of segmentation masks and some modalities.\n\nWhere stronger lossless compression is needed, [image/jls](/image/jls) is the usual alternative.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/jls"],
@@ -658,7 +658,7 @@
     },
     {
         "name": "image/vnd.zbrush.pcx",
-        "description": "A Pixologic registration for the PCX files written by ZBrush, the digital sculpting application. PCX itself is a much older ZSoft format from the DOS era, covered on this site at [image/x-pcx](/image/x-pcx).\n\nThe registration exists to give ZBrush's variant its own label. Public documentation of how it differs from ordinary PCX is thin, so treat the distinction as a vendor claim rather than a described format difference.\n\nThe practical consequence is the extension clash: a `.pcx` file may be either, and the extension alone will not tell you which.",
+        "description": "A Pixologic registration for the PCX files written by ZBrush, the digital sculpting application. PCX itself is a much older ZSoft format from the 1980s, covered on this site at [image/x-pcx](/image/x-pcx).\n\nThe registration exists to give ZBrush's variant its own label. Public documentation of how it differs from ordinary PCX is thin, so treat the distinction as a vendor claim rather than a described format difference.\n\nThe practical consequence is the extension clash: a `.pcx` file may be either, and the extension alone will not tell you which.",
         "links": {
             "deprecates": [],
             "relatedTo": ["image/x-pcx"],

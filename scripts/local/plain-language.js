@@ -216,10 +216,16 @@ const loadEntries = () => {
 const prose = text =>
     text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/`([^`]+)`/g, "$1")
 
+/**
+ * Splits on any sentence end, not only one followed by a capital. A sentence
+ * starting with a linked type name begins lowercase once the markdown is
+ * stripped, and requiring a capital silently merged it with the sentence
+ * before, reporting a 40-word sentence that was really two of twenty.
+ */
 const sentencesOf = text =>
     prose(text)
         .replace(/\n+/g, " ")
-        .split(/(?<=[.!?])\s+(?=[A-Z\d])/)
+        .split(/(?<=[.!?])\s+(?=[A-Za-z\d])/)
         .map(s => s.trim())
         .filter(Boolean)
 
@@ -286,11 +292,20 @@ const abbreviationsIn = (text, name) => {
 const isExplained = (abbr, text) => {
     const letters = abbr.replace(/[^A-Z]/g, "").split("")
     if (letters.length < 2) return true
-    const initials = letters.map(c => `\\b${c}\\w+`).join("[\\s\\-]+")
-    return (
-        new RegExp(initials, "i").test(prose(text)) ||
-        new RegExp(`\\(${abbr}\\)`, "i").test(text)
+    const body = prose(text)
+
+    // How an expansion is actually written, in any of the shapes we use:
+    // "MXF (Material Exchange Format)", "(RGBE)", "HEIF, the High Efficiency
+    // Image File Format", "JBIG is the Joint Bi-level ... scheme".
+    const written = new RegExp(
+        `(\\(${abbr}\\)|${abbr}\\s*\\(|${abbr},?\\s+(the|is|stands|short)\\b)`,
     )
+    if (written.test(body)) return true
+
+    // Otherwise fall back to initials in order, which catches "Flexible Image
+    // Transport System" for FITS but not expansions that skip a letter.
+    const initials = letters.map(c => `\\b${c}\\w+`).join("[\\s\\-]+")
+    return new RegExp(initials, "i").test(body)
 }
 
 const findings = []
