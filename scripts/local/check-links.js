@@ -31,6 +31,22 @@ const CONCURRENCY = 6
 const MAX_HOPS = 6
 
 /**
+ * Generous, because a slow host is not a dead one. fileformats.archiveteam.org,
+ * which three of our citations use, answers in about 26 seconds when it is
+ * having a bad day. The old 20-second limit turned that into a reported failure.
+ */
+const TIMEOUT_MS = 45000
+
+/**
+ * Backoff for network-level failures only, never for an HTTP status. A 404 is
+ * an answer and will not change on a retry; a connection reset is not, and the
+ * same archiveteam host refuses connections outright when hit repeatedly.
+ */
+const RETRY_DELAYS = [2000, 6000]
+
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+
+/**
  * Host changes we accept, as `"from -> to": "why"`.
  *
  * A link that ends up on a different host than the one it names is a failure by
@@ -79,7 +95,7 @@ const follow = async (url, method) => {
         const res = await fetch(current, {
             method,
             redirect: "manual",
-            signal: AbortSignal.timeout(20000),
+            signal: AbortSignal.timeout(TIMEOUT_MS),
             headers: { "user-agent": "mimetype.io-link-check" },
         })
         const location = res.headers.get("location")
@@ -102,7 +118,7 @@ const follow = async (url, method) => {
  * hosts (ITU, ISO) reject HEAD outright but serve GET fine, and reporting those
  * as broken would train us to ignore the output.
  */
-const probe = async url => {
+const probeOnce = async url => {
     for (const method of ["HEAD", "GET"]) {
         try {
             const r = await follow(url, method)
@@ -124,6 +140,7 @@ const probe = async url => {
                     method,
                     finalUrl: url,
                     chain: [],
+                    transient: true,
                 }
         }
     }
@@ -133,6 +150,20 @@ const probe = async url => {
         method: "GET",
         finalUrl: url,
         chain: [],
+    }
+}
+
+/**
+ * Retries a network-level failure before believing it. A single timeout or
+ * connection reset reported a working citation as dead, which is the failure
+ * mode that matters here: it trains us to ignore the output.
+ */
+const probe = async url => {
+    for (let attempt = 0; ; attempt++) {
+        const result = await probeOnce(url)
+        if (result.ok || !result.transient || attempt >= RETRY_DELAYS.length)
+            return result
+        await sleep(RETRY_DELAYS[attempt])
     }
 }
 
