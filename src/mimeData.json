@@ -17274,5 +17274,350 @@
       "communityContributed": false,
       "popularUsage": null
     }
+  },
+  {
+    "name": "application/problem+json",
+    "description": "A problem details object is the standard shape for an HTTP error body, defined by RFC 9457. Instead of inventing a JSON envelope per API, a response carries `type`, `title`, `status`, `detail` and `instance`, where `type` is a URI naming the kind of problem so a client can branch on it without reading prose.\n\nRFC 9457 replaced RFC 7807, adding a registry of common problem type URIs and guidance for type URIs that cannot be dereferenced. The same model serialised as XML is [application/problem+xml](/application/problem+xml).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/problem+xml",
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/problem+json"
+      },
+      {
+        "title": "RFC 9457 - Problem Details for HTTP APIs",
+        "url": "https://www.rfc-editor.org/rfc/rfc9457"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/problem+xml",
+    "description": "The XML serialisation of the problem details model from RFC 9457, the standard shape for an HTTP error body. It carries the same members as the JSON form, `type`, `title`, `status`, `detail` and `instance`, as child elements of a `problem` element in the `urn:ietf:rfc:7807` namespace.\n\nThat namespace still names the older specification, because RFC 9457 kept it unchanged when it replaced RFC 7807. Most APIs reach for [application/problem+json](/application/problem+json); this exists so an XML API does not have to invent an error format of its own.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/problem+json",
+        "application/xml"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/problem+xml"
+      },
+      {
+        "title": "RFC 9457 - Problem Details for HTTP APIs",
+        "url": "https://www.rfc-editor.org/rfc/rfc9457"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/merge-patch+json",
+    "description": "JSON Merge Patch, defined by RFC 7396, describes a change to a JSON document by sending something that looks like the document. Members in the patch replace the ones they match, a member set to `null` is removed, and anything left out is untouched.\n\nThat shape is easy to write and easy to get wrong. It cannot address a single array element, cannot express a precondition, and has no way to set a member to `null`, because `null` already means delete. When any of that matters, [application/json-patch+json](/application/json-patch+json) spells each operation out instead.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/json-patch+json",
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/merge-patch+json"
+      },
+      {
+        "title": "RFC 7396 - JSON Merge Patch",
+        "url": "https://www.rfc-editor.org/rfc/rfc7396"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/json-seq",
+    "description": "A JSON text sequence is any number of JSON values in one stream, each preceded by an ASCII record separator (0x1E) and followed by a line feed, as defined by RFC 7464. The separator cannot appear unescaped inside a JSON text, so a reader can always find where the next value starts.\n\nThat suits a long or never-ending sequence that would be awkward as a single enormous array: a consumer handles each value as it arrives instead of waiting for a closing bracket, and one malformed value need not be fatal. `jq` reads and writes it with the `--seq` flag.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/json-seq"
+      },
+      {
+        "title": "RFC 7464 - JavaScript Object Notation (JSON) Text Sequences",
+        "url": "https://www.rfc-editor.org/rfc/rfc7464"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/jsonpath",
+    "description": "JSONPath selects values out of a JSON document. An expression starts at the root `$` and applies segments, so `$.store.book[*].author` picks the author of every book and `$..price` finds every price at any depth.\n\nThe syntax began as Stefan Gössner's 2007 proposal and spread through dozens of libraries long before anyone wrote it down, which left implementations quietly incompatible with each other. RFC 9535 is the specification that fixes that, and this media type is registered for carrying a query, not the values it returns.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/jsonpath"
+      },
+      {
+        "title": "RFC 9535 - JSONPath: Query Expressions for JSON",
+        "url": "https://www.rfc-editor.org/rfc/rfc9535"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/x-www-form-urlencoded",
+    "description": "This is what an HTML form posts by default: each name and value percent-encoded, pairs joined with `&`, name separated from value by `=`, and a space written as `+`. It is older than most of this list and is specified today in the WHATWG URL Standard rather than in HTML itself.\n\nThe `+` is the part that catches people out, since percent-encoding elsewhere writes a space as `%20`. The format also has no way to carry a file, which is what multipart/form-data exists for. Its registration gives no file extension, because it only ever appears on the wire.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "text/html"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/x-www-form-urlencoded"
+      },
+      {
+        "title": "WHATWG URL Standard",
+        "url": "https://url.spec.whatwg.org/#application/x-www-form-urlencoded"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/http",
+    "description": "This type carries one or more complete HTTP request or response messages as a payload, registered in Section 10.2 of RFC 9112. The `msgtype` parameter says whether the enclosed messages are requests or responses, and `version` gives the HTTP version, though a reader can work both out from the first line.\n\nIt exists so HTTP messages can travel through something that is not an HTTP connection: batched into one request, stored, or attached to a report. [message/rfc822](/message/rfc822) does the equivalent job for a single email message.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "message/rfc822"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/http"
+      },
+      {
+        "title": "RFC 9112 - HTTP/1.1",
+        "url": "https://www.rfc-editor.org/rfc/rfc9112"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/scim+json",
+    "description": "SCIM, the System for Cross-domain Identity Management, is the protocol an identity provider uses to create, update and deactivate accounts in another service. RFC 7644 defines it, and this type marks its JSON payloads: users, groups, and the schema documents that describe what a resource may contain.\n\nIt is what sits behind automated user provisioning in enterprise single sign-on. The registration notes that older SCIM deployments send plain [application/json](/application/json) instead, so a server that wants to interoperate widely usually accepts both.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".scim",
+      ".scm"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/scim+json"
+      },
+      {
+        "title": "RFC 7644 - System for Cross-domain Identity Management: Protocol",
+        "url": "https://www.rfc-editor.org/rfc/rfc7644"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/linkset",
+    "description": "A linkset is a collection of web links published as its own document rather than crammed into an HTTP `Link` header. RFC 9264 defines it, and this form reuses the exact field syntax of that header, from RFC 8288, so the same text can be moved out of the response headers and served as a resource.\n\nHeader size is limited and links are sometimes numerous, which is the whole reason the format exists: a resource can point at its linkset instead of carrying every link on every response. The JSON serialisation is [application/linkset+json](/application/linkset+json).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/linkset+json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/linkset"
+      },
+      {
+        "title": "RFC 9264 - Linkset: Media Types and a Link Relation Type for Link Sets",
+        "url": "https://www.rfc-editor.org/rfc/rfc9264"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/linkset+json",
+    "description": "The JSON serialisation of a linkset, a set of web links served as a document instead of squeezed into an HTTP `Link` header. RFC 9264 defines both forms. This one is an object whose sole member, `linkset`, holds an array of link context objects, each with an optional `anchor` and then one member per relation type listing the targets.\n\nMost clients would rather parse this than the header field syntax used by [application/linkset](/application/linkset), which is the other form the same specification defines. The registration proposes no extension beyond the generic `.json`.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/linkset",
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".json"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/linkset+json"
+      },
+      {
+        "title": "RFC 9264 - Linkset: Media Types and a Link Relation Type for Link Sets",
+        "url": "https://www.rfc-editor.org/rfc/rfc9264"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/reputon+json",
+    "description": "A reputon is one reputation score about one thing, defined by RFC 7071. The object names the subject being rated, the application the rating belongs to, the assertion being made about it, and a rating expressed as a floating-point value between 0.0 and 1.0 inclusive.\n\nThe application name is what gives the number meaning, and each one is registered separately: RFC 7072 defines the email identifier application, which rates a sending domain. Little else adopted the format, but it is the standard answer to a question that most services still answer with a bespoke JSON object.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/reputon+json"
+      },
+      {
+        "title": "RFC 7071 - A Media Type for Reputation Interchange",
+        "url": "https://www.rfc-editor.org/rfc/rfc7071"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/expect-ct-report+json",
+    "description": "The Expect-CT response header let a site ask browsers to enforce Certificate Transparency, and to report any certificate for it that had not been properly logged. This type marks those reports, which the browser posted to the address the header named. RFC 9163 documents the header and the report format as an Experimental specification.\n\nThe feature is finished. Only Chromium implemented it, and Chromium deprecated the header in version 107 on the grounds that it now enforces Certificate Transparency for every publicly trusted certificate anyway.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/expect-ct-report+json"
+      },
+      {
+        "title": "RFC 9163 - Expect-CT Extension for HTTP",
+        "url": "https://www.rfc-editor.org/rfc/rfc9163"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
   }
 ]
