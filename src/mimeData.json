@@ -17631,5 +17631,266 @@
       "communityContributed": false,
       "popularUsage": null
     }
+  },
+  {
+    "name": "application/jwt",
+    "description": "A JSON Web Token is not a format of its own. It is a JWS (JSON Web Signature) or a JWE (JSON Web Encryption) whose payload happens to be a JSON claims set. That is why the tokens people recognise are three base64url segments joined by dots. RFC 7519 defines the claims, `iss`, `sub`, `aud`, `exp` and the rest, rather than the container around them.\n\nThat relationship is the thing worth knowing, because verifying a JWT means verifying the JWS it arrived in. The generic type for that container, whatever its payload, is [application/jose](/application/jose), and the keys used to check the signature are published as [application/jwk-set+json](/application/jwk-set+json).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/jose",
+        "application/jwk-set+json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/jwt"
+      },
+      {
+        "title": "RFC 7519 - JSON Web Token (JWT)",
+        "url": "https://www.rfc-editor.org/rfc/rfc7519"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/jose",
+    "description": "RFC 7515 registers this for content that is a JWS (JSON Web Signature) or a JWE (JSON Web Encryption) in compact serialisation. That means base64url segments separated by dots, with nothing in the media type to say which of the two it is. Compact serialisation is the form that fits in a URL, a header or a cookie.\n\nUse it when the payload is not a JSON claims set, because that case has its own name, [application/jwt](/application/jwt). The JSON serialisation of the same structures, which can carry more than one signature over a payload, is [application/jose+json](/application/jose+json).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/jose+json",
+        "application/jwt"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/jose"
+      },
+      {
+        "title": "RFC 7515 - JSON Web Signature (JWS)",
+        "url": "https://www.rfc-editor.org/rfc/rfc7515"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/jose+json",
+    "description": "The JSON serialisation of a JWS (JSON Web Signature) or a JWE (JSON Web Encryption), registered by RFC 7515 alongside the compact form. Instead of dot-separated segments it is an object, with the protected header, the payload and the signatures as named members.\n\nThe reason to use it is that this form can carry several signatures, or several recipients, over one payload. The compact form cannot express that at all. It is also bulkier and not safe to drop into a URL, which is why [application/jose](/application/jose) is what ends up in headers and cookies.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/jose",
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/jose+json"
+      },
+      {
+        "title": "RFC 7515 - JSON Web Signature (JWS)",
+        "url": "https://www.rfc-editor.org/rfc/rfc7515"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/jwk+json",
+    "description": "A JSON Web Key is one cryptographic key written as a JSON object, defined by RFC 7517. The `kty` member says what kind of key it is, and the rest follow from that. An RSA key has `n` and `e`; an elliptic curve key has `crv`, `x` and `y`. A `kid` names the key so a token can point at the one that signed it.\n\nPutting keys in JSON is what made rotation ordinary on the web, because publishing a key became a matter of serving a document. The collection an endpoint publishes is [application/jwk-set+json](/application/jwk-set+json).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/jwk-set+json",
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/jwk+json"
+      },
+      {
+        "title": "RFC 7517 - JSON Web Key (JWK)",
+        "url": "https://www.rfc-editor.org/rfc/rfc7517"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/jwk-set+json",
+    "description": "A JWK Set is an object whose `keys` member holds an array of JSON Web Keys. RFC 7517 defines both. This is the one a service publishes: the document behind a `jwks_uri` that lets anyone verify the tokens that service issues.\n\nA set rather than a single key is what allows rotation without downtime. The issuer adds the new key beside the old one and starts signing with it. The old key is removed once the tokens it signed have expired. A verifier picks the right entry by matching the token's `kid`. One key on its own is [application/jwk+json](/application/jwk+json).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/jwk+json",
+        "application/jwt"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/jwk-set+json"
+      },
+      {
+        "title": "RFC 7517 - JSON Web Key (JWK)",
+        "url": "https://www.rfc-editor.org/rfc/rfc7517"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/at+jwt",
+    "description": "RFC 9068 profiles the JWT for use as an OAuth 2.0 access token. A resource server can then validate a token by itself, instead of asking the authorization server about it. The profile fixes which claims must be present and requires the token to be signed, ruling out the `none` algorithm.\n\nThe media type is the point of the profile, not a footnote to it. A conforming token must carry `at+jwt` in its `typ` header, which is what stops one kind of JWT being accepted where another was expected. Without that, an access token and an [application/jwt](/application/jwt) issued for some other purpose can look alike to a verifier.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/jwt",
+        "application/token-introspection+jwt"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/at+jwt"
+      },
+      {
+        "title": "RFC 9068 - JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens",
+        "url": "https://www.rfc-editor.org/rfc/rfc9068"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/token-introspection+jwt",
+    "description": "OAuth 2.0 token introspection normally answers with a plain JSON object. RFC 9701 defines a signed answer instead. The authorization server returns the response as a JWT, so the caller can tell who produced it and that nobody altered it in between.\n\nThe introspection members sit under a single `token_introspection` claim. Keeping them apart from the JWT's own claims means a name cannot mean two things in one document. That matters when the answer crosses a trust boundary, or when a resource server may later have to show what it was told. The token being described is often an [application/at+jwt](/application/at+jwt).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/at+jwt",
+        "application/jwt"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/token-introspection+jwt"
+      },
+      {
+        "title": "RFC 9701 - JSON Web Token (JWT) Response for OAuth Token Introspection",
+        "url": "https://www.rfc-editor.org/rfc/rfc9701"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/secevent+jwt",
+    "description": "A Security Event Token reports that something happened, rather than asserting who someone is. RFC 8417 defines it as a JWT with an `events` claim. That claim is an object whose member names identify the event types, leaving a profile such as OpenID's Shared Signals to say what those types mean.\n\nIt is how an identity provider tells a relying party that an account was disabled or a session revoked, separately from any sign-in. RFC 8417 devotes a section to keeping a SET from being mistaken for an ID token or an access token. This media type is part of that answer.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/jwt",
+        "application/logout+jwt"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/secevent+jwt"
+      },
+      {
+        "title": "RFC 8417 - Security Event Token (SET)",
+        "url": "https://www.rfc-editor.org/rfc/rfc8417"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/logout+jwt",
+    "description": "A Logout Token is what an OpenID Connect provider posts to each relying party when a user signs out, so that sessions elsewhere end too. It is a JWT carrying an `events` claim with the member name `http://schemas.openid.net/event/backchannel-logout`, and a `sub` or a `sid` saying whose session to end.\n\nA `nonce` claim is prohibited, and the reason matters. Its absence makes a Logout Token syntactically invalid as an ID token, so one cannot be substituted for the other in a forged authentication response. The OpenID Foundation registered the type and its specification is public.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/jwt",
+        "application/secevent+jwt"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/logout+jwt"
+      },
+      {
+        "title": "OpenID Connect Back-Channel Logout 1.0",
+        "url": "https://openid.net/specs/openid-connect-backchannel-1_0.html"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
   }
 ]
