@@ -37,10 +37,18 @@
  * registration names, which is what separates `readable` from `dead`; without
  * it a named URL is trusted and reported as `readable (unprobed)`.
  *
+ * --clash reports the other half of the include test settled on #8. A type can
+ * fail the spec test and still earn a page if its extension already resolves on
+ * the site, because someone searching that extension arrives at a neighbour and
+ * should be told this name exists. That is why batch 1 kept image/vnd.zbrush.pcx
+ * over its .pcx clash. The rule is readable-only; a clash is an exception to
+ * argue one entry at a time, so this lists candidates rather than approvals.
+ *
  * Usage:
  *   node scripts/local/spec-audit.js --prefix image/vnd.
  *   node scripts/local/spec-audit.js --probe --json out.json
  *   node scripts/local/spec-audit.js --names image/vnd.zbrush.pcx audio/vnd.dra
+ *   node scripts/local/spec-audit.js --clash
  */
 
 const { execSync } = require("child_process")
@@ -121,6 +129,29 @@ const PAID_STANDARD_NAMES =
 
 const FREE_STANDARD_NAMES =
     /\b(RFC\s?\d{3,5}|BCP\s?\d+|STD\s?\d+|W3C|WHATWG|ECMA-\d+|OASIS|Khronos|Unicode Standard|ETSI (TS|EN|TR) \d)/i
+
+/**
+ * Extensions too common to mean anything. A vendor JSON type sharing `.json`
+ * with application/json tells a searcher nothing; a vendor type sharing `.swf`
+ * with application/x-shockwave-flash tells them where the name came from.
+ */
+const GENERIC_EXTENSIONS = new Set([
+    ".json",
+    ".xml",
+    ".zip",
+    ".txt",
+    ".bin",
+    ".dat",
+    ".cbor",
+    ".gz",
+    ".yaml",
+    ".yml",
+    ".csv",
+    ".html",
+    ".xhtml",
+    ".js",
+    ".pdf",
+])
 
 const sanitise = name => name.replace(/[^a-zA-Z0-9._+-]/g, "_")
 
@@ -457,6 +488,40 @@ const main = async () => {
             if (only && r.klass !== only) continue
             console.log(`  ${r.klass.padEnd(10)} ${r.name.padEnd(52)} ${r.why}`)
         }
+    }
+
+    if (flag("--clash")) {
+        const data = JSON.parse(
+            readFileSync(path.join(ROOT, "src", "mimeData.json"), "utf8"),
+        )
+        const owners = new Map()
+        for (const entry of data)
+            for (const ext of entry.fileTypes ?? []) {
+                const key = ext.toLowerCase()
+                if (GENERIC_EXTENSIONS.has(key)) continue
+                if (!owners.has(key)) owners.set(key, [])
+                owners.get(key).push(entry.name)
+            }
+        const hits = results
+            .map(r => ({
+                ...r,
+                shared: r.exts.filter(e => owners.has(e.toLowerCase())),
+            }))
+            .filter(r => r.shared.length)
+        const exceptions = hits.filter(r => r.klass !== "readable")
+        console.log(
+            `\n${hits.length} type(s) share a distinctive extension with a page that already exists.`,
+        )
+        console.log(
+            `${exceptions.length} of those fail the spec test, so each is an exception to argue:\n`,
+        )
+        for (const r of exceptions)
+            console.log(
+                `  ${r.klass.padEnd(10)} ${r.name.padEnd(50)} ${r.shared.join(" ")} -> ${r.shared
+                    .flatMap(e => owners.get(e.toLowerCase()))
+                    .slice(0, 2)
+                    .join(", ")}`,
+            )
     }
 }
 
