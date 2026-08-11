@@ -17892,5 +17892,231 @@
       "communityContributed": false,
       "popularUsage": null
     }
+  },
+  {
+    "name": "text/turtle",
+    "description": "Turtle is how most people write RDF (Resource Description Framework). It is the W3C's compact text syntax for a graph. Prefixes are declared once with `@prefix`, `a` stands in for `rdf:type`, and semicolons and commas let one subject carry many statements without being named again.\n\nThe RDF 1.1 Turtle Recommendation defines it, and it sits between two neighbours. Take every abbreviation out and what remains is [application/n-triples](/application/n-triples). Add named graphs and it becomes [application/trig](/application/trig). The XML serialisation that came first is [application/rdf+xml](/application/rdf+xml).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/n-triples",
+        "application/trig",
+        "application/rdf+xml"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".ttl"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/text/turtle"
+      },
+      {
+        "title": "W3C RDF 1.1 Turtle",
+        "url": "https://www.w3.org/TR/turtle/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/n-triples",
+    "description": "N-Triples is the line-based subset of Turtle: one statement per line, every term written out in full, no prefixes and no abbreviations at all. The W3C Recommendation calls it easy to parse, which is the entire design goal.\n\nBeing verbose to read is what makes it convenient for everything else. A file can be split at any newline, streamed, sorted, diffed or compared line by line. That is why a format invented for test cases became the usual way to ship bulk RDF (Resource Description Framework). Add graph labels and it becomes [application/n-quads](/application/n-quads); add abbreviations and it becomes [text/turtle](/text/turtle).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "text/turtle",
+        "application/n-quads"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".nt"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/n-triples"
+      },
+      {
+        "title": "W3C RDF 1.1 N-Triples",
+        "url": "https://www.w3.org/TR/n-triples/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/trig",
+    "description": "TriG is Turtle extended to write down a complete RDF (Resource Description Framework) dataset rather than a single graph. Statements are grouped into named graphs, each introduced by the IRI naming it, alongside a default graph for anything left unattributed.\n\nNamed graphs are what let a store record where a statement came from, or when it was asserted, without altering the statement itself. Everything [text/turtle](/text/turtle) can express, TriG expresses the same way, so Turtle is the subset to use when one graph is all there is. The line-based form of the same dataset is [application/n-quads](/application/n-quads).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "text/turtle",
+        "application/n-quads"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".trig"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/trig"
+      },
+      {
+        "title": "W3C RDF 1.1 TriG",
+        "url": "https://www.w3.org/TR/trig/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/n-quads",
+    "description": "N-Quads is N-Triples with one more element on each line: an optional graph label after the object. That turns a file of statements into a whole RDF (Resource Description Framework) dataset. The W3C Recommendation puts it plainly: the main distinction from [application/n-triples](/application/n-triples) is that N-Quads can encode multiple graphs.\n\nEverything that makes N-Triples convenient survives the addition. Each line still stands alone, so a dataset of any size can be streamed, sorted or split without a parser holding state. The readable form of the same dataset, with prefixes and grouping, is [application/trig](/application/trig).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/n-triples",
+        "application/trig"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".nq"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/n-quads"
+      },
+      {
+        "title": "W3C RDF 1.1 N-Quads",
+        "url": "https://www.w3.org/TR/n-quads/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "text/n3",
+    "description": "Notation3 came first, and Turtle is the part of it that stays inside RDF (Resource Description Framework). What was left behind is the interesting half. N3 adds variables and implication, so a document can state a rule and not only a fact. A reasoner can then derive conclusions nobody wrote down.\n\nIt also treats a graph as a term, which allows statements about statements. The registration cites the 2008 W3C Team Submission, while the language is now maintained by a W3C Community Group. Anything that only records facts is better written as [text/turtle](/text/turtle), which every RDF tool can read.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "text/turtle"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".n3"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/text/n3"
+      },
+      {
+        "title": "W3C Notation3 (N3): A readable RDF syntax",
+        "url": "https://www.w3.org/TeamSubmission/n3/"
+      },
+      {
+        "title": "Notation3 Language, W3C Community Group",
+        "url": "https://w3c-cg.github.io/N3/spec/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "text/shaclc",
+    "description": "SHACL validates RDF (Resource Description Framework) graphs against shapes. SHACL's own syntax is RDF, which makes a shapes file precise and tiring to read. The compact syntax is an alternative notation for a subset of SHACL Core, aimed at people editing shapes by hand.\n\nIt is not a second language. A compact document maps to the RDF form and back, so tools keep working. The specification began in the RDF Data Shapes Working Group and continues in the SHACL Community Group, so it is not a Recommendation. The other way to describe the shape of a graph, with a grammar of its own rather than a second syntax, is [text/shex](/text/shex).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "text/shex",
+        "text/turtle"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".shaclc",
+      ".shc"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/text/shaclc"
+      },
+      {
+        "title": "W3C SHACL Compact Syntax",
+        "url": "https://w3c.github.io/shacl/shacl-compact-syntax/"
+      },
+      {
+        "title": "W3C Shapes Constraint Language (SHACL)",
+        "url": "https://www.w3.org/TR/shacl/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "text/shex",
+    "description": "Shape Expressions describe what an RDF (Resource Description Framework) graph has to look like. They say which properties a node carries, how many values each may have, and what those values must be in turn. This type names the compact syntax, which reads like a grammar; the same schema also has JSON and RDF forms.\n\nShEx and SHACL answer the same question and are easy to mix up. ShEx was built as a schema language with a notation of its own, developed in a W3C Community Group. SHACL is written in RDF and became a Recommendation, then added [text/shaclc](/text/shaclc) to solve the readability problem ShEx never had.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "text/shaclc",
+        "text/turtle"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".shex"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/text/shex"
+      },
+      {
+        "title": "Shape Expressions Language 2.1",
+        "url": "https://shex.io/shex-semantics/"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
   }
 ]
