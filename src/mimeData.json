@@ -16657,7 +16657,7 @@
   },
   {
     "name": "model/gltf+json",
-    "description": "glTF (GL Transmission Format) is the Khronos Group's runtime format for 3D scenes and models. It is built for delivery rather than authoring: a file holds the scene graph, materials and animations, and points at binary buffers of geometry that an engine can hand to the GPU with almost no processing.\n\nThat focus on load time is why it gets called the JPEG of 3D. This type is the JSON form, which references its buffers and textures as separate files. Everything packed into a single binary container is [model/gltf-binary](/model/gltf-binary).",
+    "description": "glTF (GL Transmission Format) is the Khronos Group's runtime format for 3D scenes and models. It is built for delivery rather than authoring. A file holds the scene graph, materials and animations, and points at binary buffers of geometry that an engine can hand to the GPU with almost no processing.\n\nThat focus on load time is why it is often called the JPEG of 3D: a format for delivering finished assets rather than for editing them. This type is the JSON form, which references its buffers and textures as separate files. Everything packed into a single binary container is [model/gltf-binary](/model/gltf-binary).",
     "links": {
       "deprecates": [],
       "relatedTo": [
@@ -16688,7 +16688,7 @@
   },
   {
     "name": "model/gltf-binary",
-    "description": "GLB is the single-file form of glTF: the same JSON scene description, with its binary buffers and textures packed into one container behind a short header. Nothing has to be fetched separately, which makes it the practical choice for shipping a model over a network.\n\nTextures inside a GLB are often Basis Universal supercompressed and carried as [image/ktx2](/image/ktx2), through the KHR_texture_basisu extension. The form that keeps its buffers as separate files is [model/gltf+json](/model/gltf+json).",
+    "description": "GLB is the single-file form of glTF. It has the same JSON scene description, with its binary buffers and textures packed into one container behind a short header. Nothing has to be fetched separately, which makes it the practical choice for shipping a model over a network.\n\nTextures inside a GLB are often Basis Universal supercompressed and carried as [image/ktx2](/image/ktx2), through the KHR_texture_basisu extension. The form that keeps its buffers as separate files is [model/gltf+json](/model/gltf+json).",
     "links": {
       "deprecates": [],
       "relatedTo": [
@@ -16719,7 +16719,7 @@
   },
   {
     "name": "model/obj",
-    "description": "The Wavefront OBJ format dates from the Advanced Visualizer in 1992 and has outlived that software by three decades. It is plain text: vertex positions, texture coordinates and normals, then the faces that index them, one declaration per line.\n\nIts longevity comes from that simplicity. Almost every 3D tool reads it and a person can inspect one in a text editor. Surface appearance is not in the file at all; it lives in a companion [model/mtl](/model/mtl) named by an `mtllib` line.",
+    "description": "Wavefront introduced the OBJ format with its Advanced Visualizer software in 1992, and it is still in use three decades later. It is plain text: vertex positions, texture coordinates and normals, then the faces that index them, one declaration per line.\n\nIts longevity comes from that simplicity. Almost every 3D tool reads it and a person can inspect one in a text editor. Surface appearance is not in the file at all. It is stored in a companion [model/mtl](/model/mtl) file, named by an `mtllib` line.",
     "links": {
       "deprecates": [],
       "relatedTo": [
@@ -16751,7 +16751,7 @@
   },
   {
     "name": "model/mtl",
-    "description": "An MTL file holds the material definitions that an [model/obj](/model/obj) file refers to: ambient, diffuse and specular colours, shininess, transparency and the paths of any texture maps.\n\nKeeping them apart is deliberate, since geometry changes far less often than appearance does. Both formats were registered by the DICOM Standards Committee, which needed a way to label 3D manufacturing data carried alongside medical imaging.",
+    "description": "An MTL file holds the material definitions that a [model/obj](/model/obj) file refers to. Those are ambient, diffuse and specular colours, shininess, transparency and the paths of any texture maps.\n\nKeeping them apart is deliberate, since geometry changes far less often than appearance does. Both formats were registered by the DICOM Standards Committee, which needed a way to label 3D manufacturing data carried alongside medical imaging.",
     "links": {
       "deprecates": [],
       "relatedTo": [
@@ -16777,7 +16777,7 @@
   },
   {
     "name": "model/3mf",
-    "description": "3MF (3D Manufacturing Format) is the 3MF Consortium's format for additive manufacturing. A `.3mf` file is a ZIP archive of XML parts describing the model together with materials, colours, print tickets and slice data.\n\nIt exists because STL carries triangles and nothing else: no units, no colour, no materials, no metadata, leaving every toolchain to guess at the rest. Related: [model/stl](/model/stl).",
+    "description": "3MF (3D Manufacturing Format) is the 3MF Consortium's format for additive manufacturing. A `.3mf` file is a ZIP archive of XML parts describing the model together with materials, colours, print tickets and slice data.\n\nIt exists because [model/stl](/model/stl) carries triangles and nothing else: no units, no colour, no materials, no metadata. That leaves every toolchain to guess at the rest.",
     "links": {
       "deprecates": [],
       "relatedTo": [
@@ -16808,7 +16808,7 @@
   },
   {
     "name": "model/step",
-    "description": "STEP (Standard for the Exchange of Product model data) is the ISO 10303 family, the neutral format CAD systems use to exchange solid models without passing through a vendor's own kernel. A STEP file carries exact boundary representation geometry rather than a triangle mesh, so a curved surface stays curved.\n\nThis type covers the Part 21 clear-text encoding. The same encoding registered in the application tree is [application/p21](/application/p21). The XML and zipped forms are [model/step+xml](/model/step+xml), [model/step+zip](/model/step+zip) and [model/step-xml+zip](/model/step-xml+zip).",
+    "description": "STEP (Standard for the Exchange of Product model data) is the ISO 10303 family. It is the neutral format computer-aided design (CAD) systems use to exchange solid models without passing through a vendor's own kernel. A STEP file carries exact boundary representation geometry rather than a triangle mesh, so a curved surface stays curved.\n\nThis type covers the Part 21 clear-text encoding. The same encoding registered in the application tree is [application/p21](/application/p21). The XML and zipped forms are [model/step+xml](/model/step+xml), [model/step+zip](/model/step+zip) and [model/step-xml+zip](/model/step-xml+zip).",
     "links": {
       "deprecates": [],
       "relatedTo": [
@@ -16842,7 +16842,7 @@
   },
   {
     "name": "model/step+xml",
-    "description": "This is STEP product data in the XML encoding of ISO 10303-28, rather than the Part 21 clear text that most CAD tools write.\n\nXML makes the data reachable with ordinary tooling, at a considerable cost in file size. That cost is why the compressed variants exist: [model/step-xml+zip](/model/step-xml+zip) is this encoding zipped, and [model/step+zip](/model/step+zip) is the clear-text form zipped. The uncompressed clear-text encoding is [model/step](/model/step).",
+    "description": "This is STEP product data in the XML encoding of ISO 10303-28, rather than the Part 21 clear text that most computer-aided design (CAD) tools write.\n\nXML makes the data reachable with ordinary tooling, at a considerable cost in file size. That cost is why the compressed variants exist: [model/step-xml+zip](/model/step-xml+zip) is this encoding zipped, and [model/step+zip](/model/step+zip) is the clear-text form zipped. The uncompressed clear-text encoding is [model/step](/model/step).",
     "links": {
       "deprecates": [],
       "relatedTo": [
@@ -16870,7 +16870,7 @@
   },
   {
     "name": "model/step+zip",
-    "description": "A ZIP archive containing a STEP Part 21 file, registered so that a compressed exchange package carries a type describing what is inside rather than being labelled as a generic archive.\n\nSTEP files for a full assembly routinely reach hundreds of megabytes of clear text, which compresses by roughly an order of magnitude, so the zipped form is how large models actually move between organisations. The uncompressed form is [model/step](/model/step), and the zipped XML encoding is [model/step-xml+zip](/model/step-xml+zip).",
+    "description": "A ZIP archive containing a STEP Part 21 file. It is registered so that a compressed exchange package carries a type describing what is inside, rather than being labelled as a generic archive.\n\nSTEP files for a full assembly routinely reach hundreds of megabytes of clear text, and that compresses by roughly an order of magnitude. The zipped form is therefore how large models move between organisations. The uncompressed form is [model/step](/model/step), and the zipped XML encoding is [model/step-xml+zip](/model/step-xml+zip).",
     "links": {
       "deprecates": [],
       "relatedTo": [
@@ -16926,7 +16926,7 @@
   },
   {
     "name": "application/p21",
-    "description": "ISO 10303-21 defines the clear-text encoding that STEP files use, commonly called Part 21. It is structured text: a header section, then a data section of numbered entity instances that refer to one another by those numbers.\n\nThe registration claims `.ifc` alongside the STEP extensions, which is correct rather than a stray entry. IFC, the schema behind building information modelling, is serialised with this same Part 21 syntax. The model-tree registration of the encoding is [model/step](/model/step), and the schema language that says what the numbered entities mean is [application/express](/application/express).",
+    "description": "ISO 10303-21 defines the clear-text encoding used by STEP, the Standard for the Exchange of Product model data, commonly called Part 21. It is structured text: a header section, then a data section of numbered entity instances that refer to one another by those numbers.\n\nThe registration claims `.ifc` alongside the STEP extensions, which is correct rather than a stray entry. IFC, the schema behind building information modelling, is serialised with this same Part 21 syntax. The model-tree registration of the encoding is [model/step](/model/step), and the schema language that says what the numbered entities mean is [application/express](/application/express).",
     "links": {
       "deprecates": [],
       "relatedTo": [
@@ -16958,7 +16958,7 @@
   },
   {
     "name": "application/express",
-    "description": "EXPRESS is the data modelling language defined by ISO 10303-11. It is not product data itself: it is the language in which STEP's application protocols are written, describing entities, their attributes and the constraints between them.\n\nA `.exp` file is therefore closer to a database schema than to a model. Reading one is how you find out what the numbered entities inside a [model/step](/model/step) or [application/p21](/application/p21) file actually represent.",
+    "description": "EXPRESS is the data modelling language defined by ISO 10303-11. It is not product data itself. It is the language in which the application protocols of STEP, the Standard for the Exchange of Product model data, are written. It describes entities, their attributes and the constraints between them.\n\nA `.exp` file is therefore closer to a database schema than to a model. Reading one is how you find out what the numbered entities inside a [model/step](/model/step) or [application/p21](/application/p21) file represent.",
     "links": {
       "deprecates": [],
       "relatedTo": [
@@ -16985,7 +16985,7 @@
   },
   {
     "name": "model/vnd.usda",
-    "description": "USD (Universal Scene Description) is Pixar's system for composing large 3D scenes out of layers that reference and override one another, so many artists can work on one scene without ever editing the same file. This type is the human-readable ASCII form.\n\nBeing text, it can be diffed and edited by hand, which is why it is the form used for layer files that do composition work rather than for carrying heavy geometry. The packaged single-file form is [model/vnd.usdz+zip](/model/vnd.usdz+zip).",
+    "description": "USD (Universal Scene Description) is Pixar's system for composing large 3D scenes out of layers that reference and override one another. Many artists can therefore work on one scene without ever editing the same file. This type is the human-readable ASCII form.\n\nBeing text, it can be diffed and edited by hand. That is why it is the form used for layer files that do composition work, rather than for carrying heavy geometry. The packaged single-file form is [model/vnd.usdz+zip](/model/vnd.usdz+zip).",
     "links": {
       "deprecates": [],
       "relatedTo": [
@@ -17015,7 +17015,7 @@
   },
   {
     "name": "model/vnd.usdz+zip",
-    "description": "USDZ packages a USD scene together with its textures in a single ZIP, stored uncompressed and aligned so a reader can memory-map assets straight out of the archive without extracting anything first.\n\nLeaving it uncompressed is the whole design: it trades file size for the ability to begin rendering immediately, which is what makes it Apple's format for AR Quick Look. The text form of the scene description itself is [model/vnd.usda](/model/vnd.usda).",
+    "description": "USDZ packages a USD scene together with its textures in a single ZIP. The contents are stored uncompressed and aligned, so a reader can memory-map assets straight out of the archive without extracting anything first.\n\nLeaving it uncompressed is intentional. It trades file size for the ability to begin rendering immediately. That is what makes it Apple's format for AR Quick Look, its augmented reality viewer. The text form of the scene description itself is [model/vnd.usda](/model/vnd.usda).",
     "links": {
       "deprecates": [],
       "relatedTo": [
@@ -17046,7 +17046,7 @@
   },
   {
     "name": "model/x3d+xml",
-    "description": "X3D is the Web3D Consortium's successor to VRML, standardised as ISO/IEC 19775. This type is the XML encoding, which is the most common way X3D scenes are written and the one ordinary XML tooling can validate.\n\nThe registration sets a compression convention shared by every X3D encoding: append `z` to the extension when the file is GZIP compressed, so `.x3dz` is a gzipped `.x3d`. The other encodings are [model/x3d-vrml](/model/x3d-vrml) and [model/x3d+fastinfoset](/model/x3d+fastinfoset), and the format it succeeds is [model/vrml](/model/vrml).",
+    "description": "X3D is the Web3D Consortium's successor to VRML (Virtual Reality Modeling Language), standardised as ISO/IEC 19775. This type is the XML encoding, which is the most common way X3D scenes are written and the one ordinary XML tooling can validate.\n\nThe registration sets a compression convention shared by every X3D encoding. Append `z` to the extension when the file is GZIP compressed, so `.x3dz` is a gzipped `.x3d`. The other encodings are [model/x3d-vrml](/model/x3d-vrml) and [model/x3d+fastinfoset](/model/x3d+fastinfoset), and the format it succeeds is [model/vrml](/model/vrml).",
     "links": {
       "deprecates": [],
       "relatedTo": [
@@ -17080,7 +17080,7 @@
   },
   {
     "name": "model/x3d-vrml",
-    "description": "This is X3D written in the classic VRML syntax rather than XML, for tools and content carried forward from VRML. The scene graph is identical to the XML encoding; only the way it is written down differs.\n\nNote the hyphen in the type name. It is `model/x3d-vrml`, not `x3d+vrml`: the `+suffix` convention is reserved for structured syntaxes such as XML or JSON, and the VRML classic encoding is not one of those. GZIP compressed, the extension becomes `.x3dvz`.",
+    "description": "This is X3D written in the classic VRML syntax rather than XML, for tools and content carried forward from VRML. The scene graph is identical to the XML encoding; only the way it is written down differs.\n\nNote the hyphen in the type name. It is `model/x3d-vrml`, not `x3d+vrml`. The `+suffix` convention is reserved for structured syntaxes such as XML or JSON, and the VRML classic encoding is not one of those. GZIP compressed, the extension becomes `.x3dvz`.",
     "links": {
       "deprecates": [],
       "relatedTo": [
@@ -17145,7 +17145,7 @@
   },
   {
     "name": "model/u3d",
-    "description": "U3D (Universal 3D) is defined by ECMA-363, which ECMA publishes free of charge. It carries meshes, materials, lighting and animation in a compact binary form supporting progressive refinement, so a coarse version of a model can be shown while detail is still arriving.\n\nIts main use today is 3D content embedded in PDF. A U3D stream, or a [model/prc](/model/prc) one, is what makes an interactive model inside a document possible.",
+    "description": "U3D (Universal 3D) is defined by ECMA-363, which ECMA publishes free of charge. It carries meshes, materials, lighting and animation in a compact binary form. That form supports progressive refinement, so a coarse version of a model can be shown while detail is still arriving.\n\nIts main use today is 3D content embedded in PDF. A U3D stream, or a [model/prc](/model/prc) one, is what makes an interactive model inside a document possible.",
     "links": {
       "deprecates": [],
       "relatedTo": [
@@ -17175,7 +17175,7 @@
   },
   {
     "name": "model/prc",
-    "description": "PRC (Product Representation Compact) is defined by ISO 14739-1 and is the second format PDF supports for embedded 3D. Unlike a mesh format it can carry exact boundary representation geometry, so an engineering model keeps its true curved surfaces inside the document.\n\nThat is the difference from [model/u3d](/model/u3d). U3D is a visualisation format; PRC can hold the CAD data itself, which matters when the PDF is the deliverable for a part someone has to manufacture.",
+    "description": "PRC (Product Representation Compact) is defined by ISO 14739-1 and is the second format PDF supports for embedded 3D. Unlike a mesh format it can carry exact boundary representation geometry, so an engineering model keeps its true curved surfaces inside the document.\n\nThat is the difference from [model/u3d](/model/u3d). U3D is a visualisation format, while PRC can hold the computer-aided design (CAD) data itself. That matters when the PDF is the deliverable for a part someone has to manufacture.",
     "links": {
       "deprecates": [],
       "relatedTo": [
@@ -17202,7 +17202,7 @@
   },
   {
     "name": "model/vnd.collada+xml",
-    "description": "COLLADA is Khronos's XML interchange format for 3D assets, intended to move a scene between digital content creation tools without either tool imposing its native format. A `.dae` file can hold geometry, materials, shaders, physics and animation.\n\nIt was the interchange standard of the 2000s and remains widely readable. For delivery to a runtime, as opposed to exchange between authoring tools, Khronos now points at [model/gltf+json](/model/gltf+json).",
+    "description": "COLLADA is Khronos's XML interchange format for 3D assets. It is intended to move a scene between digital content creation tools without either tool imposing its native format. A `.dae` file can hold geometry, materials, shaders, physics and animation.\n\nIt was the interchange standard of the 2000s and remains widely readable. For delivery to a runtime, as opposed to exchange between authoring tools, Khronos now points at [model/gltf+json](/model/gltf+json).",
     "links": {
       "deprecates": [],
       "relatedTo": [
@@ -17233,7 +17233,7 @@
   },
   {
     "name": "model/jt",
-    "description": "JT is the lightweight visualisation format used across automotive and aerospace engineering, standardised as ISO 14306. It carries tessellated geometry at several levels of detail, optionally alongside the exact boundary representation, so a design review can open a complete vehicle assembly without loading the full CAD model.\n\nSelective loading is the point. A viewer fetches only the parts and the detail levels it currently needs, which is what makes assemblies of that size workable at all. Related: [model/step](/model/step).\n\nIANA spells this type `model/JT`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
+    "description": "JT is the lightweight visualisation format used across automotive and aerospace engineering, standardised as ISO 14306. It carries tessellated geometry at several levels of detail, optionally alongside the exact boundary representation. A design review can therefore open a complete vehicle assembly without loading the full computer-aided design (CAD) model.\n\nSelective loading is what the format is for. A viewer fetches only the parts and the detail levels it currently needs, which is what makes assemblies of that size workable at all. Related: [model/step](/model/step).\n\nIANA spells this type `model/JT`. Media type names are case-insensitive under RFC 2045 section 5.1, so the lowercase form used here is the same type.",
     "links": {
       "deprecates": [],
       "relatedTo": [
@@ -17259,7 +17259,7 @@
   },
   {
     "name": "model/vnd.opengex",
-    "description": "OpenGEX (Open Game Engine Exchange) is a text-based interchange format for game engine assets, carrying geometry, materials, animation and skinning in a structure meant to be read straight into an engine's own representation.\n\nIt was designed as a deliberate reaction to the complexity of COLLADA, aiming at a format an engine could import without pulling in a large library. Related: [model/vnd.collada+xml](/model/vnd.collada+xml).",
+    "description": "OpenGEX (Open Game Engine Exchange) is a text-based interchange format for game engine assets. It carries geometry, materials, animation and skinning in a structure meant to be read straight into an engine's own representation.\n\nIt was designed as a reaction to the complexity of COLLADA. The aim was a format an engine could import without pulling in a large library. Related: [model/vnd.collada+xml](/model/vnd.collada+xml).",
     "links": {
       "deprecates": [],
       "relatedTo": [

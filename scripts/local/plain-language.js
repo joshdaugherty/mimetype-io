@@ -350,8 +350,12 @@ for (const entry of entries) {
     }
 
     const lower = prose(text).toLowerCase()
+    // Lowercased at comparison rather than trusting the list to be lowercase:
+    // "the JPEG of" carries capitals from the format it names, and against an
+    // already-lowercased haystack it could never match.
     for (const phrase of NON_LITERAL)
-        if (lower.includes(phrase)) add("non-literal", `"${phrase}"`)
+        if (lower.includes(phrase.toLowerCase()))
+            add("non-literal", `"${phrase}"`)
     for (const word of FILLER) {
         const re = new RegExp(`\\b${word}\\b`, "gi")
         const hits = lower.match(re)
