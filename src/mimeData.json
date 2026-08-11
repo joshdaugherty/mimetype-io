@@ -18317,5 +18317,150 @@
       "communityContributed": false,
       "popularUsage": null
     }
+  },
+  {
+    "name": "application/link-format",
+    "description": "CoRE Link Format is how a constrained server says what it has. A GET on `/.well-known/core` returns the server's resources and their attributes in the same syntax as an HTTP Link header field, carried as a payload instead of a header. RFC 6690 defines it for devices too small to serve a discovery document of any real size.\n\nA server may also treat the query string as a filter, so a client can ask for only the resources with a given resource type rather than reading the whole list. That is what lets a gateway walk a building's worth of sensors from one well-known path.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/coap-group+json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".wlnk"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/link-format"
+      },
+      {
+        "title": "RFC 6690 - Constrained RESTful Environments (CoRE) Link Format",
+        "url": "https://www.rfc-editor.org/rfc/rfc6690"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/coap-payload",
+    "description": "When a proxy translating between HTTP and CoAP meets a CoAP Content-Format it does not recognise, it still has to hand the client something. RFC 8075 says it returns this generic type with the numeric format identifier in a `cf` parameter, so `application/coap-payload;cf=60` means a payload the CoAP side labelled 60.\n\nThat is an honest answer rather than a guess. The bytes are passed through and the client is told exactly what the constrained side called them, which means a proxy deployed before a format was registered keeps working instead of rejecting the response.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/octet-stream"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/coap-payload"
+      },
+      {
+        "title": "RFC 8075 - Guidelines for Mapping Implementations: HTTP to the Constrained Application Protocol (CoAP)",
+        "url": "https://www.rfc-editor.org/rfc/rfc8075"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/coap-group+json",
+    "description": "Constrained devices often need addressing together: every light in a room, switched as one. RFC 7390 defines how CoAP does that over IP multicast, and this type describes the membership rather than the traffic. It is a JSON object naming a group and the multicast address it answers on.\n\nA device exposes its group memberships as a resource, so they are created and removed with ordinary CoAP requests. That keeps configuration in the same REST style as everything else the device offers, instead of needing a management protocol of its own.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/link-format",
+        "application/json"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [
+      ".json"
+    ],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/coap-group+json"
+      },
+      {
+        "title": "RFC 7390 - Group Communication for the Constrained Application Protocol (CoAP)",
+        "url": "https://www.rfc-editor.org/rfc/rfc7390"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/missing-blocks+cbor-seq",
+    "description": "RFC 9177 adds block-wise transfer options to CoAP that survive a lossy link. When a server has received only part of a body it answers 4.08 Request Entity Incomplete carrying this type, whose payload is a CBOR sequence of the block numbers that never arrived.\n\nThe client then resends only those blocks. Without it, a 4.08 says merely that something is missing and the transfer begins again, which over a constrained radio is the difference between recovering and giving up. The sequence format it is built on is [application/cbor-seq](/application/cbor-seq).",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/cbor-seq"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/missing-blocks+cbor-seq"
+      },
+      {
+        "title": "RFC 9177 - Constrained Application Protocol (CoAP) Block-Wise Transfer Options Supporting Robust Transmission",
+        "url": "https://www.rfc-editor.org/rfc/rfc9177"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
+  },
+  {
+    "name": "application/dots+cbor",
+    "description": "DOTS lets a network under attack ask for help. A client signals to a mitigation service that it is being flooded and what should be filtered, and RFC 9132 defines that signal channel. This type marks its CBOR-encoded messages.\n\nRunning the signal channel over CoAP is a deliberate choice, not a preference for small formats. When the link is already saturated by the attack, the request for help has to fit in as few bytes as possible and get through on an unreliable transport. Configuration and management travel separately, over the DOTS data channel.",
+    "links": {
+      "deprecates": [],
+      "relatedTo": [
+        "application/cbor"
+      ],
+      "parentOf": [],
+      "alternativeTo": []
+    },
+    "fileTypes": [],
+    "furtherReading": [
+      {
+        "title": "Internet Assigned Numbers Authority (IANA)",
+        "url": "https://www.iana.org/assignments/media-types/application/dots+cbor"
+      },
+      {
+        "title": "RFC 9132 - Distributed Denial-of-Service Open Threat Signaling (DOTS) Signal Channel Specification",
+        "url": "https://www.rfc-editor.org/rfc/rfc9132"
+      }
+    ],
+    "notices": {
+      "hasNoOfficial": false,
+      "communityContributed": false,
+      "popularUsage": null
+    }
   }
 ]
