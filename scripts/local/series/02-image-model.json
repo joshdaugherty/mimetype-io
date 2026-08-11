@@ -1,0 +1,243 @@
+[
+    {
+        "name": "image/apng",
+        "description": "APNG extends PNG with animation: a control chunk plus a sequence of frame chunks, all placed in chunk types a plain PNG decoder is required to skip. The first frame is a complete, valid PNG image, so software that does not understand APNG shows a still picture rather than failing.\n\nThat backwards compatibility is why it displaced GIF for short loops on the web — full 8-bit alpha and 24-bit colour instead of a 256-colour palette and 1-bit transparency.\n\nIt began as a Mozilla extension and was later registered with IANA and folded into the W3C PNG specification proper. The older Mozilla-era label is at [image/vnd.mozilla.apng](/image/vnd.mozilla.apng).",
+        "links": {
+            "deprecates": [],
+            "relatedTo": [
+                "image/png",
+                "image/gif",
+                "image/webp",
+                "image/vnd.mozilla.apng"
+            ],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".apng"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/apng"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/jxs",
+        "description": "JPEG XS (ISO/IEC 21122) is a low-latency, visually lossless codec designed around the opposite trade to most: it compresses only modestly, but does so in a fraction of a frame, with end-to-end latency measured in scanlines rather than frames.\n\nThat makes it a mezzanine format rather than a delivery one. It carries near-uncompressed video over links that cannot quite take raw pixels, which is how it ended up in SMPTE ST 2110-22 for professional video over IP, with RFC 9134 defining the RTP payload format.\n\n`image/jxs` labels the file form; the bare codestream is [image/jxsc](/image/jxsc).",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/jxsc"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".jxs"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/jxs"
+            },
+            {
+                "title": "RFC 9134 - RTP Payload Format for ISO/IEC 21122 (JPEG XS)",
+                "url": "https://www.rfc-editor.org/rfc/rfc9134"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/jxsc",
+        "description": "A bare JPEG XS codestream (ISO/IEC 21122), without the file structure that [image/jxs](/image/jxs) provides. It is what travels over the wire on a professional video-over-IP link, where the transport already carries timing and format information.\n\nThe IANA registry lists further JPEG XS types for carriage inside ISO base media containers, which this site does not document yet.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/jxs"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".jxsc"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/jxsc"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/avci",
+        "description": "AVCI is a still image coded with AVC (H.264) and stored in the HEIF container defined by ISO/IEC 23008-12 — the same container as [image/heif](/image/heif) and [image/heic](/image/heic), but committing to AVC rather than HEVC.\n\nIt exists because HEIF's container design is deliberately codec-agnostic, and the media type is how a file declares which codec is actually inside. In practice it is far rarer than HEIC, since the devices that adopted HEIF adopted HEVC along with it.\n\nThe image sequence form is [image/avcs](/image/avcs).",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/heif", "image/heic", "image/avcs"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".avci"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/avci"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/avcs",
+        "description": "The image sequence counterpart to [image/avci](/image/avci): several AVC-coded images in one HEIF container (ISO/IEC 23008-12), used for bursts, animations and derived sequences rather than a single still.\n\nIt stands in the same relation to `image/avci` as [image/heic-sequence](/image/heic-sequence) does to [image/heic](/image/heic).",
+        "links": {
+            "deprecates": [],
+            "relatedTo": [
+                "image/heif-sequence",
+                "image/heic-sequence",
+                "image/avci"
+            ],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".avcs"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/avcs"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/ktx",
+        "description": "KTX is the Khronos texture container: a thin wrapper around texture data that is already in a GPU-native compressed format, together with its mipmap chain, array layers and cube map faces.\n\nThe point is that the file needs no transcoding at load time. An engine reads the header, hands the payload straight to OpenGL or Vulkan, and the GPU consumes it as it stands — unlike [image/png](/image/png) or [image/jpeg](/image/jpeg), which must be decoded to raw pixels and then recompressed before they are useful as textures.\n\nVersion 2 is a separate media type, [image/ktx2](/image/ktx2).",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/ktx2"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".ktx"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/ktx"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/ktx2",
+        "description": "KTX 2.0 is the second version of the Khronos texture container, and it addresses the problem that made [image/ktx](/image/ktx) awkward to ship: GPU texture formats are not portable, so a KTX 1 file had to be built per target platform.\n\nKTX 2.0 adds Basis Universal supercompression, storing textures in an intermediate form that transcodes cheaply to whichever block format the device actually supports at load time. One file, every GPU.\n\nglTF consumes it through the `KHR_texture_basisu` extension, which is where most people meet it.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/ktx", "model/gltf-binary"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".ktx2"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/ktx2"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "model/gltf+json",
+        "description": "glTF (GL Transmission Format) is the Khronos Group's runtime format for 3D scenes and models. It is built for delivery rather than authoring: a file holds the scene graph, materials and animations, and points at binary buffers of geometry that an engine can hand to the GPU with almost no processing.\n\nThat focus on load time is why it gets called the JPEG of 3D. This type is the JSON form, which references its buffers and textures as separate files. Everything packed into a single binary container is [model/gltf-binary](/model/gltf-binary).",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["model/gltf-binary", "application/json"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".gltf"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/model/gltf+json"
+            },
+            {
+                "title": "Khronos glTF 2.0 specification",
+                "url": "https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "model/gltf-binary",
+        "description": "GLB is the single-file form of glTF: the same JSON scene description, with its binary buffers and textures packed into one container behind a short header. Nothing has to be fetched separately, which makes it the practical choice for shipping a model over a network.\n\nTextures inside a GLB are often Basis Universal supercompressed and carried as [image/ktx2](/image/ktx2), through the KHR_texture_basisu extension. The form that keeps its buffers as separate files is [model/gltf+json](/model/gltf+json).",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["model/gltf+json", "image/ktx2"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".glb"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/model/gltf-binary"
+            },
+            {
+                "title": "Khronos glTF 2.0 specification",
+                "url": "https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "image/vnd.valve.source.texture",
+        "description": "VTF is the texture format of Valve's Source engine — Half-Life 2, Portal, Team Fortress 2 and the games and mods built on them. A file holds the image data along with its mipmaps, flags and any animation frames the engine expects.\n\nVTF files are almost always paired with a `.vmt` material script, which tells the engine which shader to use and how to interpret the texture. On its own a VTF is just pixels.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["image/ktx"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".vtf"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/image/vnd.valve.source.texture"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    }
+]

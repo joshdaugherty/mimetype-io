@@ -1,0 +1,226 @@
+[
+    {
+        "name": "model/obj",
+        "description": "The Wavefront OBJ format dates from the Advanced Visualizer in 1992 and has outlived that software by three decades. It is plain text: vertex positions, texture coordinates and normals, then the faces that index them, one declaration per line.\n\nIts longevity comes from that simplicity. Almost every 3D tool reads it and a person can inspect one in a text editor. Surface appearance is not in the file at all; it lives in a companion [model/mtl](/model/mtl) named by an `mtllib` line.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["model/mtl", "model/stl", "model/mesh"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".obj"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/model/obj"
+            },
+            {
+                "title": "Library of Congress - Wavefront OBJ File Format",
+                "url": "https://www.loc.gov/preservation/digital/formats/fdd/fdd000507.shtml"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "model/mtl",
+        "description": "An MTL file holds the material definitions that an [model/obj](/model/obj) file refers to: ambient, diffuse and specular colours, shininess, transparency and the paths of any texture maps.\n\nKeeping them apart is deliberate, since geometry changes far less often than appearance does. Both formats were registered by the DICOM Standards Committee, which needed a way to label 3D manufacturing data carried alongside medical imaging.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["model/obj"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".mtl"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/model/mtl"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "model/3mf",
+        "description": "3MF (3D Manufacturing Format) is the 3MF Consortium's format for additive manufacturing. A `.3mf` file is a ZIP archive of XML parts describing the model together with materials, colours, print tickets and slice data.\n\nIt exists because STL carries triangles and nothing else: no units, no colour, no materials, no metadata, leaving every toolchain to guess at the rest. Related: [model/stl](/model/stl).",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["model/stl", "application/zip"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".3mf"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/model/3mf"
+            },
+            {
+                "title": "3MF specification",
+                "url": "https://3mf.io/spec/"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "model/step",
+        "description": "STEP (Standard for the Exchange of Product model data) is the ISO 10303 family, the neutral format CAD systems use to exchange solid models without passing through a vendor's own kernel. A STEP file carries exact boundary representation geometry rather than a triangle mesh, so a curved surface stays curved.\n\nThis type covers the Part 21 clear-text encoding. The same encoding registered in the application tree is [application/p21](/application/p21). The XML and zipped forms are [model/step+xml](/model/step+xml), [model/step+zip](/model/step+zip) and [model/step-xml+zip](/model/step-xml+zip).",
+        "links": {
+            "deprecates": [],
+            "relatedTo": [
+                "application/p21",
+                "model/step+xml",
+                "model/step+zip",
+                "model/step-xml+zip",
+                "model/iges"
+            ],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".stp", ".step", ".p21", ".stpnc", ".210"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/model/step"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "model/step+xml",
+        "description": "This is STEP product data in the XML encoding of ISO 10303-28, rather than the Part 21 clear text that most CAD tools write.\n\nXML makes the data reachable with ordinary tooling, at a considerable cost in file size. That cost is why the compressed variants exist: [model/step-xml+zip](/model/step-xml+zip) is this encoding zipped, and [model/step+zip](/model/step+zip) is the clear-text form zipped. The uncompressed clear-text encoding is [model/step](/model/step).",
+        "links": {
+            "deprecates": [],
+            "relatedTo": [
+                "model/step",
+                "model/step-xml+zip",
+                "application/xml"
+            ],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".stpx"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/model/step+xml"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "model/step+zip",
+        "description": "A ZIP archive containing a STEP Part 21 file, registered so that a compressed exchange package carries a type describing what is inside rather than being labelled as a generic archive.\n\nSTEP files for a full assembly routinely reach hundreds of megabytes of clear text, which compresses by roughly an order of magnitude, so the zipped form is how large models actually move between organisations. The uncompressed form is [model/step](/model/step), and the zipped XML encoding is [model/step-xml+zip](/model/step-xml+zip).",
+        "links": {
+            "deprecates": [],
+            "relatedTo": [
+                "model/step",
+                "model/step-xml+zip",
+                "application/zip"
+            ],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".stpz"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/model/step+zip"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "model/step-xml+zip",
+        "description": "A ZIP archive containing STEP data in the ISO 10303-28 XML encoding. It exists for the same reason as [model/step+zip](/model/step+zip): the payload is verbose text that compresses heavily.\n\nThe distinction between the two zipped types is only what sits inside the archive. This one holds the XML encoding, whose uncompressed form is [model/step+xml](/model/step+xml); the other holds Part 21 clear text.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": [
+                "model/step+xml",
+                "model/step+zip",
+                "application/zip"
+            ],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".stpxz"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/model/step-xml+zip"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "application/p21",
+        "description": "ISO 10303-21 defines the clear-text encoding that STEP files use, commonly called Part 21. It is structured text: a header section, then a data section of numbered entity instances that refer to one another by those numbers.\n\nThe registration claims `.ifc` alongside the STEP extensions, which is correct rather than a stray entry. IFC, the schema behind building information modelling, is serialised with this same Part 21 syntax. The model-tree registration of the encoding is [model/step](/model/step), and the schema language that says what the numbered entities mean is [application/express](/application/express).",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["model/step", "application/express"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".p21", ".stp", ".step", ".stpnc", ".210", ".ifc"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/application/p21"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    },
+    {
+        "name": "application/express",
+        "description": "EXPRESS is the data modelling language defined by ISO 10303-11. It is not product data itself: it is the language in which STEP's application protocols are written, describing entities, their attributes and the constraints between them.\n\nA `.exp` file is therefore closer to a database schema than to a model. Reading one is how you find out what the numbered entities inside a [model/step](/model/step) or [application/p21](/application/p21) file actually represent.",
+        "links": {
+            "deprecates": [],
+            "relatedTo": ["model/step", "application/p21"],
+            "parentOf": [],
+            "alternativeTo": []
+        },
+        "fileTypes": [".exp"],
+        "furtherReading": [
+            {
+                "title": "Internet Assigned Numbers Authority (IANA)",
+                "url": "https://www.iana.org/assignments/media-types/application/express"
+            }
+        ],
+        "notices": {
+            "hasNoOfficial": false,
+            "communityContributed": false,
+            "popularUsage": null
+        }
+    }
+]
